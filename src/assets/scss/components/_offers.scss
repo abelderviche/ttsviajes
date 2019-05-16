@@ -1,0 +1,217 @@
+.offers {
+    padding: 6.4rem 0;
+
+    &--product {
+        background-color: $grey-lighter;
+    }
+
+    &__title {
+        margin-bottom: 2.4rem;
+        font-size: 3.2rem;
+        letter-spacing: 1.1px;
+        color: $grey-dark;
+        line-height: 1.25;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__carrousel-ctn {
+        position: relative;
+    }
+
+    &__carrousel {
+        display: flex;
+        overflow-x: scroll;
+        padding-bottom: 3px;
+        white-space: nowrap;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    &__scroller {
+        width: 4rem;
+        height: 7.2rem;
+        background-color: rgba(0, 0, 0, 0.43);
+        position: absolute;
+        top: calc(50% - 3.6rem);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        img {
+            width: 2.08rem;
+            fill: $white;
+        }
+
+        &--left {
+            left: 0;
+            img {
+                transform: rotate(90deg);
+            }
+        }
+
+        &--right {
+            right: 0;
+            img {
+                transform: rotate(-90deg);
+            }
+        }
+    }
+
+    &__back-space {
+        flex: 0 0 1.6rem;
+        height: 40.8rem;
+        background-color: transparent;
+    }
+
+    &__card {
+        flex: 0 0 32rem;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+        border-radius: 3px;
+        margin-left: 1.6rem;
+
+        &-bg {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        &-img {
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            position: relative;
+            height: 32rem;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000), url(../img/tmp/bitmap.png);
+            z-index: 100;
+        }
+
+        &-name {
+            position: absolute;
+            left: 1.6rem;
+            bottom: 1.6rem;
+            font-size: 1.8rem;
+            font-weight: 500;
+            line-height: 1.33;
+            letter-spacing: .6px;
+            color: $white;
+        }
+
+        &-discount {
+            position: absolute;
+            left: 0;
+            bottom: 4.8rem;
+            background-color: #6eb91c;
+            width: 8rem;
+            height: 2.4rem;
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+
+            font-size: 1.4rem;
+            font-weight: 500;
+            line-height: 1.71;
+            letter-spacing: .5px;
+            color: $white;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &-top-banner {
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            background-color: $dark-primary;
+            position: absolute;
+            width: 100%;
+            height: 3.2rem;
+            top: 0;
+            left: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: $white;
+            font-size: 1.3rem;
+            font-weight: 500;
+            line-height: 1.23;
+            letter-spacing: .5px;
+        }
+
+        &-bottom {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.6rem;
+            height: 6.4rem;
+            background-color: $white;
+        }
+
+        &-title {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: $grey-dark;
+            line-height: 1.14;
+            letter-spacing: .5px;
+        }
+
+        &-sub-title {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: $grey-dark;
+            line-height: 1.14;
+            letter-spacing: .5px;
+
+            margin-top: .8rem;
+        }
+
+        &-price {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            &--value {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.8rem;
+                color: $primary;
+                line-height: 1.33;
+                font-weight: 500;
+            }
+
+            &--payment-method {
+                font-size: 1.1rem;
+                line-height: .73;
+                color: $grey-dark;
+                margin-top: .8rem;
+            }
+        }
+
+        &-rewards {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $card-grey;
+            height: 2.4rem;
+            font-size: 1.1rem;
+            color: $grey-dark;
+            letter-spacing: .4px;
+            line-height: 2.18;
+
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+    }
+}

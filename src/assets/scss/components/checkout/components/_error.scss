@@ -1,0 +1,30 @@
+.checkout-error {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    margin-bottom: 1.6rem;
+    padding: 1.6rem 2.4rem;
+    background-color: rgba(208, 2, 27, 0.1);
+    align-items: center;
+    height: 8rem;
+
+    img {
+
+    }
+    &__content {
+        margin-left: 1.6rem;
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    &__title {
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: $primary;
+    }
+    &__message {
+        font-size: 1.4rem;
+        color: $grey-dark;
+    }
+}

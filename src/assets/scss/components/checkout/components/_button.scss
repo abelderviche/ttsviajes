@@ -1,0 +1,34 @@
+.next-button {
+    height: 4rem;
+    width: 32rem;
+    background-color: $primary;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+
+    @include respond(tablet) {
+        width: 100%;
+    }
+
+    &--loading {
+        opacity: .5;
+        cursor: auto;
+    }
+
+    span {
+        font-size: 1.6rem;
+        line-height: 1.5;
+        letter-spacing: .2px;
+        text-align: center;
+        color: $white;
+    }
+    &--pardo {
+       background-color: $primary-pardo;  
+    }
+    &--viajobien {
+        background-color: $primary-viajobien;  
+    }
+}

@@ -1,0 +1,43 @@
+.dates-input {
+    align-items: center;
+    cursor: pointer;
+
+    &__day-range {
+        display: flex;
+        align-items: center;
+
+        font-size: 1.6rem;
+        line-height: 1;
+        color: $grey-dark;
+
+        @include respond(laptop-small) {
+            font-size: 1.3rem;
+        }
+    }
+
+    &__departure {
+        border-right: $line;
+    }
+
+    &__returning--disabled {
+        color: #cccccc;
+        background-color: #e7e7e7;
+    }
+
+    &__departure,
+    &__returning {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: $input-height;
+        &--placeholder {
+            font-size: 1.4rem;
+            color: $grey;
+        }
+    }
+
+    &__container {
+        flex: 1;
+    }
+}

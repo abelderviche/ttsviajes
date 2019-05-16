@@ -1,0 +1,101 @@
+.hotel {
+    // max-width: 20rem;
+    max-height: 4.8rem;
+    overflow: hidden;
+    margin-top: 1.6rem;
+    border-radius: 3px;
+    background-color: $grey-light;
+    cursor: pointer;
+    transition: max-height .5s;
+    margin-bottom: 1.6rem;
+    flex: 1;
+
+    @include respond(tablet-land) {
+        margin-left: .8rem;
+        margin-top: 0;
+    }
+
+    &__collapsed {
+        max-height:100rem;
+    }
+
+    &__headline {
+        flex: 1;
+        height: 4.8rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        &-city {
+            font-size: 1.8rem;
+            color: $primary;
+            font-weight: 500;
+            margin: 0 .8rem;
+        }
+
+        &-symbol {
+            width: 1.4rem;
+            height: 1rem;
+            color: $primary;
+        }
+    }
+
+    &__details {
+        margin: 0 1.6rem;
+        padding-top: 1.6rem;
+        border-top: solid 1.5px rgba(0, 0, 0, 0.12);
+    }
+   
+}
+.hotel-box{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-bottom: 1.6rem;
+    margin-top: .8rem;
+    padding: 1.6rem;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+    background-color: $white;
+    font-size: 1.4rem;
+    &__hotel-info{
+        display:flex;
+        flex-direction: column;
+        border-bottom: $line;
+        margin-bottom: 1.2rem;
+        .title{
+            font-size: 1.8rem;
+        }
+        .stars{
+            display: flex;
+            .icon-star{
+                height: 1.4rem;
+                width: 1.4rem;
+                fill:$gold;
+            }
+            padding-bottom:10px;
+        }
+        .direction{
+            color:$primary;
+            .icon-location{
+                fill:$primary;
+                height: 2rem;
+                width: 2rem;
+            }
+        }
+        .meal-plan{
+            color:#579b08;
+        }
+    }
+    &__reservation-info{
+        display:flex;
+        flex-direction: column;
+        .row{
+            display: flex;
+            padding: .8rem 0;
+            justify-content: space-between;
+            border-bottom: 1px dashed $grey;
+        } 
+    }
+
+}

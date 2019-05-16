@@ -1,0 +1,96 @@
+.dropdown {
+    position: relative;
+    width: 100%;
+
+    &__label {
+        cursor: pointer;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &--disabled {
+            cursor: auto;
+        }
+    }
+    &__text {
+        color: $white;
+        font-size: 1.6rem;
+        letter-spacing: .6px;
+        display: inline-block;
+        margin-right: 1.6rem;
+    }
+    &__arrow-container {
+        display: inline-block;
+        height: .7rem;
+        width: 1.4rem;
+        overflow: hidden;
+        position: relative;
+        transition: all .2s;
+        transform-origin: top;
+    }
+
+    &__arrow {
+        background-color: $white;
+        height: .7rem;
+        width: .7rem;
+        top: 0%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        position: absolute;
+
+        &--dark {
+            background-color: $grey-dark;
+        }
+    }
+    &__checkbox {
+        display: none;
+    }
+    &__checkbox:checked ~ &__label &__arrow-container {
+        transform: rotate(180deg) translateY(-.5rem);
+    }
+
+    &__collapsed {
+        position: absolute;
+        top: $input-height;
+        min-width: 14.7rem;
+        max-height: 20.8rem;
+        overflow-y: scroll;
+        left: 0;
+        background-color: #fafafa;
+        box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.24), 0 0 8px 0 rgba(0, 0, 0, 0.12);
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: all .15s;
+        z-index: 100;
+    }
+
+    &__checkbox:checked ~ &__collapsed {
+        transform: scaleY(1);
+    }
+
+    &__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__item {
+        width: 100%;
+        flex: 0 0 $input-height;
+        display: flex;
+        padding: 0 1.6rem;
+        align-items: center;
+        color: rgba(0, 0, 0, 0.87);
+        font-size: 1.4rem;
+        line-height: 1.14;
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(211, 32, 39,.3);
+        }
+    }
+}

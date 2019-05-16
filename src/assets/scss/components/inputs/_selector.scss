@@ -1,0 +1,49 @@
+.selector {
+
+    &--left {
+        left: 0;
+    }
+
+    cursor: default;
+    z-index: 1000;
+    position: absolute;
+    top: calc($input-height + 1.6rem);
+    width: 31.2rem;
+    right: 0;
+    border-radius: 3px;
+    background-color: $white;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 4px 4px 0 rgba(0, 0, 0, 0.12);
+
+    display: flex;
+    flex-direction: column;
+    padding: 1.6rem;
+
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: all .1s;
+
+    &__collapsed {
+        transform: scaleY(1);
+    }
+
+    &__submit {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        & > * {
+            color: $primary;
+            font-weight: 500;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+    }
+
+    &__add-room {
+
+    }
+
+    &__done {
+        text-transform: uppercase;
+    }
+}

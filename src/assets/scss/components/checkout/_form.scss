@@ -1,0 +1,24 @@
+@import "components/module";
+@import "components/button";
+@import "components/error";
+@import "components/checkout-loader";
+@import "components/payment-options";
+
+.form {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+
+    @include respond(medium-device) {
+        flex-basis: 100%;
+    }
+
+    @include respond(laptop-small) {
+        flex: 3;
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+    }
+}

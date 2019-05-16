@@ -1,0 +1,97 @@
+.charges {
+    
+    max-height: 4.8rem;
+    border-radius: 3px;
+    background-color: $primary;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+    padding: 1.6rem;
+    padding-top: 0;
+    cursor: pointer;
+    transition: max-height .5s;
+    flex: 1;
+
+    &--collapsed {
+        max-height: 24rem;
+    }
+
+    @include respond(tablet-land) {
+        margin-bottom: 1.6rem;
+    }
+
+    &__details {
+        max-height: 20rem;
+        overflow: hidden;
+        transition: max-height .5s;
+    }
+
+    &__hidden {
+        max-height: 0;
+    }
+
+    &__headline {
+        margin-top: 1.6rem;
+        span {
+            font-size: 1.6rem;
+            line-height: 1.5;
+            letter-spacing: .2px;
+            color: $white;
+        }
+    }
+
+    &__flat {
+        padding: .8rem 0;
+        border-bottom: dashed 1px $white;
+    }
+
+    &__subtotals {
+        padding: .8rem 0;
+        border-bottom: solid 0.1px $white;
+    }
+
+    &__total {
+        margin-top: 1.6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @include respond(tablet-land) {
+            max-height: 4.8rem;
+        }
+
+        &--label {
+            font-size: 1.4rem;
+            line-height: 1.14;
+            font-weight: 300;
+            letter-spacing: .1px;
+            color: $white;
+            text-transform: uppercase;
+        }
+
+        &--price {
+            font-size: 1.8rem;
+            letter-spacing: .2px;
+            color: $white;
+            font-weight: 300;
+        }
+    }
+
+    &__line {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        span {
+            font-size: 1.4rem;
+            line-height: 1.14;
+            letter-spacing: .1px;
+            color: $white;
+            font-weight: 300;
+        }
+    }
+    &--pardo {
+      background-color: $primary-pardo;  
+    }
+    &--viajobien {
+        background-color: $primary-viajobien;  
+    }
+}

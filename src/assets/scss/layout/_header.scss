@@ -1,0 +1,172 @@
+.header {
+  //  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.24), 0 0 4px 0 rgba(0, 0, 0, 0.12);
+    position: relative;
+    z-index: 1;
+    .brand-bar {
+        background-color: $white;
+        box-sizing: content-box;
+        height: 5.6rem;
+        border-bottom: $line;
+        display: flex;
+        align-items: center;
+        font-size: 1.4rem;
+        padding: 0 1.6rem;
+        &>* {
+            display: flex;
+            align-items: center;
+            span {
+                @include respond(phone) {
+                    display: none;
+                }
+            }
+        }
+        &__logo-link {
+            margin-right: auto;
+        }
+        &__logo {
+            height: 4rem;
+            width: 6.6rem;
+        }
+        &__phone {
+            padding-right: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            @include respond(phone) {
+                padding: 0;
+            }
+
+            &-icon {
+                height: 1.6rem;
+                width: 1.6rem;
+                margin-right: .8rem;
+                fill: $primary;
+                @include respond(phone) {
+                    height: 2.4rem;
+                    width: 2.4rem;
+                }
+            }
+
+            &-number {
+                display: flex;
+                align-items: center;
+            }
+
+            &-times {
+                color: $grey;
+                font-size: 1.1rem;
+                line-height: 1.45;
+            }
+        }
+        &__branches {
+            border-left: $line;
+      //      border-right: $line;
+            padding-left: .6rem;
+            padding-right: 1.7rem;
+            @include respond(phone) {
+                padding: 0;
+            }
+            color: $primary;
+            a{
+                color: $primary;
+                text-decoration:none;
+            }
+        }
+        &__user {
+            padding-left: .6rem;
+            @include respond(phone) {
+                padding: 0;
+                margin-right: -.8rem;
+            }
+            display: none;
+        }
+        &__icon {
+            height: 2.4rem;
+            width: 2.4rem;
+            margin-right: .8rem;
+            fill: $primary;
+            @include respond(phone) {
+                margin-left: .8rem;
+            }
+        }
+    }
+    .nav-bar {
+        background-color: $white;
+        height: 4.7rem;
+        overflow: scroll;
+        
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        &__list {
+            box-sizing: content-box;
+            list-style: none;
+            height: 100%;
+            padding: 0 .8rem;
+            display: flex;
+        }
+        &__item {
+            display: flex;
+            color: $grey-dark;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+
+            &--active {
+                color: $primary;
+            }
+
+            &-active-border {
+                box-sizing: border-box;
+                position: absolute;
+                width: 100%;
+                bottom: 0;
+                left: 0;
+                border-bottom: 3px solid $primary;
+                transform: translateX(-100%);
+                transition: all .1s ease-out;
+                &-enter {
+                    opacity: 0;
+                    transform: translateX(-100%);
+                }
+
+                &-enter-done {
+                    transform: translateX(0%);
+                    opacity: 1;
+                }
+
+                &-exit {
+                    transform: translateX(0%);
+                }
+
+                &-exit-done {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+            }
+        }
+
+        &__link:link,
+        &__link:visited {
+            color: currentColor;
+            text-decoration: none;
+            padding: 0 1.6rem;
+            display: flex;
+            align-items: center;
+        }
+
+        &__text {
+            margin-left: .8rem;
+            font-size: inherit;
+        }
+        &__icon {
+            height: 1.6rem;
+            width: 1.6rem;
+            fill: currentColor;
+        }
+    }
+}

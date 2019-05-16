@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+  
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; // 1rem = 10px
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 1.6rem;
+    color: $grey-dark;
+    @include respond(big-desktop) {
+        padding: 4.8rem;
+   //     background-color: rgba(211, 32, 39,.555);
+    }
+}
+
+#app {
+    @include respond(big-desktop) {
+        box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.24), 0 0 8px 0 rgba(0, 0, 0, 0.12);
+    }
+}

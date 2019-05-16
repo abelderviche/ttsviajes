@@ -1,0 +1,31 @@
+@import "abstracts/mixins";
+@import "abstracts/variables";
+@import "abstracts/utils";
+
+@import "base/base";
+
+@import "components/search-box";
+@import "components/banner-box";
+@import "components/payments-banner";
+@import "components/checkbox";
+@import "components/dropdown";
+@import "components/offers";
+@import "components/flight-summary";
+@import "components/hotel-summary";
+@import "components/inputs/input";
+
+@import "components/checkout/form";
+@import "components/checkout/summary";
+
+@import "layout/header";
+@import "layout/footer";
+
+@import "pages/home";
+@import "pages/checkout";
+@import "pages/thanks";
+
+@import "utils/placeholder";
+
+#app {
+    position: relative;
+}

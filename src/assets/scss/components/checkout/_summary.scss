@@ -1,0 +1,23 @@
+@import "components/charges";
+
+.summary {
+    flex: 1;
+    margin-left: 1.6rem;
+
+    @include respond(tablet-land) {
+        margin-left: 0;
+        display: flex;
+        flex-direction: row;
+    }
+
+    @include respond(tablet) {
+        margin-left: 0;
+    }
+    
+    &__not-include{
+        margin-top: 1.6rem;
+        background-color: $grey-light;
+        padding: 1.6rem;
+        font-size: 1.4rem;
+    }
+}

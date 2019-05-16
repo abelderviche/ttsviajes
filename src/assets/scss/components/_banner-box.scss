@@ -1,0 +1,45 @@
+.banner-box {
+    flex: 1;
+    background-color: $grey-lighter;
+    display: flex;
+    height: 31.8rem;
+
+    &__image-container {
+        height: 29rem;
+        background-color: $grey-lighter;
+    }
+
+    &__image {
+        object-fit: contain;
+        height: 100%;
+    }
+
+    &__right,
+    &__left {
+        margin-top: 1.6rem;
+        margin-bottom: 1.6rem;
+        flex: 1;
+        border-radius: 3px;
+        background-color: #d8d8d8;
+    }
+
+    &__right {
+        margin-left: .8rem;
+        margin-right: 1.6rem;
+    }
+
+    &__left {
+        margin-left: .8rem;
+        margin-right: .8rem;
+    }
+    
+    @include respond(laptop) {
+        flex: 3;
+    }
+    @include respond(tablet-land) {
+        display: none;
+    }
+    @include respond(tablet) {
+        display: none;
+    }
+}

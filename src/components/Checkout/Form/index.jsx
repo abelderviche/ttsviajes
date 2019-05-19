@@ -4,6 +4,8 @@ import { inject, observer } from "mobx-react";
 import PaymentModule from './payment-module';
 import BillingModule from './billing-module';
 import AssistcardModule from './assistcard-module';
+import ContactModule from './contact-module';
+import GuestForm from '../../Hotel/GuestForm';
 import Button from './button';
 import Error from '../Error';
 import { animateScroll } from 'react-scroll'
@@ -27,6 +29,8 @@ class Form extends React.Component {
                 }
                 <PaymentModule sendAttempted={this.state.sendAttempted}  />
                 <BillingModule sendAttempted={this.state.sendAttempted} />
+                <ContactModule sendAttempted={this.state.sendAttempted} />
+                <GuestForm sendAttempted={this.state.sendAttempted} />
 
 
             </div>

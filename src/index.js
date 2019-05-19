@@ -18,6 +18,7 @@ import PaymentMethodStore from 'stores/payment-method';
 import BillingStore from 'stores/billing';
 import AssistCardStore from 'stores/assist-card';
 import CheckoutFormStore from 'stores/checkout-form';
+import ContactStore from 'stores/contact-form';
 import ReservationsStore from 'stores/reservations';
 import ApplicationStore from 'stores/application';
 import CheckoutStore from 'stores/checkout';
@@ -55,6 +56,7 @@ const store = {
   billing: BillingStore,
   assistcard:AssistCardStore,
   checkoutForm: CheckoutFormStore,
+  contactStore:ContactStore,
   reservations: ReservationsStore,
   application: ApplicationStore,
   checkout:CheckoutStore

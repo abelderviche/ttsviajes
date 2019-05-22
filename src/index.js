@@ -19,6 +19,7 @@ import BillingStore from 'stores/billing';
 import AssistCardStore from 'stores/assist-card';
 import CheckoutFormStore from 'stores/checkout-form';
 import ContactStore from 'stores/contact-form';
+import GuestStore from 'stores/guests';
 import ReservationsStore from 'stores/reservations';
 import ApplicationStore from 'stores/application';
 import CheckoutStore from 'stores/checkout';
@@ -59,7 +60,8 @@ const store = {
   contactStore:ContactStore,
   reservations: ReservationsStore,
   application: ApplicationStore,
-  checkout:CheckoutStore
+  checkout:CheckoutStore,
+  guestsStore:GuestStore,
 };
 
 hydrate('LanguageStore', store.language);

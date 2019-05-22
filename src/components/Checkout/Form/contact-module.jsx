@@ -34,11 +34,12 @@ export default class ContactFormModule extends Component {
                         </Input>
                         <Input title="Telefono">
                             <DropdownInput 
+                                defaultValue={contactStore.phoneType}
                                 forceValidation={this.props.sendAttempted}
                                 options={phoneTypes}
                                 valid={contactStore.validPhoneType}
                                 value={contactStore.phoneType} action={contactStore.setPhoneType}
-                                size='medium-sm' placeholder='Celular' />
+                                size='medium-sm' placeholder='Seleccioná tipo' />
                         </Input>
                         <Input title="Cod. de pais">
                             <TextInput 

@@ -7,6 +7,7 @@ import CheckoutForm from './checkout-form';
 import AssistCard from './assist-card';
 import Reservations from './reservations'
 import PaymentMethodStore from './payment-method'
+import GuestsStore from './guests'
 
 
 class CheckoutStore {
@@ -34,6 +35,7 @@ class CheckoutStore {
                                 PaymentMethodStore.setPaymentMethods(fcb.creditsCards.paymentMethods);
                                 this.activeComponents = activeComponents;
                                 this.infoProduct = infoProduct;
+                                GuestsStore.generateGuestArray(this.infoProduct.detail.rooms.length)
                                 
                                 resolve(
                                     {   action:action,

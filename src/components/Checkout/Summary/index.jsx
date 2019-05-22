@@ -15,7 +15,6 @@ class Summary extends React.Component {
         const {infoProduct} = this.props.checkout;
         const {type,detail} = infoProduct;
         if(type === 'accommodations'){
-            console.log('test');
             const nights = moment(detail.rates[0].checkout).diff(moment(detail.rates[0].checkin), 'days');
             return(
                 <div className="summary">

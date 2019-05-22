@@ -5,21 +5,24 @@ import PaymentModule from './payment-module';
 import BillingModule from './billing-module';
 import AssistcardModule from './assistcard-module';
 import ContactModule from './contact-module';
-import GuestForm from '../../Hotel/GuestForm';
+import PaxModule from './pax-module';
 import Button from './button';
 import Error from '../Error';
 import { animateScroll } from 'react-scroll'
 const formatPrice = (price) => {
     return price.toFixed(2).toString().replace(',', '.').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-@inject('paymentMethod','reservations','assistcard') @observer
+@inject('checkout') @observer
 class Form extends React.Component {
     state = {
         sendAttempted: false
     }
     
     render() {
-        const { action, loading, error, availablePayment, checkContact, changeCheck, product } = this.props;
+        const { action, loading, error, availablePayment, checkContact, changeCheck, product, checkout} = this.props;
+        /*
+
+         */
         return (
             <div className="form">
                 {
@@ -27,10 +30,33 @@ class Form extends React.Component {
                     <Error {...error}/>
                     : null
                 }
-                <PaymentModule sendAttempted={this.state.sendAttempted}  />
-                <BillingModule sendAttempted={this.state.sendAttempted} />
-                <ContactModule sendAttempted={this.state.sendAttempted} />
-                <GuestForm sendAttempted={this.state.sendAttempted} />
+                {
+                    checkout.activeComponents.map(component=>{
+                       if(component.name === 'FCB'){
+                        return(
+                            <div>
+                                <PaymentModule sendAttempted={this.state.sendAttempted}  />
+                                <BillingModule sendAttempted={this.state.sendAttempted} />
+                            </div>
+                        )}
+                        if(component.name === 'CONT'){
+                            return(
+                                <ContactModule sendAttempted={this.state.sendAttempted} />
+                            )
+                        }
+                        if(component.name === 'PAXA'){
+                            return(
+                                <PaxModule     sendAttempted={this.state.sendAttempted} />
+                            )
+                        }
+                        if(component.name === 'PAXF'){
+                            return(
+                                <PaxModule     sendAttempted={this.state.sendAttempted} />
+                            )
+                        }
+
+                    })
+                }
 
 
             </div>

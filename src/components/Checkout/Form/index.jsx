@@ -5,10 +5,11 @@ import PaymentModule from './payment-module';
 import BillingModule from './billing-module';
 import AssistcardModule from './assistcard-module';
 import ContactModule from './contact-module';
-import PaxModule from './pax-module';
+import GuestModule from './guest-module';
 import Button from './button';
 import Error from '../Error';
 import { animateScroll } from 'react-scroll'
+import PaxModule from './pax-module';
 const formatPrice = (price) => {
     return price.toFixed(2).toString().replace(',', '.').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -51,7 +52,7 @@ class Form extends React.Component {
                         }
                         if(component.name === 'PAXF'){
                             return(
-                                <PaxModule     sendAttempted={this.state.sendAttempted} />
+                                <GuestModule     sendAttempted={this.state.sendAttempted} />
                             )
                         }
 

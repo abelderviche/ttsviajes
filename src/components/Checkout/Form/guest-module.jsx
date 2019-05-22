@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { inject, observer } from "mobx-react";
-import PaxForm from '../../Flight/PaxForm';
+import GuestForm from '../../Hotel/GuestForm';
 
 @inject('guestsStore') @observer
 
-class PaxModule extends Component {
+class GuestModule extends Component {
      render(){
         const {guestsStore} = this.props;
+        console.log(guestsStore.guestsArray);
         return(
             <div className="module">
-                <div className="module__top-headline">Datos de los pasajeros aereos</div>   
+                <div className="module__top-headline">Datos de los pasajeros</div>   
                 {guestsStore.guestsArray.map((room)=>
-                    <PaxForm sendAttempted={this.props.sendAttempted} guest={room}  key={room.id}/>
+                    <GuestForm sendAttempted={this.props.sendAttempted} guest={room}  key={room.id}/>
                 )}
 
 
@@ -20,4 +21,4 @@ class PaxModule extends Component {
     }
 }
 
-export default PaxModule;
+export default GuestModule;

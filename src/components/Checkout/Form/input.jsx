@@ -61,6 +61,78 @@ class TextInput extends React.PureComponent {
     }
 }
 
+class DropdownDate extends React.PureComponent{
+    state ={
+        dayVisited:false,
+        monthVisited:false,
+        yearVisited:false,
+        day:'',
+        month:'',
+        year:'',
+    }
+   setMonth = (value)=>{
+       this.setState({day:value})
+   }
+   setYear = (value)=>{
+       this.setState({month:value})
+   }
+   setDay = (value)=>{
+       this.setState({year:value})
+   }
+    getDate(){
+       return this.state.year && this.state.month && this.state.day?'123123':null
+    }
+
+    render(){
+    const { days,months,years, size, placeholder,defaultValue,disabled, value,  valid, forceValidation, type,actionDay,actionMonth,actionYear} = this.props;
+    return(
+        <Element size='large' 
+            valid={valid} visited={(this.state.dayVisited && this.state.monthVisited && this.state.yearVisited ) || forceValidation}
+            extraClass="checkout-select--nopadding">                
+            <Select
+                defaultValue={defaultValue}
+                className="checkout-select"
+                classNamePrefix="checkout-select"
+                isDisabled={disabled}
+                placeholder='Dia'
+                controlShouldRenderValue={days && days.length && value !== null}
+                selectedOption={value}
+                options={days} 
+                onChange={(opt) => { this.setState({ dayVisited: true,day:opt.value }); actionDay(opt.value)}}
+                theme={(defaultTheme) => {
+                    return {...defaultTheme, colors: { ...defaultTheme.colors, primary: '#d32027', primary25: 'rgba(211, 32, 3, .25)' } };
+                }} />
+            <Select
+                defaultValue={defaultValue}
+                className="checkout-select"
+                classNamePrefix="checkout-select"
+                isDisabled={disabled}
+                placeholder='Mes'
+                controlShouldRenderValue={months && months.length && value !== null}
+                selectedOption={value}
+                options={months} 
+                onChange={(opt) => {this.setState({ monthVisited: true,month:opt.value });actionMonth(opt.value)}}
+                theme={(defaultTheme) => {
+                    return {...defaultTheme, colors: { ...defaultTheme.colors, primary: '#d32027', primary25: 'rgba(211, 32, 3, .25)' } };
+                }} />
+            <Select
+                defaultValue={defaultValue}
+                className="checkout-select"
+                classNamePrefix="checkout-select"
+                isDisabled={disabled}
+                placeholder='Año'
+                controlShouldRenderValue={years && years.length && value !== null}
+                selectedOption={value}
+                options={years} 
+                onChange={(opt) => {this.setState({ yearVisited: true,year:opt.value });  actionYear(opt.value)}}
+                theme={(defaultTheme) => {
+                    return {...defaultTheme, colors: { ...defaultTheme.colors, primary: '#d32027', primary25: 'rgba(211, 32, 3, .25)' } };
+                }} />
+        </Element>
+    )
+}
+}
+
 class Input extends React.Component {
     render() {
         const {children, title} = this.props;
@@ -76,5 +148,5 @@ class Input extends React.Component {
     }
 }
 
-export { DropdownInput, TextInput };
+export { DropdownInput, TextInput, DropdownDate };
 export default Input;

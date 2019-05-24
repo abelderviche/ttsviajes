@@ -35,7 +35,8 @@ class CheckoutStore {
                                 PaymentMethodStore.setPaymentMethods(fcb.creditsCards.paymentMethods);
                                 this.activeComponents = activeComponents;
                                 this.infoProduct = infoProduct;
-                                GuestsStore.generateGuestArray(this.infoProduct.detail.rooms.length)
+                               // GuestsStore.generateGuestArray(this.infoProduct.detail.rooms.length)
+                                GuestsStore.setPaxArray(res.data.paxf);
                                 
                                 resolve(
                                     {   action:action,

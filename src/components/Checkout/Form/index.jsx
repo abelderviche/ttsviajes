@@ -45,12 +45,12 @@ class Form extends React.Component {
                                 <ContactModule sendAttempted={this.state.sendAttempted} />
                             )
                         }
-                        if(component.name === 'PAXA'){
+                        if(component.name === 'PAXF'){
                             return(
                                 <PaxModule     sendAttempted={this.state.sendAttempted} />
                             )
                         }
-                        if(component.name === 'PAXF'){
+                        if(component.name === 'PAXA'){
                             return(
                                 <GuestModule     sendAttempted={this.state.sendAttempted} />
                             )

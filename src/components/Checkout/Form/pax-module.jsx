@@ -10,8 +10,8 @@ class PaxModule extends Component {
         return(
             <div className="module">
                 <div className="module__top-headline">Datos de los pasajeros aereos</div>   
-                {guestsStore.guestsArray.map((room)=>
-                    <PaxForm sendAttempted={this.props.sendAttempted} guest={room}  key={room.id}/>
+                {guestsStore.paxArray.map((pax,k)=>
+                    <PaxForm sendAttempted={this.props.sendAttempted} pax={pax} key={k} keyData={k} />
                 )}
 
 

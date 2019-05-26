@@ -63,7 +63,8 @@ class Checkout extends React.Component {
     
 
     doPayment = () => {
-       
+        this.setState({loading:true})
+       this.props.checkout.doPayment();
     }
    
     render() {
@@ -71,11 +72,29 @@ class Checkout extends React.Component {
       return (
             <StickyContainer>
                 {!loadingReservation?
-                <div className="checkout-container">
+
+                <div id="checkout-container">
+                        <Sticky >
+                        {({
+                            style,
+                
+                            // the following are also available but unused in this example
+                            isSticky,
+                            wasSticky,
+                            distanceFromTop,
+                            distanceFromBottom,
+                            calculatedHeight
+                        }) =>(
+                                <div>testestisetiseitsetsets esejlk ejlks jlkstjsklete sjkl jstekl tesjl tsekjltes jlktes jkl estjkle stklj</div>
+                            )
+                        }
+                        </Sticky> 
                     <div className="section-checkout">
                         <Form 
                             error={error}
-                        />
+                            action={this.doPayment}
+                            loading={loading}
+                            />
                         <Summary />
                     </div>
                 </div>

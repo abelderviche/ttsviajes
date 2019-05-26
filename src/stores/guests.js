@@ -37,6 +37,10 @@ class GuestsStore {
         } 
     }
 
+    @action setGuestArray = (guestArr) =>{
+        this.guestsArray = guestArr;
+    }
+
     @action setPaxArray = (paxArr) =>{
         this.paxArray = paxArr;
     }

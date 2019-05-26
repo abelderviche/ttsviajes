@@ -7,6 +7,8 @@ import CheckoutForm from './checkout-form';
 import AssistCard from './assist-card';
 import Reservations from './reservations'
 import PaymentMethodStore from './payment-method'
+import Contact from './contact-form'
+import BillingStore from './billing'
 import GuestsStore from './guests'
 
 
@@ -35,8 +37,9 @@ class CheckoutStore {
                                 PaymentMethodStore.setPaymentMethods(fcb.creditsCards.paymentMethods);
                                 this.activeComponents = activeComponents;
                                 this.infoProduct = infoProduct;
-                               // GuestsStore.generateGuestArray(this.infoProduct.detail.rooms.length)
-                                GuestsStore.setPaxArray(res.data.paxf);
+                            //    GuestsStore.generateGuestArray(this.infoProduct.detail.rooms.length)
+                               GuestsStore.setGuestArray(res.data.paxa);
+                            //   GuestsStore.setPaxArray(res.data.paxf);
                                 
                                 resolve(
                                     {   action:action,
@@ -75,6 +78,12 @@ class CheckoutStore {
                 }
             ).catch(_ => reject());
         });
+    }
+
+    @action doPayment = () =>{
+        console.log('paymentmethod',PaymentMethodStore)
+        console.log('BillingStore',BillingStore)
+        console.log('Contact',Contact)
     }
 }
 

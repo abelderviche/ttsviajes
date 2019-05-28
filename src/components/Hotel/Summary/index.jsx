@@ -1,8 +1,10 @@
 import React from 'react';
 import moment from 'moment-timezone';
 import Detail from './detail';
+import { inject, observer } from 'mobx-react';
 moment.tz.setDefault("GMT");
 
+@inject('checkout') @observer
 class HotelSummary extends React.Component {
 
     state = {
@@ -10,28 +12,24 @@ class HotelSummary extends React.Component {
     }
 
     render() {
-        const { accommodation } = this.props;
         const { collapsed } = this.state;
-        const nights = moment(accommodation.rate.checkout).diff(moment(accommodation.rate.checkin), 'days');
+        const { detail } = this.props.checkout.infoProduct;
+
         return (
             <div className={`hotel noselect ${collapsed ? 'hotel__collapsed' : ''}`} onClick={() => this.setState({collapsed: !collapsed})}>
                 <div className="hotel__headline">
-                    <span className="hotel__headline-city">TU HOTEL</span>
+                    <span className="hotel__headline-city">DETALLE DE TU COMPRA</span>
                 </div>
-                <div className="hotel__details">
                     <Detail 
-                        name={accommodation.name}
-                        stars={accommodation.stars}
-                        direction={accommodation.address+', '+accommodation.city.name + (accommodation.phone?' / '+ accommodation.phone:'')}
-                        checkin={`${moment(accommodation.rate.checkin).format('LLLL')} (Desde las ${accommodation.checkin.time})`}
-                        checkout={`${moment(accommodation.rate.checkout).format('LLLL')} (Hasta las ${accommodation.checkout.time})`}
-                        nights={nights>1?nights+' noches':nights+' noche'}
-                        rooms={accommodation.rate.rooms.length>1?accommodation.rate.rooms.length+' habitaciones':accommodation.rate.rooms.length+' habitación'}
-                        mealPlan={accommodation.rate.meal_plan}
-                        roomDetail={accommodation.rate.rooms.length + ' X '+ accommodation.rate.rooms[0].name}
-                        amenities={accommodation.rate.amenities?accommodation.rate.amenities:[]}
+                        name={detail.name}
+                        image={detail.images.find(image=>image.name==="Imagen destacada")}
+                        stars={detail.stars}
+                        address={detail.address}
+                        location={detail.location}
+                        rooms={detail.rooms}
+                        checkin={moment(detail.rates[0].checkin).format('DD MMM	Y')}
+                        checkout={moment(detail.rates[0].checkout).format('DD MMM Y')}
                     />
-                </div>
             </div>
         );
     }

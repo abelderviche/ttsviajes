@@ -10,36 +10,42 @@ const getStars = (stars) =>{
     return starsArr;
 }
 
-const Detail = ({name,stars,direction,checkin,checkout,nights,rooms,mealPlan,roomDetail,amenities}) => {
+const Detail = ({name,stars,image,address,checkin,checkout,nights,rooms,mealPlan,roomDetail,amenities}) => {
     return (
         <div className="hotel-box">
-            <div className="hotel-box__hotel-info">
-                <div className="title">{name}</div>
+            <div className="hotel-box__section description">
+                <div className="image">
+                    <img src={image.url} alt={name}/>
+                </div>
+                <div className="detail">
+                    <div className="title">{name}</div>
+                    <div className="stars">{getStars(stars)}</div>
+                    <div className="direction">
+                        <svg className="icon-location">
+                                <use xlinkHref={`${require('assets/img/sprite.svg')}#icon-location`}></use>
+                        </svg>{address}
+                    </div>
+                </div>
+                {/*
+
+                    <div className="title">{name}</div>
                 <div className="stars">{getStars(stars)}</div>
                 <div className="direction">
                     <svg className="icon-location">
                             <use xlinkHref={`${require('assets/img/sprite.svg')}#icon-location`}></use>
                     </svg>{direction}
                 </div>
-                {amenities.map((amenity,k)=>(<div key={k} className="meal-plan">{amenity.name}</div>))}
+                */}
             </div>
-            <div className="hotel-box__reservation-info">
-                <div className="row">
-                    <div>Tu reserva</div>
-                    <div>{nights}, {rooms}</div>
+            <div className="hotel-box__section  date">
+                <div><svg className="icon-location">
+                                <use xlinkHref={`${require('assets/img/sprite.svg')}#icon-date`}></use>
+                        </svg></div>
+                <div>{checkin}</div>
+                <div>
+                    <img src={require('assets/img/arrow-reservas.png')} alt=""/>
                 </div>
-                <div className="row">
-                    <div>Habitaciones</div>
-                    <div>{roomDetail}</div>
-                </div>
-                <div className="row">
-                    <div>Entrada</div>
-                    <div>{checkin}</div>
-                </div>
-                <div className="row">
-                    <div>Salida</div>
-                    <div>{checkout}</div>
-                </div>
+                <div>{checkout}</div>
             </div>
         </div>
     )

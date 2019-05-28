@@ -871,7 +871,7 @@ body {
   overflow: hidden;
   margin-top: 1.6rem;
   border-radius: 3px;
-  background-color: #e7e7e7;
+  background-color: #fff;
   cursor: pointer;
   transition: max-height .5s;
   margin-bottom: 1.6rem;
@@ -884,35 +884,65 @@ body {
     max-height: 100rem; }
   .hotel__headline {
     flex: 1;
-    height: 4.8rem;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center; }
+    justify-content: left;
+    align-items: center;
+    border-bottom: dashed 1.5px rgba(0, 0, 0, 0.12);
+    padding: 1.4rem; }
     .hotel__headline-city {
       font-size: 1.8rem;
-      color: #d32027;
-      font-weight: 500;
-      margin: 0 .8rem; }
+      color: #000;
+      font-weight: 500; }
     .hotel__headline-symbol {
       width: 1.4rem;
       height: 1rem;
       color: #d32027; }
   .hotel__details {
     margin: 0 1.6rem;
-    padding-top: 1.6rem;
-    border-top: solid 1.5px rgba(0, 0, 0, 0.12); }
+    padding-top: 1.6rem; }
 
 .hotel-box {
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin-bottom: 1.6rem;
-  margin-top: .8rem;
-  padding: 1.6rem;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
   background-color: #fff;
   font-size: 1.4rem; }
+  .hotel-box__section {
+    display: flex;
+    border-bottom: dashed 1px rgba(0, 0, 0, 0.12);
+    padding: 1.4rem; }
+    .hotel-box__section.description .image {
+      width: 35%; }
+      .hotel-box__section.description .image img {
+        width: 100%;
+        border-radius: 5%; }
+    .hotel-box__section.description .detail {
+      padding: 0 1rem;
+      width: 65%; }
+      .hotel-box__section.description .detail div {
+        margin: 3px 0;
+        display: flex;
+        align-items: center; }
+      .hotel-box__section.description .detail .title {
+        font-weight: bold; }
+      .hotel-box__section.description .detail .stars {
+        display: flex; }
+        .hotel-box__section.description .detail .stars .icon-star {
+          height: 1.4rem;
+          width: 1.4rem;
+          fill: #d6a106; }
+      .hotel-box__section.description .detail .direction {
+        color: #9b9b9b; }
+        .hotel-box__section.description .detail .direction .icon-location {
+          fill: #9b9b9b;
+          height: 2rem;
+          width: 2rem; }
+    .hotel-box__section.date {
+      display: flex;
+      justify-content: space-around;
+      font-size: 1.6rem;
+      font-weight: bold; }
   .hotel-box__hotel-info {
     display: flex;
     flex-direction: column;

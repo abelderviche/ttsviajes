@@ -37,9 +37,11 @@ class CheckoutStore {
                                 PaymentMethodStore.setPaymentMethods(fcb.creditsCards.paymentMethods);
                                 this.activeComponents = activeComponents;
                                 this.infoProduct = infoProduct;
-                            //    GuestsStore.generateGuestArray(this.infoProduct.detail.rooms.length)
-                               GuestsStore.setGuestArray(res.data.paxa);
-                            //   GuestsStore.setPaxArray(res.data.paxf);
+                                if(product==='flights'){
+                                    GuestsStore.setPaxArray(res.data.paxf);
+                                }else if(product ==='accommodation'){
+                                    GuestsStore.setGuestArray(res.data.paxa);
+                                }
                                 
                                 resolve(
                                     {   action:action,
@@ -82,8 +84,11 @@ class CheckoutStore {
 
     @action doPayment = () =>{
         console.log('paymentmethod',PaymentMethodStore)
-        console.log('BillingStore',BillingStore)
-        console.log('Contact',Contact)
+        console.log('BillingStore',BillingStore.validFields)
+        console.log('Contact',Contact.validFields)
+        
+        console.log('GuestsStore', GuestsStore.validFields);
+        
     }
 }
 

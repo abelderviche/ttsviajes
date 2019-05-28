@@ -19,7 +19,7 @@ class Summary extends React.Component {
             return(
                 <div className="summary">
                     <ChargesHotel price={detail.rates[0].price}  nights={nights} rooms={detail.rooms.length}/> 
-                    
+                    <HotelSummary />
                 </div>
             )
         }else{

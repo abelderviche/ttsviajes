@@ -39,7 +39,7 @@ class Main extends React.Component {
                     <Header route={this.props.match.url}/>
                     <main>
                         <Switch>
-                           <Route exact path='/checkout/:id' component={Checkout} />
+                           <Route exact path='/checkout/:product/:id' component={Checkout} />
                             {/* <Route exact path='/thanks/:id' component={Thanks} />
                             <Route exact path='/thankscontact/:id' component={ThanksContact} />
                             <Route exact path='/:subchannel/checkout/:id' component={Checkout} />

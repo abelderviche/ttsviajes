@@ -59,11 +59,12 @@ class PaxForm extends Component {
             this.props.guestsStore.paxArray[this.props.keyData].birth = date;
             return date;
         }
+        this.props.guestsStore.paxArray[this.props.keyData].birth = '';
         return '';
     }
 
     render(){
-        let {pax} = this.props;
+        let {guestsStore} = this.props;
         const docTypes = [
             {label:'DNI',value:'DNI'},
             {label:'Pasaporte',value:'PASSPORT'},
@@ -75,7 +76,7 @@ class PaxForm extends Component {
         const days = Array.from({length:31}, (_,d)=>({label:d+1,value: d+1 < 10 ? `0${d+1}` : `${d+1}`}));
         const months = moment.months().map((m,k)=>({label:m[0].toUpperCase()+m.slice(1),value: k+1 < 10 ? `0${k+1}` : `${k+1}`}))
         const present_year  = moment().year();
-        const paxType = this.props.guestsStore.paxArray[this.props.keyData].type;
+        const paxType = guestsStore.paxArray[this.props.keyData].type;
         let minYear, maxYear;
         if(paxType==='ADT'){
             maxYear = present_year-12;
@@ -92,23 +93,24 @@ class PaxForm extends Component {
             {label:'Argentina',value:'AR'},
             {label:'Chile',value:'CH'},
         ]
-        let passenger = this.props.guestsStore.paxArray[this.props.keyData];
+        let passenger = guestsStore.paxArray[this.props.keyData];
+
         return(
             <div className="module">
-                <div className="module__top-headline">{_PASSENGERS__LABELS[pax.type]}</div>
+                <div className="module__top-headline">{_PASSENGERS__LABELS[paxType]}</div>
                 <div className="module__payment-info">
                     <div className="module__form-group">
                         <Input title="Nombre/s">
                             <TextInput 
                                     forceValidation={this.props.sendAttempted}
-                                    valid={validator(passenger.firstName, { required: true })}
+                                    valid={guestsStore.validName(passenger.firstName)}
                                     value={passenger.firstName} action={this.setName}
                                     size='medium-sm' placeholder='Como figura en el documento' />
                         </Input>
                         <Input title="Apellido/s">
                             <TextInput 
                                     forceValidation={this.props.sendAttempted}
-                                    valid={validator(passenger.lastname, { required: true })}
+                                    valid={guestsStore.validLastName(passenger.lastname)}
                                     value={passenger.lastname} action={this.setLastname}
                                     size='medium-sm' placeholder='Como figura en el documento' />
                         </Input>
@@ -116,12 +118,13 @@ class PaxForm extends Component {
                             <DropdownInput 
                                 forceValidation={this.props.sendAttempted}
                                 options={docTypes}
-                                valid={validator(passenger.document.type, { required: true })}
+                                defaultValue={docTypes.find(s=>s.value===passenger.document.type)}
+                                valid={guestsStore.validDocType(passenger.document.type)}
                                 value={passenger.document.type} action={this.setDocType}
                                 size='small' placeholder='Tipo' />
                             <TextInput 
                                     forceValidation={this.props.sendAttempted}
-                                    valid={validator(passenger.document.number, { required: true, type:'number' })}
+                                    valid={guestsStore.validDocNumber(passenger.document.number)}
                                     value={passenger.document.number} action={this.setNumDoc}
                                     size='medium-sm' placeholder='Ingresá el número' />
                         </Input>
@@ -130,7 +133,8 @@ class PaxForm extends Component {
                             <DropdownInput 
                                 forceValidation={this.props.sendAttempted}
                                 options={countries}
-                                valid={validator(passenger.nationality, { required: true })}
+                                defaultValue={countries.find(s=>s.value===passenger.nationality)}
+                                valid={guestsStore.validNationality(passenger.nationality)}
                                 value={passenger.nationality} action={this.setNationality}
                                 size='medium-sm' placeholder='Nacionalidad' />
                         </Input>
@@ -145,16 +149,16 @@ class PaxForm extends Component {
                                 actionDay={this.setStateDay}
                                 actionMonth={this.setStateMonth}
                                 actionYear={this.setStateYear}
-                                valid={validator(this.getDate(), { required: true })}
+                                valid={guestsStore.validBirthdate(this.getDate())}
                                 />
                         </Input>
                         
                         <Input title="Sexo">
                             <DropdownInput 
-                                defaultValue={passenger.gender}
+                                defaultValue={sexType.find(s=>s.value===passenger.gender)}
                                 forceValidation={this.props.sendAttempted}
                                 options={sexType}
-                                valid={validator(passenger.gender, { required: true })}
+                                valid={guestsStore.validGender(passenger.gender)}
                                 value={passenger.gender} action={this.setGender}
                                 size='medium-sm' placeholder='Sexo' />
                         </Input>

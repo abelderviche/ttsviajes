@@ -59,7 +59,12 @@ class Form extends React.Component {
                     })
                 }
 
-            <Button action={action} loading={loading} />
+            <Button action={action}   action={() => {
+                        this.setState({ sendAttempted: true })
+                        action();
+                        }} 
+                        
+                        loading={loading} />
 
 
 

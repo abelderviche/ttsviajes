@@ -1,8 +1,10 @@
 .module {
     margin-bottom: 1.6rem;
     background-color: $white;
-    border-radius: 3px;
-    border: solid 2px $grey-light;
+    border-radius: 1rem;
+   // border: solid 2px $grey-light;
+    box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6);
+    padding: 1rem;
 
     &__top-headline {
         font-size: 1.6rem;

@@ -1,0 +1,21 @@
+.contact-form{
+    &-section{
+        padding: 0 3rem 3rem 3rem;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        &-title{
+            width: 100%;
+            background:$primary-soft;
+            font-size: 1.6rem;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 2rem 1.4rem;
+        }
+        &-form{
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 1.2rem;
+        }
+    }
+}

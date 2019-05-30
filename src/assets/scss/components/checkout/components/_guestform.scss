@@ -1,0 +1,27 @@
+.guest-form{
+    border:none;
+    padding: 0 3rem;
+    transition: max-height .5s;
+    box-shadow: none;
+    
+    &-headline{
+        background:$primary-soft;
+        font-size: 1.6rem;
+        padding: 1rem;
+        cursor: pointer;
+        font-weight: bold;
+            padding: 2rem 1.4rem;
+    }
+    &--collapsed {
+        max-height: 24rem;
+    }
+    &__form-container{
+        max-height: 20rem; 
+        overflow: hidden; 
+        transition: max-height .5s;
+    }
+    &__hidden {
+        max-height: 0;
+        //background: red;
+    }
+}

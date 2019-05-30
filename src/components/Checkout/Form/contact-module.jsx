@@ -13,55 +13,69 @@ export default class ContactFormModule extends Component {
         ]
         const { contactStore } = this.props;
         return(
-            <div className="module">
-                <div className="module__top-headline">Informacion de contacto</div>
-                {!contactStore.validFields?<div>completa los campos</div>:null}
-                <div className="module__payment-info">
+            <div className="module contact-form">
+                <div className="module__top-headline">Información de contacto</div>
+                {/*!contactStore.validFields?<div>completa los campos</div>:null*/}
+                <div className="contact-form-info">
                     <div className="module__form-group">
-                        <Input title="Email">
-                            <TextInput 
-                                    forceValidation={this.props.sendAttempted}
-                                    valid={contactStore.validEmail}
-                                    value={contactStore.email} action={contactStore.setEmail}
-                                    size='large' placeholder='Ingresa tu Email' />
-                        </Input>
-                        <Input title="Confirma Tu email">
-                            <TextInput 
-                                    forceValidation={this.props.sendAttempted}
-                                    valid={contactStore.validConfirmEmail}
-                                    value={contactStore.confirmEmail} action={contactStore.setConfirmEmail}
-                                    size='large' placeholder='Vuelve a ingresar tu Email' />
-                        </Input>
-                        <Input title="Telefono">
-                            <DropdownInput 
-                                defaultValue={contactStore.phoneType}
-                                forceValidation={this.props.sendAttempted}
-                                options={phoneTypes}
-                                valid={contactStore.validPhoneType}
-                                value={contactStore.phoneType} action={contactStore.setPhoneType}
-                                size='medium-sm' placeholder='Seleccioná tipo' />
-                        </Input>
-                        <Input title="Cod. de pais">
-                            <TextInput 
-                                    forceValidation={this.props.sendAttempted}
-                                    valid={contactStore.validCountryCode}
-                                    value={contactStore.countryCode} action={contactStore.setCountryCode}
-                                    size='large' placeholder='54' />
-                        </Input>
-                        <Input title="Cod. de area">
-                            <TextInput 
-                                    forceValidation={this.props.sendAttempted}
-                                    valid={contactStore.validAreaCode}
-                                    value={contactStore.areaCode} action={contactStore.setAreaCode}
-                                    size='large' placeholder='011' />
-                        </Input>
-                        <Input title="Numero">
-                            <TextInput 
-                                    forceValidation={this.props.sendAttempted}
-                                    valid={contactStore.validPhoneNumber}
-                                    value={contactStore.phoneNumber} action={contactStore.setPhoneNumber}
-                                    size='large' placeholder='Ingresa tu numero' />
-                        </Input>
+                        <div className="contact-form-section">
+                            <div className="contact-form-section-title">
+                                ¿A dónde enviamos tus vouchers?
+                            </div>
+                            <div className="contact-form-section-form">
+                                <Input title="Email">
+                                    <TextInput 
+                                            forceValidation={this.props.sendAttempted}
+                                            valid={contactStore.validEmail}
+                                            value={contactStore.email} action={contactStore.setEmail}
+                                            size='large' placeholder='Ingresa tu Email' />
+                                </Input>
+                                <Input title="Confirma Tu email">
+                                    <TextInput 
+                                            forceValidation={this.props.sendAttempted}
+                                            valid={contactStore.validConfirmEmail}
+                                            value={contactStore.confirmEmail} action={contactStore.setConfirmEmail}
+                                            size='large' placeholder='Vuelve a ingresar tu Email' />
+                                </Input>
+                            </div>
+                        </div>
+                        <div className="contact-form-section">
+                            <div className="contact-form-section-title">
+                                ¿A qué teléfono podemos comunicarnos?
+                            </div>
+                            <div className="contact-form-section-form">
+                                <Input title="Teléfono">
+                                    <DropdownInput 
+                                        defaultValue={contactStore.phoneType}
+                                        forceValidation={this.props.sendAttempted}
+                                        options={phoneTypes}
+                                        valid={contactStore.validPhoneType}
+                                        value={contactStore.phoneType} action={contactStore.setPhoneType}
+                                        size='medium-sm' placeholder='Seleccioná tipo' />
+                                </Input>
+                                <Input title="Cod. de pais">
+                                    <TextInput 
+                                            forceValidation={this.props.sendAttempted}
+                                            valid={contactStore.validCountryCode}
+                                            value={contactStore.countryCode} action={contactStore.setCountryCode}
+                                            size='large' placeholder='54' />
+                                </Input>
+                                <Input title="Cod. de area">
+                                    <TextInput 
+                                            forceValidation={this.props.sendAttempted}
+                                            valid={contactStore.validAreaCode}
+                                            value={contactStore.areaCode} action={contactStore.setAreaCode}
+                                            size='large' placeholder='011' />
+                                </Input>
+                                <Input title="Numero">
+                                    <TextInput 
+                                            forceValidation={this.props.sendAttempted}
+                                            valid={contactStore.validPhoneNumber}
+                                            value={contactStore.phoneNumber} action={contactStore.setPhoneNumber}
+                                            size='large' placeholder='Ingresá tu numero' />
+                                </Input>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

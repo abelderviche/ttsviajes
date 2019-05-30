@@ -12,7 +12,12 @@ const getStars = (stars) =>{
 
 const detailInfo = (label,icon,value) => (
     <div className="info">
-        <div className="title"><div className="icon"></div>{label}</div>
+        <div className="title">
+                <svg className="info-icon">
+                        <use xlinkHref={`${require('assets/img/sprite.svg')}#icon-${icon}`}></use>
+                </svg>
+            {label}
+        </div>
         <div className="label">{value}</div>
     </div>
 )
@@ -77,11 +82,11 @@ const Detail = ({name,stars,image,address,checkin,checkout,nights,rooms,mealPlan
                 <div>{checkout}</div>
             </div>
             <div className="hotel-box__section  guestrooms">
-                {detailInfo('Adultos','',adultsQty)}
-                {detailInfo('Niños','',childsQty)}
-                {detailInfo('Bebes','',infantsQty)}
-                {detailInfo('Habitaciones','',rooms.length)}
-                {detailInfo('Tipo','','Standard')}
+                {detailInfo('Adultos','person',adultsQty)}
+                {detailInfo('Niños','child',childsQty)}
+                {detailInfo('Bebes','child',infantsQty)}
+                {detailInfo('Habitaciones','hotels',rooms.length)}
+                {detailInfo('Tipo','info','Standard')}
             </div>
         </div>
     )

@@ -870,12 +870,13 @@ body {
   max-height: 4.8rem;
   overflow: hidden;
   margin-top: 1.6rem;
-  border-radius: 3px;
+  border-radius: 1rem;
   background-color: #fff;
   cursor: pointer;
   transition: max-height .5s;
   margin-bottom: 1.6rem;
-  flex: 1; }
+  flex: 1;
+  box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6); }
   @media only screen and (max-width: 55.62em) and (min-width: 48em) {
     .hotel {
       margin-left: .8rem;
@@ -944,12 +945,26 @@ body {
       font-size: 1.6rem;
       font-weight: bold; }
       .hotel-box__section.date .icon-date {
-        height: 3rem;
-        width: 3rem; }
+        height: 2.3rem;
+        width: 2.3rem; }
+      .hotel-box__section.date img {
+        height: 1.2rem; }
     .hotel-box__section.guestrooms {
-      justify-content: space-around; }
+      flex-wrap: wrap;
+      border-bottom: none; }
       .hotel-box__section.guestrooms .info {
-        font-weight: bold; }
+        width: 33%; }
+        .hotel-box__section.guestrooms .info .title {
+          font-weight: bold;
+          display: flex;
+          align-items: center; }
+          .hotel-box__section.guestrooms .info .title .info-icon {
+            height: 1.7rem;
+            width: 1.7rem;
+            fill: #4a4a4a;
+            margin: 6px 9px; }
+        .hotel-box__section.guestrooms .info .label {
+          padding-left: 3.6rem; }
   .hotel-box__hotel-info {
     display: flex;
     flex-direction: column;
@@ -1246,8 +1261,9 @@ body {
 .module {
   margin-bottom: 1.6rem;
   background-color: #fff;
-  border-radius: 3px;
-  border: solid 2px #e7e7e7; }
+  border-radius: 1rem;
+  box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6);
+  padding: 1rem; }
   .module__top-headline {
     font-size: 1.6rem;
     font-weight: 300;
@@ -1710,6 +1726,44 @@ body {
         line-height: 1.33;
         color: #4a4a4a; }
 
+.guest-form {
+  border: none;
+  padding: 0 3rem;
+  transition: max-height .5s;
+  box-shadow: none; }
+  .guest-form-headline {
+    background: #ffd0d0;
+    font-size: 1.6rem;
+    padding: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 2rem 1.4rem; }
+  .guest-form--collapsed {
+    max-height: 24rem; }
+  .guest-form__form-container {
+    max-height: 20rem;
+    overflow: hidden;
+    transition: max-height .5s; }
+  .guest-form__hidden {
+    max-height: 0; }
+
+.contact-form-section {
+  padding: 0 3rem 3rem 3rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; }
+  .contact-form-section-title {
+    width: 100%;
+    background: #ffd0d0;
+    font-size: 1.6rem;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 2rem 1.4rem; }
+  .contact-form-section-form {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 1.2rem; }
+
 .form {
   flex: 2;
   display: flex;
@@ -1727,13 +1781,14 @@ body {
 
 .charges {
   max-height: 4.8rem;
-  border-radius: 3px;
+  border-radius: 1rem;
   background-color: white;
-  box-shadow: 2px 5px 12px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6);
   padding-top: 0;
   cursor: pointer;
   transition: max-height .5s;
-  flex: 1; }
+  flex: 1;
+  margin-bottom: 3rem; }
   .charges--collapsed {
     max-height: 24rem; }
   @media only screen and (max-width: 55.62em) and (min-width: 48em) {
@@ -1746,24 +1801,30 @@ body {
   .charges__hidden {
     max-height: 0; }
   .charges__headline {
-    padding: 1.4rem;
-    border-bottom: 2px dashed lightgray; }
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    border-bottom: dashed 1.5px rgba(0, 0, 0, 0.12);
+    padding: 1.4rem; }
     .charges__headline span {
-      font-size: 1.6rem;
-      line-height: 1.5;
-      letter-spacing: .2px;
-      color: black; }
+      font-size: 1.8rem;
+      color: #000;
+      font-weight: 500; }
   .charges__flat {
-    padding: .8rem 0;
-    border-bottom: dashed 1px #000; }
+    padding: 0rem 1.5rem;
+    padding-top: 1rem; }
   .charges__subtotals {
-    padding: .8rem 0;
-    border-bottom: solid 0.1px #000; }
+    padding: 0 1.5rem;
+    padding-bottom: 2rem; }
   .charges__total {
-    margin-top: 1.6rem;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
-    align-items: center; }
+    align-items: center;
+    background: #e7e7e7;
+    border-radius: 0 0 1rem 1rem; }
     @media only screen and (max-width: 55.62em) and (min-width: 48em) {
       .charges__total {
         max-height: 4.8rem; } }
@@ -1782,7 +1843,8 @@ body {
   .charges__line {
     display: flex;
     flex-direction: row;
-    justify-content: space-between; }
+    justify-content: space-between;
+    margin: 1rem 0; }
     .charges__line span {
       font-size: 1.4rem;
       line-height: 1.14;

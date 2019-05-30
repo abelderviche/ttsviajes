@@ -48,7 +48,7 @@ class Charges extends React.Component {
             <div className={`charges noselect ${this.state.collapsed ? 'charges--collapsed' : ''}`} onClick={this.toggleCollapsed}>
                 <div className={`charges__details ${!this.state.collapsed ? 'charges__hidden' : ''}`}>
                     <div className="charges__headline">
-                        <span>Detalle de su pago</span>
+                        <span>DETALLE DEL PAGO</span>
                     </div>
                     <div className="charges__flat">
                         {this.renderLine('Precio por noche por habitación', price.nightly_basis)}

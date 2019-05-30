@@ -95,10 +95,20 @@
             }  
         }
         &.date{
-            display: flex;
             justify-content: space-around;
+            align-items: center;
             font-size: 1.6rem;
             font-weight: bold;
+            .icon-date{
+                height: 3rem;
+                width: 3rem;
+            }
+        }
+        &.guestrooms{
+            justify-content: space-around;
+            .info{
+                font-weight: bold;
+            }
         }
     }
 

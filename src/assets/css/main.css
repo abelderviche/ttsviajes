@@ -939,10 +939,17 @@ body {
           height: 2rem;
           width: 2rem; }
     .hotel-box__section.date {
-      display: flex;
       justify-content: space-around;
+      align-items: center;
       font-size: 1.6rem;
       font-weight: bold; }
+      .hotel-box__section.date .icon-date {
+        height: 3rem;
+        width: 3rem; }
+    .hotel-box__section.guestrooms {
+      justify-content: space-around; }
+      .hotel-box__section.guestrooms .info {
+        font-weight: bold; }
   .hotel-box__hotel-info {
     display: flex;
     flex-direction: column;

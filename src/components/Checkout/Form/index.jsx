@@ -10,10 +10,11 @@ import Button from './button';
 import Error from '../Error';
 import { animateScroll } from 'react-scroll'
 import PaxModule from './pax-module';
+import paymentMethod from '../../../stores/payment-method';
 const formatPrice = (price) => {
     return price.toFixed(2).toString().replace(',', '.').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-@inject('checkout') @observer
+@inject('checkout','paymentMethod') @observer
 class Form extends React.Component {
     state = {
         sendAttempted: false
@@ -36,7 +37,9 @@ class Form extends React.Component {
                        if(component.name === 'FCB'){
                         return(
                             <div>
+                                {this.props.paymentMethod.paymentMethods.length>0?
                                 <PaymentModule sendAttempted={this.state.sendAttempted}  />
+                                :null}
                                 <BillingModule sendAttempted={this.state.sendAttempted} />
                             </div>
                         )}

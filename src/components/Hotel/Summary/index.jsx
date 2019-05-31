@@ -21,16 +21,17 @@ class HotelSummary extends React.Component {
                     <span className="hotel__headline-city">DETALLE DE TU COMPRA</span>
                 </div>
                     <Detail 
-                        name={detail.name}
-                        image={detail.images.find(image=>image.name==="Imagen destacada")}
-                        stars={detail.stars}
-                        address={detail.address}
-                        location={detail.location}
+                        name={detail.accommodation.name}
+                        image={detail.accommodation.images[0]}
+                        //image={detail.accommodation.images.find(image=>image.name==="Imagen destacada")}
+                        stars={detail.accommodation.stars}
+                        address={detail.accommodation.address}
+                        location={detail.accommodation.location}
                         rooms={detail.rooms}
                         checkin={moment(detail.rates[0].checkin).format('DD MMM	Y')}
                         checkout={moment(detail.rates[0].checkout).format('DD MMM Y')}
                     />
-            </div>
+              </div>
         );
     }
 }

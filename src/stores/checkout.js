@@ -24,24 +24,30 @@ class CheckoutStore {
         return new Promise((resolve, reject) => {
             ApiClient.post(ENV.CHECKOUT.GETINFO, {
                 'idbasset': 123123,
-                'ip': '127.0.0.1'
+                'ip': '127.0.0.1',
+                'clusterid':clusterID,
+                'product':product,
+                'trackID':null
             }, {
                 headers: headers
             }).then(
                 res => {
+                    console.log(res)
                     if(res.data){
-                        console.log(res.data);
-                        let { action, fcb,activeComponents,infoProduct} = res.data;
+                     //   console.log(res.data.data);
+                        let { action, fcb,activeComponents,infoProduct} = res.data.data;
                         switch (action) {
                             case '1':   
-                                PaymentMethodStore.setPaymentMethods(fcb.creditsCards.paymentMethods);
-                                this.activeComponents = activeComponents;
+                            this.activeComponents = activeComponents;
+                                console.log('aasdasd',res.data.data);
                                 this.infoProduct = infoProduct;
+                                //PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods);
                                 if(product==='flights'){
-                                    GuestsStore.setPaxArray(res.data.paxf);
+                                    GuestsStore.setPaxArray(res.data.data.paxf);
                                 }else if(product ==='accommodation'){
-                                    GuestsStore.setGuestArray(res.data.paxa);
+                                    GuestsStore.setGuestArray(res.data.data.paxa);
                                 }
+                               
                                 
                                 resolve(
                                     {   action:action,

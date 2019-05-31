@@ -24,10 +24,10 @@ class GuestForm extends Component {
         this.setState({ collapsed: !this.state.collapsed });
     }
     setName = (value)=>{
-        this.props.guest.firstname=value;
+        this.props.guest.firstName=value;
     }
     setLastname = (value)=>{
-        this.props.guest.lastname=value;
+        this.props.guest.lastName=value;
     }
     setDocType = (value)=>{
         this.props.guest.document.type=value;
@@ -52,15 +52,15 @@ class GuestForm extends Component {
                             <Input title="Nombre">
                                 <TextInput 
                                         forceValidation={this.props.sendAttempted}
-                                        valid={guestsStore.validName(this.props.guest.firstname)}
-                                        value={this.props.guest.firstname} action={this.setName}
+                                        valid={guestsStore.validName(this.props.guest.firstName)}
+                                        value={this.props.guest.firstName} action={this.setName}
                                         size='medium-sm' placeholder='Como figura en el documento' />
                             </Input>
                             <Input title="Apellido">
                                 <TextInput 
                                         forceValidation={this.props.sendAttempted}
-                                        valid={guestsStore.validLastName(this.props.guest.lastname)}
-                                        value={this.props.guest.lastname} action={this.setLastname}
+                                        valid={guestsStore.validLastName(this.props.guest.lastName)}
+                                        value={this.props.guest.lastName} action={this.setLastname}
                                         size='medium-sm' placeholder='Como figura en el documento' />
                             </Input>
                             <Input title="Tipo de documento">

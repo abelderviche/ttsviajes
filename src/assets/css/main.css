@@ -1940,9 +1940,9 @@ body {
     font-weight: bold;
     padding: 2rem 1.4rem; }
   .guest-form--collapsed {
-    max-height: 26rem; }
+    max-height: 100rem; }
   .guest-form__form-container {
-    max-height: 26rem;
+    max-height: 100rem;
     overflow: hidden;
     transition: max-height .5s; }
   .guest-form__hidden {
@@ -2404,10 +2404,14 @@ body {
 
 #checkout-container {
   background-color: #f4f4f4;
-  padding: .8rem;
+  padding: .8rem 4rem;
   padding-bottom: 3.2rem;
   min-height: 60vh;
-  position: relative; }
+  position: relative;
+  max-width: 1320px;
+  margin: 0px auto;
+  padding: 16px 8px;
+  flex: 1 1 0%; }
 
 .section-title {
   margin-top: 1.6rem;

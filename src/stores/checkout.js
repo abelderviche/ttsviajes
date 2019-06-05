@@ -15,12 +15,13 @@ import GuestsStore from './guests'
 class CheckoutStore {
     @observable activeComponents = [];
     @observable infoProduct = {};
+    @observable points = null;
     
-    @action retrieveCheckoutInfo = (clusterID, product,trackID) => {
+    @action retrieveCheckoutInfo = (clusterID, product,trackID,points) => {
         let headers = ENV.CHECKOUT.REQUEST_HEADERS;
        /* headers['Product'] = typeProduct.translate_plural;
         headers['sourcegds'] = Reservations.product.source;*/
-        
+        this.points = points;
         return new Promise((resolve, reject) => {
             ApiClient.post(ENV.CHECKOUT.GETINFO, {
                 'idbasset': 123123,
@@ -134,6 +135,8 @@ class CheckoutStore {
         }
         if(this.infoProduct.type==='accommodations'){
             body.pax=GuestsStore.guestsArray;
+        }else{
+            body.pax=GuestsStore.paxArray;
         }
         console.log(body);
 

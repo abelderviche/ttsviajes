@@ -9,6 +9,15 @@ import ENV from 'config';
 import ApiClient from '../../stores/api-client';
 import moment from 'moment';
 
+function parseQuery(queryString) {
+    var query = {};
+    var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
+    for (var i = 0; i < pairs.length; i++) {
+        var pair = pairs[i].split('=');
+        query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+    }
+    return query;
+}
 
 @inject('checkout', 'reservations', 'billing','assistcard') @observer
 class Checkout extends React.Component {
@@ -33,10 +42,12 @@ class Checkout extends React.Component {
     }
 
     componentDidMount() {
-       let clusterID = this.props.match.params.id;
-       let product = this.props.match.params.product;
-       let trackID = 123;
-       this.props.checkout.retrieveCheckoutInfo(clusterID, product,trackID).then(
+        let clusterID = this.props.match.params.id;
+        let product = this.props.match.params.product;
+        let trackID = 123;
+        const queryString = this.props.location.search!==''?parseQuery(this.props.location.search):null;
+        const points = queryString && queryString.points?queryString.points:null;
+        this.props.checkout.retrieveCheckoutInfo(clusterID, product,trackID,points).then(
            (res)=>{
                this.setState({loadingReservation:false})
            },

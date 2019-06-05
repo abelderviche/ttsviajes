@@ -3,6 +3,159 @@
     max-height: 4.8rem;
     overflow: hidden;
     margin-top: 1.6rem;
+    border-radius: 1rem;
+    background-color: $white;
+    cursor: pointer;
+    transition: max-height .5s;
+    margin-bottom: 1.6rem;
+    flex: 1;
+    box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6);
+
+    @include respond(tablet-land) {
+        margin-left: .8rem;
+        margin-top: 0;
+    }
+
+    &__collapsed {
+        max-height:100rem;
+    }
+
+    &__headline {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        border-bottom: dashed 1.5px rgba(0, 0, 0, 0.12);
+        padding: 1.4rem;
+
+        &-city {
+            font-size: 1.8rem;
+            color: $black;
+            font-weight: 500;
+        }
+
+        &-symbol {
+            width: 1.4rem;
+            height: 1rem;
+            color: $primary;
+        }
+    }
+
+
+    &__segments {
+        margin: 0 1.6rem;
+        padding-top: 1.6rem;
+    }
+}
+.flight-box{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: $white;
+    font-size: 1.4rem;
+    &__section{
+        display:flex;
+        border-bottom: dashed 1px rgba(0, 0, 0, 0.12);
+        padding: 1.4rem;
+        &.pax{
+            flex-wrap: wrap;
+            border-bottom: none;
+            .info{
+                width: 33%;
+                .title{
+                    font-weight: bold;
+                    display: flex;
+                    align-items: center;
+                    & .info-icon{
+                        height: 1.7rem;
+                        width: 1.7rem;
+                        fill: $grey-dark;
+                        margin: 6px 9px;
+                        
+                    }
+                }
+                .label{
+                    padding-left: 3.6rem;
+                }
+            }
+        }
+        & .segments{
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            & .segment{
+                display:flex;
+                justify-content: space-between;
+                width: 100%;
+                padding:1rem;
+                border-bottom: 0.5px dashed $grey-light;
+                &.inbound{
+                    border-bottom: none;
+                }
+                & .col{
+                    display: flex;
+                    max-width: 33%;
+                    text-align: center;
+                    flex-wrap: wrap;
+                    .city{
+                        width: 100%;
+                        .code{
+                            font-weight: bold;
+                            font-size: 2.4rem;
+                            margin: 1rem;
+                        }
+                        .description{
+                            font-size: 1rem;
+                        }
+                    }
+                    .date{
+                        width: 100%;
+                        .hour{
+                            font-weight: bold;
+                            font-size: 1.5rem;
+                            margin: 0.5rem;
+                        }
+                        .date{
+                            font-size: 1rem;
+                        }
+                    }
+                    &.arrow{
+                        display:flex;
+                        .arrow-img{
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            img{
+                                width: 50%;
+                            }
+                        }
+                        .airline{
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-wrap: wrap;
+                            &--logo{
+                                width: 45%;
+                            }
+                            &--name{
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*.flight {
+    // max-width: 20rem;
+    max-height: 4.8rem;
+    overflow: hidden;
+    margin-top: 1.6rem;
     border-radius: 3px;
     background-color: $grey-light;
     cursor: pointer;
@@ -332,3 +485,5 @@
         background-color: $white;
     }
 }
+
+*/

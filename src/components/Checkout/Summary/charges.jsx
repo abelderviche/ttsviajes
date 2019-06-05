@@ -41,7 +41,6 @@ class Charges extends React.Component {
 
     render() {
         const { price } = this.props;
-        const { detail } = price;
         return (
             <div className={`charges noselect ${this.state.collapsed ? 'charges--collapsed' : ''} ${ENV.SUBCHANNEL!=='tts'?`charges--${ENV.SUBCHANNEL}`:''}`} onClick={this.toggleCollapsed}>
                 <div className={`charges__details ${!this.state.collapsed ? 'charges__hidden' : ''}`}>
@@ -49,14 +48,14 @@ class Charges extends React.Component {
                         <span>Detalle de su pago</span>
                     </div>
                     <div className="charges__flat">
-                        {this.renderLine('Tarifa por adulto', detail.adults.passenger_base_fare)}
-                        {detail.children ? this.renderLine('Tarifa niño', detail.children.passenger_base_fare) : null}
-                        {detail.infants ? this.renderLine('Tarifa infante', detail.infants.passenger_base_fare) : null}
+                        {this.renderLine('Tarifa por adulto', price.adults.fare)}
+                        {price.children ? this.renderLine('Tarifa niño', price.children.fare) : null}
+                        {price.infants ? this.renderLine('Tarifa infante', price.infants.fare) : null}
                     </div>
                     <div className="charges__subtotals">
-                        {this.renderPerPassengerLine('Adultos', price.adults.quantity, detail.adults.passenger_base_fare)}
-                        {detail.children ? this.renderPerPassengerLine('Niños', price.children.quantity, detail.children.passenger_base_fare) : null}
-                        {detail.infants ? this.renderPerPassengerLine('Infantes', price.infants.quantity, detail.infants.passenger_base_fare) : null}
+                        {this.renderPerPassengerLine('Adultos', price.adults.quantity, price.adults.fare)}
+                        {price.children ? this.renderPerPassengerLine('Niños', price.children.quantity, price.children.fare) : null}
+                        {price.infants ? this.renderPerPassengerLine('Infantes', price.infants.quantity, price.infants.fare) : null}
                         <div className="charges__line">
                             <span>Impuestos y tasas</span>
                             <span>ARS {formatPrice(price.taxes)}</span>

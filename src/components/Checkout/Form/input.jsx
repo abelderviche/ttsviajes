@@ -27,6 +27,7 @@ class DropdownInput extends React.PureComponent {
                 valid={valid} visited={this.state.visited || forceValidation}
                 extraClass="checkout-select--nopadding">                
                 <Select
+                    name={placeholder} 
                     defaultValue={defaultValue}
                     className="checkout-select"
                     classNamePrefix="checkout-select"
@@ -52,7 +53,7 @@ class TextInput extends React.PureComponent {
         const {size, placeholder, value, action, valid, forceValidation, type} = this.props;
         return (
             <Element size={size} valid={valid} visited={this.state.visited || forceValidation}>
-                <input value={value ? value : ''} 
+                <input name={placeholder} value={value ? value : ''} 
                     type={type ||  "text" }
                     onChange={(e) => {this.setState({ visited: true }); action(e.target.value)}} 
                     className={`module__text-input`} placeholder={placeholder}/>

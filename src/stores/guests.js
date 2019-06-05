@@ -8,13 +8,14 @@ class GuestsStore {
     @observable paxArray = [];
 
     @action validGuest = (guest) =>{
-        return this.validName(guest.firstname).valid && this.validLastName(guest.lastname).valid 
+        console.log(guest);
+        return this.validName(guest.firstName).valid && this.validLastName(guest.lastName).valid 
         && this.validDocType(guest.document.type).valid && this.validDocNumber(guest.document.number).valid  ;
         //return this.validName(guest.name).valid; 
     }
 
     @action validPax = (pax) =>{
-        return this.validName(pax.firstName).valid && this.validLastName(pax.lastname).valid 
+        return this.validName(pax.firstName).valid && this.validLastName(pax.lastName).valid 
         && this.validDocType(pax.document.type).valid && this.validDocNumber(pax.document.number).valid 
         && this.validNationality(pax.nationality).valid && this.validBirthdate(pax.birth).valid 
         && this.validGender(pax.gender).valid;

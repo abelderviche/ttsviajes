@@ -92,8 +92,51 @@ class CheckoutStore {
         console.log('paymentmethod',PaymentMethodStore)
         console.log('BillingStore',BillingStore.validFields)
         console.log('Contact',Contact.validFields)
-        
         console.log('GuestsStore', GuestsStore.validFields);
+
+        console.log(BillingStore)
+        const body = {
+            trackId: null,
+            clusterId: null,
+            activeComponents:this.activeComponents,
+            fcb:{
+                financing:null,
+                billingData:{
+                    address: {
+                        state: BillingStore.state,
+                        city: BillingStore.city,
+                        country: "AR",
+                        street: BillingStore.street,
+                        number: BillingStore.number,
+                        floor:  BillingStore.floor,
+                        door:  BillingStore.apt,
+                        postal_code: BillingStore.zipCode
+                    },
+                    identification: {
+                        number: BillingStore.cuit,
+                        fiscalName: BillingStore.fiscalName,
+                        type: BillingStore.fiscalIdType,
+                        taxSituation: BillingStore.cuitType
+                    }
+                },
+                cardData:null
+            },
+            cont: {
+                email: Contact.email,
+                language: "es",
+                telephone: {
+                    type: Contact.phoneType,
+                    country_code: Contact.countryCode,
+                    area_code: Contact.areaCode,
+                    number: Contact.phoneNumber
+                }
+            },
+        }
+        if(this.infoProduct.type==='accommodations'){
+            body.pax=GuestsStore.guestsArray;
+        }
+        console.log(body);
+
         
     }
 }

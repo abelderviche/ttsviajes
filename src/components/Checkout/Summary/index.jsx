@@ -24,7 +24,11 @@ class Summary extends React.Component {
             )
         }else{
             return(
-                <div>asdasdasdasdasdasd</div>
+                <div className="summary">
+                    <Charges price={detail.price} /> 
+                    <FlightSummary cluster={detail} />
+
+                </div>
             )
         }
       /*  const { retrievingPms, reservations } = this.props;

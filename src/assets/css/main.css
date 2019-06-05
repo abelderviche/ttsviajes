@@ -619,12 +619,13 @@ body {
   max-height: 4.8rem;
   overflow: hidden;
   margin-top: 1.6rem;
-  border-radius: 3px;
-  background-color: #e7e7e7;
+  border-radius: 1rem;
+  background-color: #fff;
   cursor: pointer;
   transition: max-height .5s;
   margin-bottom: 1.6rem;
-  flex: 1; }
+  flex: 1;
+  box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6); }
   @media only screen and (max-width: 55.62em) and (min-width: 48em) {
     .flight {
       margin-left: .8rem;
@@ -633,239 +634,439 @@ body {
     max-height: 100rem; }
   .flight__headline {
     flex: 1;
-    height: 4.8rem;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center; }
+    justify-content: left;
+    align-items: center;
+    border-bottom: dashed 1.5px rgba(0, 0, 0, 0.12);
+    padding: 1.4rem; }
     .flight__headline-city {
       font-size: 1.8rem;
-      color: #d32027;
-      font-weight: 500;
-      margin: 0 .8rem; }
+      color: #000;
+      font-weight: 500; }
     .flight__headline-symbol {
       width: 1.4rem;
       height: 1rem;
       color: #d32027; }
   .flight__segments {
     margin: 0 1.6rem;
-    padding-top: 1.6rem;
-    border-top: solid 1.5px rgba(0, 0, 0, 0.12); }
+    padding-top: 1.6rem; }
 
-.segment {
+.flight-box {
   display: flex;
   flex-direction: column;
-  flex: 1; }
-  .segment__headline {
+  flex: 1;
+  background-color: #fff;
+  font-size: 1.4rem; }
+  .flight-box__section {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center; }
-    .segment__headline-desc {
-      display: flex;
-      flex-direction: row;
-      align-items: center; }
-      .segment__headline-desc--icon {
-        width: 1.6rem;
-        height: 1.6rem;
-        color: #d32027;
-        margin-right: .8rem; }
-    .segment__headline-label {
-      font-size: 1.4rem;
-      font-weight: 300;
-      color: #154156;
-      letter-spacing: .1px; }
-  .segment__detail {
-    margin-bottom: 1.6rem;
-    margin-top: .8rem;
-    padding: 1.6rem;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
-    background-color: #fff;
-    display: flex; }
-    @media only screen and (max-width: 37.5em) {
-      .segment__detail {
-        min-height: 6.4rem;
-        height: auto; } }
-  .segment__detail-extended {
-    background: #f4f4f4;
-    margin: 1rem;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 1.4rem; }
-    .segment__detail-extended span.departure {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin: 1rem; }
-    .segment__detail-extended .leg {
-      border-bottom: solid 1px #e7e7e7;
-      margin: 1rem;
-      display: flex;
-      justify-content: space-between;
-      padding-bottom: 1.4rem; }
-      @media only screen and (max-width: 37.5em) {
-        .segment__detail-extended .leg {
-          flex-wrap: wrap; } }
-      .segment__detail-extended .leg .leg-col {
-        display: flex;
-        flex-wrap: wrap;
-        align-content: flex-start; }
-        @media only screen and (max-width: 37.5em) {
-          .segment__detail-extended .leg .leg-col {
-            margin: 1rem 0; } }
-        .segment__detail-extended .leg .leg-col .airline-time, .segment__detail-extended .leg .leg-col .duration, .segment__detail-extended .leg .leg-col .cabinname {
-          width: 100%; }
-        .segment__detail-extended .leg .leg-col .airline-time {
-          font-size: 1.3rem;
-          margin: .5rem; }
-          .segment__detail-extended .leg .leg-col .airline-time img {
-            height: 1.6rem;
-            width: 1.6rem;
-            margin-right: 1rem; }
-        @media only screen and (max-width: 37.5em) {
-          .segment__detail-extended .leg .leg-col div {
-            margin: 2px 0; } }
-      .segment__detail-extended .leg .cities {
-        width: 100%;
-        margin: 0.4rem 1.5rem; }
-        @media only screen and (max-width: 37.5em) {
-          .segment__detail-extended .leg .cities {
-            margin: 0; } }
-        .segment__detail-extended .leg .cities .code {
+    border-bottom: dashed 1px rgba(0, 0, 0, 0.12);
+    padding: 1.4rem; }
+    .flight-box__section.pax {
+      flex-wrap: wrap;
+      border-bottom: none; }
+      .flight-box__section.pax .info {
+        width: 33%; }
+        .flight-box__section.pax .info .title {
           font-weight: bold;
-          color: red;
-          margin: 0 .5rem; }
-      .segment__detail-extended .leg .aircraft {
-        margin: 0.4rem 1.5rem; }
-        @media only screen and (max-width: 37.5em) {
-          .segment__detail-extended .leg .aircraft {
-            margin: 0; } }
-      .segment__detail-extended .leg.stop {
-        flex-wrap: wrap; }
-        .segment__detail-extended .leg.stop div {
-          width: 100%;
-          margin: .2rem 0;
-          margin: .5rem; }
-        .segment__detail-extended .leg.stop .leg-title span {
-          font-weight: 600;
-          color: red; }
-        .segment__detail-extended .leg.stop .aircraft-change {
-          color: red; }
-  .segment__info {
+          display: flex;
+          align-items: center; }
+          .flight-box__section.pax .info .title .info-icon {
+            height: 1.7rem;
+            width: 1.7rem;
+            fill: #4a4a4a;
+            margin: 6px 9px; }
+        .flight-box__section.pax .info .label {
+          padding-left: 3.6rem; }
+    .flight-box__section .segments {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%; }
+      .flight-box__section .segments .segment {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1rem;
+        border-bottom: 0.5px dashed #e7e7e7; }
+        .flight-box__section .segments .segment.inbound {
+          border-bottom: none; }
+        .flight-box__section .segments .segment .col {
+          display: flex;
+          max-width: 33%;
+          text-align: center;
+          flex-wrap: wrap; }
+          .flight-box__section .segments .segment .col .city {
+            width: 100%; }
+            .flight-box__section .segments .segment .col .city .code {
+              font-weight: bold;
+              font-size: 2.4rem;
+              margin: 1rem; }
+            .flight-box__section .segments .segment .col .city .description {
+              font-size: 1rem; }
+          .flight-box__section .segments .segment .col .date {
+            width: 100%; }
+            .flight-box__section .segments .segment .col .date .hour {
+              font-weight: bold;
+              font-size: 1.5rem;
+              margin: 0.5rem; }
+            .flight-box__section .segments .segment .col .date .date {
+              font-size: 1rem; }
+          .flight-box__section .segments .segment .col.arrow {
+            display: flex; }
+            .flight-box__section .segments .segment .col.arrow .arrow-img {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center; }
+              .flight-box__section .segments .segment .col.arrow .arrow-img img {
+                width: 50%; }
+            .flight-box__section .segments .segment .col.arrow .airline {
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-wrap: wrap; }
+              .flight-box__section .segments .segment .col.arrow .airline--logo {
+                width: 45%; }
+              .flight-box__section .segments .segment .col.arrow .airline--name {
+                width: 100%; }
+
+/*.flight {
+    // max-width: 20rem;
+    max-height: 4.8rem;
+    overflow: hidden;
+    margin-top: 1.6rem;
+    border-radius: 3px;
+    background-color: $grey-light;
+    cursor: pointer;
+    transition: max-height .5s;
+    margin-bottom: 1.6rem;
+    flex: 1;
+
+    @include respond(tablet-land) {
+        margin-left: .8rem;
+        margin-top: 0;
+    }
+
+    &__collapsed {
+        max-height:100rem;
+    }
+
+    &__headline {
+        flex: 1;
+        height: 4.8rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        &-city {
+            font-size: 1.8rem;
+            color: $primary;
+            font-weight: 500;
+            margin: 0 .8rem;
+        }
+
+        &-symbol {
+            width: 1.4rem;
+            height: 1rem;
+            color: $primary;
+        }
+    }
+
+    &__segments {
+        margin: 0 1.6rem;
+        padding-top: 1.6rem;
+        border-top: solid 1.5px rgba(0, 0, 0, 0.12);
+    }
+}
+
+.segment {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 1; }
-    .segment__info--headline {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-direction: row;
-      margin-bottom: 1rem; }
-      @media only screen and (max-width: 37.5em) {
-        .segment__info--headline {
-          margin-bottom: 1rem; } }
-  .segment__airline {
-    display: flex;
-    align-items: center; }
-    .segment__airline--logo {
-      height: 1.6rem;
-      width: 1.6rem;
-      margin-right: .8rem; }
-    .segment__airline--name {
-      font-size: 1.4rem;
-      letter-spacing: .1px;
-      color: #4a4a4a; }
-  .segment__duration {
-    height: 1.6rem;
-    display: flex;
-    align-items: center; }
-    .segment__duration span {
-      font-size: 1.2rem;
-      letter-spacing: .1px;
-      color: #4a4a4a; }
+    flex: 1;
+
+    &__headline {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        &-desc {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            &--icon {
+                width: 1.6rem;
+                height: 1.6rem;
+                color: $primary;
+                margin-right: .8rem;
+            }
+        }
+
+        &-label {
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: $flights-grey;
+            letter-spacing: .1px;
+        }
+    }
+
+    &__detail {
+        margin-bottom: 1.6rem;
+        margin-top: .8rem;
+        padding: 1.6rem;
+      // height: 6.4rem;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+        background-color: $white;
+        display: flex;
+
+        @include respond(phone) {
+            min-height: 6.4rem;
+            height:auto;
+        }
+    }
+
+    &__detail-extended{
+        span.departure{
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 1rem;
+        }
+        background:$grey-lighter;
+        margin: 1rem;
+        width: 100%;
+        display:flex;
+        flex-wrap: wrap;
+        font-size: 1.4rem;
+        & .leg{
+            border-bottom : $line;
+       //     width: 100%;
+            margin: 1rem;
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 1.4rem;
+            
+            @include respond(phone) {
+                flex-wrap: wrap;
+            }
+            & .leg-col{
+                display: flex;
+                flex-wrap: wrap;
+                align-content: flex-start;
+                @include respond(phone) {
+                    margin: 1rem 0;
+                }
+                .airline-time,.duration,.cabinname{
+                    width: 100%;
+                }
+                .airline-time{
+                    font-size: 1.3rem;
+                    margin: .5rem;
+                    img{
+                        height: 1.6rem;
+                        width: 1.6rem;
+                        margin-right: 1rem;
+                    }
+                }
+                & div {
+                    @include respond(phone) {
+                        margin: 2px 0; 
+                    }
+                }
+            }
+            & .cities{
+                width: 100%;
+                margin: 0.4rem 1.5rem;
+                @include respond(phone) {
+                    margin:0; 
+                }
+                .code{
+                    font-weight: bold;
+                    color:red;
+                    margin: 0 .5rem;
+                }
+            }
+            .aircraft{
+                margin: 0.4rem 1.5rem;
+                @include respond(phone) {
+                    margin:0;
+                }
+            }
+            &.stop{
+                & div{
+                    width: 100%;
+                    margin: .2rem 0;
+                    margin:.5rem;
+                }
+                flex-wrap: wrap;
+                & .leg-title span{
+                    font-weight: 600;
+                    color:red;
+                }
+                & .aircraft-change{
+                    color:red;
+                }
+            }
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+
+        &--headline {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            margin-bottom:1rem;
+            @include respond(phone) {
+                margin-bottom:1rem;
+            }
+        }
+    }
+
+    &__airline {
+        display: flex;
+        align-items: center;
+        &--logo {
+            height: 1.6rem;
+            width: 1.6rem;
+            margin-right: .8rem;
+        }
+
+        &--name {
+            font-size: 1.4rem;
+            letter-spacing: .1px;
+            color: $grey-dark;
+        }
+    }
+
+    &__duration {
+        height: 1.6rem;
+        display: flex;
+        align-items: center;
+
+        span {
+            font-size: 1.2rem;
+            letter-spacing: .1px;
+            color: $grey-dark;
+        }
+    }
+}
 
 .leg-summary {
-  margin-top: .4rem;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row; }
-  @media only screen and (max-width: 37.5em) {
-    .leg-summary {
-      display: block; } }
-  .leg-summary__heads {
+    margin-top: .4rem;
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center; }
-  .leg-summary__head {
-    display: flex; }
-    .leg-summary__head--airport {
-      font-size: 1.4rem;
-      letter-spacing: .1px;
-      color: #4a4a4a;
-      font-weight: 500; }
-    .leg-summary__head--time {
-      font-size: 1.4rem;
-      letter-spacing: .1px;
-      color: #4a4a4a;
-      margin-left: .2rem; }
-    .leg-summary__head--plus-days {
-      font-size: .8rem;
-      letter-spacing: .1px;
-      color: #d32027;
-      align-self: flex-start;
-      margin-left: .4rem;
-      margin-top: -.2rem; }
-  .leg-summary__luggage {
-    display: flex;
-    flex-direction: row; }
-    @media only screen and (max-width: 37.5em) {
-      .leg-summary__luggage {
+    flex-direction: row;
+    @include respond(phone) {
+        display:block;
+    }
+
+    &__heads {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         justify-content: center;
-        margin-top: 1rem; } }
-    .leg-summary__luggage-icon {
-      color: #1134d7; }
-      .leg-summary__luggage-icon:not(:last-child) {
-        margin-right: .8rem; }
+    }
+
+    &__head {
+        display: flex;
+        &--airport {
+            font-size: 1.4rem;
+            letter-spacing: .1px;
+            color: $grey-dark;
+            font-weight: 500;
+        }
+
+        &--time {
+            font-size: 1.4rem;
+            letter-spacing: .1px;
+            color: $grey-dark;
+            margin-left: .2rem;
+        }
+
+        &--plus-days {
+            font-size: .8rem;
+            letter-spacing: .1px;
+            color: $primary;
+            align-self: flex-start;
+            margin-left: .4rem;
+            margin-top: -.2rem;
+        }
+    }
+
+    &__luggage {
+        display: flex;
+        flex-direction: row;
+        @include respond(phone) {
+            justify-content:center;
+            margin-top:1rem;
+        }
+        &-icon {
+            // height: 1.4rem;
+            // width: 1.4rem;
+            color: $blue;
+            
+            &:not(:last-child) {
+                margin-right: .8rem;
+            }
+        }
+    }
+}
 
 .stops {
-  width: 4.8rem;
-  height: .4rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  position: relative;
-  margin: 0 .8rem; }
-  .stops__line {
-    height: 2px;
-    width: 100%;
-    background-color: #1134d7; }
-    .stops__line--green {
-      height: 2px;
-      width: 100%;
-      background-color: #4c9800; }
-  .stops__circles {
-    position: absolute;
-    top: -1px;
-    left: 0;
-    z-index: 1000;
-    width: 100%;
+    width: 4.8rem;
+    height: .4rem;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly; }
-  .stops__circle {
-    height: 6px;
-    width: 6px;
-    border-radius: 3px;
-    border: solid 1px #1134d7;
-    background-color: #fff; }
+    position: relative;
+    margin: 0 .8rem;
 
+    &__line {
+        height: 2px;
+        width: 100%;
+        background-color: $blue;
+
+        &--green {
+            height: 2px;
+            width: 100%;
+            background-color: #4c9800;
+        }
+    }
+
+    &__circles {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        z-index: 1000;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    &__circle {
+        height: 6px;
+        width: 6px;
+        border-radius: 3px;
+        border: solid 1px $blue;
+        background-color: $white;
+    }
+}
+
+*/
 .hotel {
   max-height: 4.8rem;
   overflow: hidden;
@@ -1739,9 +1940,9 @@ body {
     font-weight: bold;
     padding: 2rem 1.4rem; }
   .guest-form--collapsed {
-    max-height: 24rem; }
+    max-height: 26rem; }
   .guest-form__form-container {
-    max-height: 20rem;
+    max-height: 26rem;
     overflow: hidden;
     transition: max-height .5s; }
   .guest-form__hidden {

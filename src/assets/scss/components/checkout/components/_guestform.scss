@@ -13,10 +13,10 @@
             padding: 2rem 1.4rem;
     }
     &--collapsed {
-        max-height: 24rem;
+        max-height: 26rem;
     }
     &__form-container{
-        max-height: 20rem; 
+        max-height: 26rem; 
         overflow: hidden; 
         transition: max-height .5s;
     }

@@ -28,7 +28,7 @@ class BillingStore {
     @computed get validFields() {
         return this.validFiscalName.valid && this.validCuit.valid && this.validStreet.valid 
             && this.validNumber.valid && this.validZipCode.valid && this.validCuitType.valid
-            && this.validState.valid && this.validCity.valid;
+          //  && this.validState.valid && this.validCity.valid;
     }
 
     @computed get validState() {

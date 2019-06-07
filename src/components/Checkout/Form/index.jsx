@@ -22,9 +22,7 @@ class Form extends React.Component {
     
     render() {
         const { action, loading, error, availablePayment, checkContact, changeCheck, product, checkout} = this.props;
-        /*
-
-         */
+        const rewards = checkout.activeComponents.find(f=>f.name==='POINT');
         return (
             <div className="form">
                 {
@@ -37,8 +35,8 @@ class Form extends React.Component {
                        if(component.name === 'FCB'){
                         return(
                             <div>
-                                {this.props.paymentMethod.paymentMethods.length>0?
-                                <PaymentModule sendAttempted={this.state.sendAttempted}  />
+                                {Object.entries(this.props.paymentMethod.paymentMethods).length>0?
+                                    <PaymentModule sendAttempted={this.state.sendAttempted} rewards={rewards} />
                                 :null}
                                 <BillingModule sendAttempted={this.state.sendAttempted} />
                             </div>

@@ -100,22 +100,43 @@ const flattenResponse = (paymentMethods, addedPrice) => {
     };
 }
 
+const addOrPushBines = (list,creditcard,dues,bines) =>{
+    const prevCCBin = list.find(cc=>cc.card === creditcard && cc.dues === dues);
+    if(!prevCCBin){
+        list.push({
+            card: creditcard,
+            dues: dues,
+            bines:bines 
+        })
+    }else{
+        prevCCBin.bines.concat(bines);
+    }
+}
+
 const flattenResponseRewards = (paymentMethods, addedPrice) => {
     const withInterest = [];
     const withoutInterest = [];
     const hsbc = [];
+    const binesList = [];
     if (paymentMethods) {
         paymentMethods.forEach(creditCard => {
+            console.log('credit',creditCard)
             const { isocode, credit_card, entities } = creditCard;
               entities.forEach(bank => {
                 if(bank.bcracode === "150"){
                     const { name, bcracode, order, payment_method } = bank;
-                    console.log(bank.payment_method);
+                    bank.payment_method.forEach(method =>{
+                        const { Segment, financing, maxCuota } = method;
+                        financing.forEach(promo => {
+                            addOrPushBines(binesList,isocode,promo.dues,promo.bines)
+                        })
+                    })
                     /*
                     ARRAY DE BINES POR TARJETAS Y PUSHEARLO SEGUN CORRESPONDA
                     primero recorrer todos los financing, guardar los bines por tarjeta, y despues irlos a buscar por el codigo de la tarjeta
                     listorti jose maria
                     A*/
+                    
                     bank.payment_method[0].financing.forEach(promo=>{
                         const firstInstallment = promo.InitialDue && Number(promo.dues) > 1 && ( promo.pricing.FEE > 0 || addedPrice>0) ? parseFloat(promo.pricing.FEE + promo.pricing.dueValue + addedPrice).toFixed(2) : 0;
                         const bankPromo = {
@@ -130,7 +151,8 @@ const flattenResponseRewards = (paymentMethods, addedPrice) => {
                             testing:addedPrice,
                             cft: promo.cftn,
                             tea: parseFloat(promo.tea).toFixed(2),
-                            bines: promo.bines,
+                            //bines: promo.bines,
+                            bines: binesList.find(b=>b.card === isocode && b.dues === promo.dues).bines,
                             initialDue:promo.InitialDue,
                             creditCards: [{
                                 cardCode: isocode,

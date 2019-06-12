@@ -135,7 +135,12 @@ const flattenResponseRewards = (paymentMethods, addedPrice) => {
                     ARRAY DE BINES POR TARJETAS Y PUSHEARLO SEGUN CORRESPONDA
                     primero recorrer todos los financing, guardar los bines por tarjeta, y despues irlos a buscar por el codigo de la tarjeta
                     listorti jose maria
-                    A*/
+                    A
+                    
+                    425821, 425822
+                    
+                    
+                    465403, 465494*/
                     
                     bank.payment_method[0].financing.forEach(promo=>{
                         const firstInstallment = promo.InitialDue && Number(promo.dues) > 1 && ( promo.pricing.FEE > 0 || addedPrice>0) ? parseFloat(promo.pricing.FEE + promo.pricing.dueValue + addedPrice).toFixed(2) : 0;

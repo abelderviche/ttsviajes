@@ -43,7 +43,9 @@ class CheckoutStore {
                                 console.log('aasdasd',res.data.data);
                                 this.infoProduct = infoProduct;
                                 console.log(fcb.financing);
-                                PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods);
+                                if(fcb.financing.creditsCards.enabled){
+                                    PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods);
+                                }
                                 if(product==='flights'){
                                     GuestsStore.setPaxArray(res.data.data.paxf);
                                 }else if(product ==='accommodation'){

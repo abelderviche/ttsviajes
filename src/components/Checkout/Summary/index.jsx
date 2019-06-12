@@ -19,9 +19,9 @@ class Summary extends React.Component {
         if(type === 'accommodations'){
             const nights = moment(detail.rates[0].checkout).diff(moment(detail.rates[0].checkin), 'days');
             return(
-                <div className="summary">
+                <div className={`summary`}>
                     {rewards?
-                        <div>asdasd</div>
+                        <ChargesPoints points={points}/>
                         :
                         <ChargesHotel price={detail.rates[0].price}  nights={nights} rooms={detail.rooms.length}/> 
                     }
@@ -30,7 +30,7 @@ class Summary extends React.Component {
             )
         }else{
             return(
-                <div className="summary">
+                <div className={`summary`}>
                     {rewards?
                         <ChargesPoints points={points}/>
                         :
@@ -41,41 +41,39 @@ class Summary extends React.Component {
                 </div>
             )
         }
-      /*  const { retrievingPms, reservations } = this.props;
-        const  productInfo  = reservations.product;
-        if (productInfo && !retrievingPms && reservations.reservation.products[0].type === "FLIGHT") {
-            return (
-                <div className="summary">
-                    <Charges price={productInfo.cluster.price} /> 
-                    <FlightSummary cluster={productInfo.cluster} />
+    }
+}
+@inject('checkout') @observer
+
+class SummaryMobile extends React.Component {
+    state = {
+        collapsed:true
+    }
+
+    toggleCollapsed = () => {
+        this.setState({ collapsed: !this.state.collapsed });
+    }
+    render() {
+        const {infoProduct,activeComponents,points} = this.props.checkout;
+        const rewards = activeComponents.find(f=>f.name==='POINT');
+        const {type,detail} = infoProduct;
+        return(
+            <div className={`summary_mobile  ${this.props.scrolled?'summary_mobile__fixed':''}`}>
+                {!this.state.collapsed?
+                <div >
+                    <ChargesPoints points={points}/>
+                    <FlightSummary cluster={detail} />
                 </div>
-            );
-        }else if (productInfo && !retrievingPms && reservations.reservation.products[0].type === "ACCOMMODATION") {
-            const nights = moment(productInfo.accommodation.rate.checkout).diff(moment(productInfo.accommodation.rate.checkin), 'days');
-            const mandatory_tax =productInfo.accommodation.rate.price.price_detail.fees.reduce((acc, charge) =>{ 
-                return acc + (charge.type==="mandatory_tax" ? charge.amount: 0)
-            }, 0);
-            return(
-                <div className="summary">
-                    <ChargesHotel price={productInfo.accommodation.rate.price}  nights={nights} rooms={reservations.reservation.products[0].rooms_qty}/> 
-                    {productInfo.accommodation.rate.price.price_detail.fees  &&  productInfo.accommodation.rate.price.price_detail.fees.length > 0?
-                        <div className="summary__not-include">
-                            <div className="title">No incluye:</div>
-                                <div className="item">{`- Impuestos de ciudad/destino: ${productInfo.accommodation.rate.price.price_detail.fees[0].currency} ${mandatory_tax}`}</div>
-                        </div>
-                        :null
-                    }
-                    <HotelSummary accommodation={productInfo.accommodation} />
+                :
+                <div className="summary_mobile__line">
+                    <span>Puntos a cambiar</span>
+                    <span>{points}</span>
                 </div>
-            )
-        } else {
-            return (
-                <div className="summary">
-                    <Loader />
-                </div>
-            );
-        }*/
+                }
+                <div className="showDetails" onClick={this.toggleCollapsed} >{!this.state.collapsed?'Ocultar':'Ver'} detalle de compra</div>
+            </div>
+        )
     }
 }
 
-export default Summary;
+export {Summary,SummaryMobile};

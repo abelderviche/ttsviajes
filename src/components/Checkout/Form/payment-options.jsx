@@ -72,11 +72,12 @@ class PaymentOptions extends React.Component {
     }
 
     render () {
-        const { title, id, selected, paymentMethods, selectMethodGroup, bankId, promoId, cardId, selectedPromos } = this.props;
+        const { title, id, selected, paymentMethods, selectMethodGroup, bankId, promoId, cardId, selectedPromos, rewards} = this.props;
         const elementId = `${id}-pm`;
         return (
             <div className={`payment-method noselect ${selected ? 'payment-method__collapsed' : ''}`}>
                 <input type="checkbox" id={elementId} className="payment-method__input" checked={selected} onChange={() => selectMethodGroup(id)}/>
+                {!rewards?
                 <label htmlFor={elementId} className="payment-method__row-title payment-method__input-label">
                     <div className="payment-method__option">
                         <div className="payment-method__option--radio-container">
@@ -88,6 +89,7 @@ class PaymentOptions extends React.Component {
                         <span className="arrow-icon">&nbsp;</span>
                     </div>
                 </label>
+                :null}
                 {paymentMethods ? 
                     (id === 'hsbc' ? 
                     <HsbcOption id={id} banks={paymentMethods} selected={selected} 
@@ -96,7 +98,7 @@ class PaymentOptions extends React.Component {
                     : 
                     <Option id={id} banks={paymentMethods} selectedPromos={selectedPromos} 
                         selected={selected} bankId={bankId} promoId={promoId} cardId={cardId}
-                        selectBank={this.selectBank} selectPromo={this.selectPromo} selectCreditCard={this.selectCreditCard} /> )
+                        selectBank={this.selectBank} selectPromo={this.selectPromo} selectCreditCard={this.selectCreditCard} rewards={rewards} /> )
                 : null}
             </div>
         );

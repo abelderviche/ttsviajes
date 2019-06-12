@@ -2,12 +2,16 @@ import React from "react";
 import ReactGA from 'react-ga';
 import { inject, observer } from "mobx-react";
 import { animateScroll } from 'react-scroll'
-import {Form,Summary} from 'components/Checkout';
+import {Form} from 'components/Checkout';
+import {Summary,SummaryMobile} from 'components/Checkout/Summary';
 import { StickyContainer, Sticky } from 'react-sticky';
-/*import CheckoutPlaceholder from 'components/Checkout/placeholder';*/
+//import CheckoutPlaceholder from 'components/Checkout/placeholder';
 import ENV from 'config';
 import ApiClient from '../../stores/api-client';
 import moment from 'moment';
+
+import Responsive from 'react-responsive-decorator';
+
 
 function parseQuery(queryString) {
     var query = {};
@@ -30,7 +34,9 @@ class Checkout extends React.Component {
         productType:false,
         loadingReservation:true,
         reservationCode:false,
-        checkContact: false
+        checkContact: false,
+        scrolled:false,
+        isMobile:false
     }
 
     thanksPage = (status) => {
@@ -53,6 +59,21 @@ class Checkout extends React.Component {
            },
            ()=>console.log('fallo')
        )
+      
+        this.props.media({ maxWidth: 600 }, () => {
+            this.setState({
+                isMobile: true
+            })
+        })
+
+        window.addEventListener('scroll', ()=>{
+           const isTop = window.scrollY<100;
+           if(isTop !== true){
+                this.setState({scrolled:true})            
+           }else{
+                this.setState({scrolled:false})
+           }
+        })
     }
 
     handleError = (title, message, critical) => {
@@ -90,7 +111,16 @@ class Checkout extends React.Component {
                                 action={this.doPayment}
                                 loading={loading}
                                 />
-                            <Summary />
+                            {this.state.isMobile?
+                            <SummaryMobile 
+                                scrolled={this.state.scrolled}
+                            />
+                            
+                            :
+                                <Summary 
+                                    scrolled={this.state.scrolled}
+                                />
+                            }
                         </div>
                     </div>
                 :null
@@ -100,4 +130,4 @@ class Checkout extends React.Component {
     }
 }
 
-export default Checkout;
+export default Responsive(Checkout);

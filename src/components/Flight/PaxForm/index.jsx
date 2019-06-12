@@ -96,8 +96,8 @@ class PaxForm extends Component {
         let passenger = guestsStore.paxArray[this.props.keyData];
 
         return(
-            <div className="module">
-                <div className="module__top-headline">{_PASSENGERS__LABELS[paxType]}</div>
+            <div className="guest-form module">
+                <div className="guest-form-headline">{_PASSENGERS__LABELS[paxType]}</div>
                 <div className="module__payment-info">
                     <div className="module__form-group">
                         <Input title="Nombre/s">

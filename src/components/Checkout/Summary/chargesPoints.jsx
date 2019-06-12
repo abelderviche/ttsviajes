@@ -1,8 +1,11 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react';
 
 const formatPrice = (price) => {
     return price.toFixed(2).toString().replace(',', '.').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+@inject('paymentMethod') @observer
 
 class Charges extends React.Component {
 
@@ -44,7 +47,7 @@ class Charges extends React.Component {
 
     render() {
   
-        const { points } = this.props;
+        const { points, paymentMethod } = this.props;
         return (
             <div className={`charges noselect ${this.state.collapsed ? 'charges--collapsed' : ''}`} onClick={this.toggleCollapsed}>
                 <div className={`charges__details ${!this.state.collapsed ? 'charges__hidden' : ''}`}>
@@ -53,6 +56,9 @@ class Charges extends React.Component {
                     </div>
                     <div className="charges__flat">
                         {this.renderLinePoints('Puntos a canjear', points)}
+                    </div>
+                    <div className="charges__flat">
+                        {paymentMethod.paymentInfo?this.renderLine(`${paymentMethod.paymentInfo.installments} cuota${paymentMethod.paymentInfo.installments>1?'s':''} sin intereses`, paymentMethod.paymentInfo.installmentPrice):null}
                     </div>
                 </div>
                 <div className="charges__total">

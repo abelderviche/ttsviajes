@@ -101,7 +101,7 @@ class PaymentType extends React.Component {
                 {paymentMethods.hsbc && paymentMethods.hsbc.length ? 
                     <PaymentOptions 
                         id='without-interest'
-                        title={<div><span>Pago con tarjetas </span><span className="bold">sin interés</span></div>} 
+                        title='' 
                         selected={true}
                         paymentMethods={paymentMethods.hsbc}
     
@@ -115,6 +115,7 @@ class PaymentType extends React.Component {
                         setSelectedPromos={this.setSelectedPromos}
                         selectedPromos={this.props.paymentMethod.selectedPromos}
                         //selectedPromos={this.state.selectedPromos}
+                        rewards={true}
     
                         selectMethodGroup={this.setMethodGroup}
                         setPromo={this.setPromo} /> : null}

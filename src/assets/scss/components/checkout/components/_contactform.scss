@@ -4,6 +4,9 @@
         width: 100%;
         display: flex;
         flex-wrap: wrap;
+        @include respond(phone) {
+            padding: 1rem;
+        }
         &-title{
             width: 100%;
             background:$primary-soft;

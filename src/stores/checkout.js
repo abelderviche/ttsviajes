@@ -17,38 +17,40 @@ class CheckoutStore {
     @observable infoProduct = {};
     @observable points = null;
     
-    @action retrieveCheckoutInfo = (clusterID, product,trackID,points) => {
+    @action retrieveCheckoutInfo = (clusterID, product,idGetPoints,points) => {
         let headers = ENV.CHECKOUT.REQUEST_HEADERS;
        /* headers['Product'] = typeProduct.translate_plural;
         headers['sourcegds'] = Reservations.product.source;*/
         this.points = points;
+        let reqBody = {
+            clusterId:clusterID,
+            product:product,
+        }
+        if(idGetPoints && points){
+            reqBody['selPoints'] = points;
+            reqBody['idGetPoints'] = idGetPoints;
+        }
         return new Promise((resolve, reject) => {
-            ApiClient.post(ENV.CHECKOUT.GETINFO, {
-                'idbasset': 123123,
-                'ip': '127.0.0.1',
-                'clusterid':clusterID,
-                'product':product,
-                'trackID':null
-            }, {
+            ApiClient.post(ENV.CHECKOUT.GETINFO, reqBody, {
                 headers: headers
             }).then(
                 res => {
                     console.log(res)
                     if(res.data){
                      //   console.log(res.data.data);
-                        let { action, fcb,activeComponents,infoProduct} = res.data.data;
-                        switch (action) {
+                     let { action, message, data } = res.data;
+                     let { fcb,activeComponents, infoProduct } = data;
+                     switch (action) {
                             case '1':   
                             this.activeComponents = activeComponents;
-                                console.log('aasdasd',res.data.data);
                                 this.infoProduct = infoProduct;
-                                console.log(fcb.financing);
+                                console.error(fcb.financing)
                                 if(fcb.financing.creditsCards.enabled){
                                     PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods);
                                 }
                                 if(product==='flights'){
                                     GuestsStore.setPaxArray(res.data.data.paxf);
-                                }else if(product ==='accommodation'){
+                                }else if(product ==='accommodations'){
                                     GuestsStore.setGuestArray(res.data.data.paxa);
                                 }
                                
@@ -62,7 +64,16 @@ class CheckoutStore {
                             case '2':
                                 resolve(
                                     {   action:action,
-                                        message:'nok'
+                                        message:message,
+                                        url:data
+                                    }
+                                );
+                                break;
+                            case '3':
+                                resolve(
+                                    {   action:action,
+                                        message:message,
+                                        url:data
                                     }
                                 );
                                 break;

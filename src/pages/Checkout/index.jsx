@@ -50,12 +50,17 @@ class Checkout extends React.Component {
     componentDidMount() {
         let clusterID = this.props.match.params.id;
         let product = this.props.match.params.product;
-        let trackID = 123;
         const queryString = this.props.location.search!==''?parseQuery(this.props.location.search):null;
         const points = queryString && queryString.points?queryString.points:null;
-        this.props.checkout.retrieveCheckoutInfo(clusterID, product,trackID,points).then(
+        const idGetPoints = queryString && queryString.idGetPoints?queryString.idGetPoints:null;
+        this.props.checkout.retrieveCheckoutInfo(clusterID, product,idGetPoints,points).then(
            (res)=>{
-               this.setState({loadingReservation:false})
+               console.log(res);
+                if(res.action === '1'){
+                   this.setState({loadingReservation:false})
+               }else{
+                   window.location.href = res.url;
+               }
            },
            ()=>console.log('fallo')
        )
@@ -67,7 +72,7 @@ class Checkout extends React.Component {
         })
 
         window.addEventListener('scroll', ()=>{
-           const isTop = window.scrollY<100;
+           const isTop = window.scrollY<84;
            if(isTop !== true){
                 this.setState({scrolled:true})            
            }else{

@@ -3,6 +3,10 @@
     padding: 0 3rem;
     transition: max-height .5s;
     box-shadow: none;
+     @include respond(phone) {
+        padding: 0 1rem;
+    }
+    
     
     &-headline{
         background:$primary-soft;

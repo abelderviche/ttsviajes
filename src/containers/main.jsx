@@ -40,10 +40,11 @@ class Main extends React.Component {
                     <main>
                         <Switch>
                            <Route exact path='/checkout/:product/:id' component={Checkout} />
+                           <Route exact path='/:subchannel/checkout/:product/:id' component={Checkout} />
                             {/* <Route exact path='/thanks/:id' component={Thanks} />
                             <Route exact path='/thankscontact/:id' component={ThanksContact} />
-                            <Route exact path='/:subchannel/checkout/:id' component={Checkout} />
-                <Route exact path='/:subchannel/thanks/:id' component={Thanks} /> */}
+                            <Route exact path='/:subchannel/thanks/:id' component={Thanks} /> 
+                            */}
                             <Route exact path='/*' component={ErrorPage} />
                         </Switch>
                     </main>

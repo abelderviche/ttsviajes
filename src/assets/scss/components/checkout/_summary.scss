@@ -28,12 +28,15 @@
     margin-bottom: 1rem;
     border-radius: 1rem;
     padding: .5rem;
+    transition: box-shadow .5s;
+
     & .showDetails{
         text-align: center;
-        border-top: 0.5px dashed black;
+        border-top: 0.5px dashed $grey;
         padding-top: .5rem;
         font-size: 1.3rem;
         font-weight: bold;
+        color: $grey;
     }
     &__line {
         display: flex;
@@ -51,7 +54,8 @@
     &__fixed{
         position: fixed;
         top:0;
-        width: 97%;
-        border:1px solid black;
+        width: 96%;
+        box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6);
+
     }
 }

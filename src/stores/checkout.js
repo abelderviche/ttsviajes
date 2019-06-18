@@ -49,9 +49,9 @@ class CheckoutStore {
                                     PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods);
                                 }
                                 if(product==='flights'){
-                                    GuestsStore.setPaxArray(res.data.data.paxf);
+                                    GuestsStore.setPaxArray(res.data.data.paxf, res.data.data.paxf.every(GuestsStore.validPax));
                                 }else if(product ==='accommodations'){
-                                    GuestsStore.setGuestArray(res.data.data.paxa);
+                                    GuestsStore.setGuestArray(res.data.data.paxa, res.data.data.paxa.every(GuestsStore.validGuest));
                                 }
                                
                                 
@@ -152,6 +152,7 @@ class CheckoutStore {
         }else{
             body.pax=GuestsStore.paxArray;
         }
+       // if(BillingStore.pay)
         console.log(body);
 
         

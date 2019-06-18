@@ -65,6 +65,8 @@ const store = {
 };
 
 hydrate('LanguageStore', store.language);
+hydrate('guestsStore', store.guestsStore);
+hydrate('ContactStore', store.contactStore);
 hydrate('ApplicationStore', store.application);
 
 

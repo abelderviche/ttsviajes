@@ -1,14 +1,54 @@
 import { action, observable, computed } from 'mobx';
+import { persist } from 'mobx-persist';
 import { validator } from './validators';
 import PaymentMethod from './payment-method';
 import moment from 'moment';
 
+class DocTypeObj {
+    @persist @observable type;
+    @persist @observable number;
+    constructor(type,number){
+        this.type=type;
+        this.number=number;
+    }
+
+}
+class Guest {
+    @persist @observable firstName;
+    @persist @observable lastName;
+    @persist('object', DocTypeObj) @observable document;
+    constructor(firstName,lastName,docType,docNumber){
+        this.firstName=firstName;
+        this.lastName = lastName;
+        this.document = new DocTypeObj(docType,docNumber);
+    }
+}
+
+class Pax {
+    @persist @observable firstName;
+    @persist @observable lastName;
+    @persist @observable nationality;
+    @persist @observable birth;
+    @persist @observable gender;
+    @persist @observable type;
+    @persist('object', DocTypeObj) @observable document;
+    constructor(firstName,lastName,docType,docNumber,nationality,birth,gender,type){
+        this.firstName=firstName;
+        this.lastName = lastName;
+        this.nationality = nationality;
+        this.birth = birth;
+        this.gender = gender;
+        this.type = type;
+        this.document = new DocTypeObj(docType,docNumber);
+    }
+}
+
+
 class GuestsStore {
-    @observable guestsArray = [];
+    @persist('list') @observable guestsArray = [];
     @observable paxArray = [];
 
     @action validGuest = (guest) =>{
-        console.log(guest);
         return this.validName(guest.firstName).valid && this.validLastName(guest.lastName).valid 
         && this.validDocType(guest.document.type).valid && this.validDocNumber(guest.document.number).valid  ;
         //return this.validName(guest.name).valid; 
@@ -61,12 +101,15 @@ class GuestsStore {
         } 
     }
 
-    @action setGuestArray = (guestArr) =>{
-        this.guestsArray = guestArr;
+    @action setGuestArray = (guestArr,valid) =>{
+        //console.log(guestArr);
+        this.guestsArray = this.guestsArray.length>0 && !valid ?this.guestsArray : guestArr.map(g => new Guest(g.firstName,g.lastName,g.document.type,g.document.number))
     }
 
-    @action setPaxArray = (paxArr) =>{
-        this.paxArray = paxArr;
+    @action setPaxArray = (paxArr,valid) =>{
+        console.log(paxArr)
+        this.paxArray = this.paxArray.length>0 && !valid ?this.paxArray : paxArr.map(p => new Pax(p.firstName,p.lastName,p.document.type,p.document.number,p.nationality,p.birth,p.gender,p.type))
+
     }
 
     @action validName = (name) =>{

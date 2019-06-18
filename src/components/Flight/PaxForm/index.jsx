@@ -77,6 +77,7 @@ class PaxForm extends Component {
         const months = moment.months().map((m,k)=>({label:m[0].toUpperCase()+m.slice(1),value: k+1 < 10 ? `0${k+1}` : `${k+1}`}))
         const present_year  = moment().year();
         const paxType = guestsStore.paxArray[this.props.keyData].type;
+        console.log(guestsStore.paxArray)
         let minYear, maxYear;
         if(paxType==='ADT'){
             maxYear = present_year-12;

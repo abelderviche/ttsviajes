@@ -1,15 +1,17 @@
 import { action, observable, computed } from 'mobx';
 import { validator } from './validators';
+import { persist } from 'mobx-persist';
+
 import PaymentMethod from './payment-method';
 import moment from 'moment';
 
 class ContactFormStore {
-    @observable email = '';
-    @observable confirmEmail = '';
-    @observable phoneType = 'M';
-    @observable countryCode = '54';
-    @observable areaCode = '011';
-    @observable phoneNumber = '';
+    @persist @observable email = '';
+    @persist @observable confirmEmail = '';
+    @persist @observable phoneType = 'M';
+    @persist @observable countryCode = '54';
+    @persist @observable areaCode = '011';
+    @persist @observable phoneNumber = '';
 
     @computed get validFields() {
         return this.validEmail.valid &&  this.validConfirmEmail.valid && 

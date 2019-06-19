@@ -10,6 +10,7 @@ import PaymentMethodStore from './payment-method'
 import Contact from './contact-form'
 import BillingStore from './billing'
 import GuestsStore from './guests'
+import CheckoutFormStore from './checkout-form'
 
 
 class CheckoutStore {
@@ -108,9 +109,14 @@ class CheckoutStore {
         console.log('BillingStore',BillingStore.validFields)
         console.log('Contact',Contact.validFields)
         console.log('GuestsStore', GuestsStore.validFields);
+        console.log('CheckoutFormStore', CheckoutFormStore);
 
-        console.log(BillingStore)
-        const body = {
+        console.log('payment',PaymentMethodStore)
+     /*   if(BillingStore.validFields && Contact.validFields && GuestsStore.validFields 
+        && (PaymentMethodStore.paymentMethodId>=0 && !CheckoutFormStore.validFields)){
+*/
+if(true){
+        let body = {
             trackId: null,
             clusterId: null,
             activeComponents:this.activeComponents,
@@ -147,14 +153,30 @@ class CheckoutStore {
                 }
             },
         }
+
         if(this.infoProduct.type==='accommodations'){
-            body.pax=GuestsStore.guestsArray;
+            body.pax = GuestsStore.guestsArray;
         }else{
-            body.pax=GuestsStore.paxArray;
+            body.pax = GuestsStore.paxArray;
         }
-       // if(BillingStore.pay)
+
+        if(PaymentMethodStore.paymentMethodId >= 0){
+            body.fcb.financing = {selectedPaymentMethodId:PaymentMethodStore.paymentMethodId};
+            body.fcb.cardData = {
+                creditCardNumber: CheckoutFormStore.creditCardNumber,
+			    expirationDate: CheckoutFormStore.expirationDate,
+			    securityCode: CheckoutFormStore.securityCode,
+			    creditCardHolderName: CheckoutFormStore.cardholderName,
+			    typeCard: "Credit"
+            }
+        }
+
         console.log(body);
 
+    }
+
+       // if(BillingStore.pay)
+        
         
     }
 }

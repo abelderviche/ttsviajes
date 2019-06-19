@@ -1,7 +1,6 @@
 import { action, observable, computed } from 'mobx';
 import { persist } from 'mobx-persist';
 import { validator } from './validators';
-import PaymentMethod from './payment-method';
 import moment from 'moment';
 
 class DocTypeObj {
@@ -71,45 +70,12 @@ class GuestsStore {
         }
     }
 
-    @action generateGuestArray = (rooms) =>{
-        for (var i = 1; i <= rooms; i++) {
-            let obj = {
-                id: i,
-                name:'',
-                lastname:'',
-                docType:'',
-                numDoc:''
-            }
-            this.guestsArray.push(obj);
-        } 
-    }
-    @action generatePaxArray = (rooms) =>{
-        for (var i = 1; i <= rooms; i++) {
-            let obj = {
-                type: "ADT",
-                firstName: "",
-                lastame: "",
-                gender: "",
-                birth: "",
-                document: {
-                    type: "",
-                    number: ""
-                },
-                nationality: ""
-            }
-            this.paxArray.push(obj);
-        } 
-    }
-
     @action setGuestArray = (guestArr,valid) =>{
-        //console.log(guestArr);
         this.guestsArray = this.guestsArray.length>0 && !valid ?this.guestsArray : guestArr.map(g => new Guest(g.firstName,g.lastName,g.document.type,g.document.number))
     }
 
     @action setPaxArray = (paxArr,valid) =>{
-        console.log(paxArr)
         this.paxArray = this.paxArray.length>0 && !valid ?this.paxArray : paxArr.map(p => new Pax(p.firstName,p.lastName,p.document.type,p.document.number,p.nationality,p.birth,p.gender,p.type))
-
     }
 
     @action validName = (name) =>{

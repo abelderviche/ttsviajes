@@ -69,7 +69,7 @@ class GuestForm extends Component {
                                     options={docTypes}
                                     valid={guestsStore.validDocType(this.props.guest.document.type)}
                                     value={this.props.guest.document.type} action={this.setDocType}
-                                    size='medium-sm' placeholder='Tipo' />
+                                    size='small' placeholder='Tipo' />
                             </Input>
                             <Input title="Número">
                                 <TextInput 

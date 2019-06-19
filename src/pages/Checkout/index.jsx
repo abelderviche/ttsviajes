@@ -3,9 +3,13 @@ import ReactGA from 'react-ga';
 import { inject, observer } from "mobx-react";
 import { animateScroll } from 'react-scroll'
 import {Form} from 'components/Checkout';
+import Error from 'components/Checkout/Error';
+
+
+
 import {Summary,SummaryMobile} from 'components/Checkout/Summary';
 import { StickyContainer, Sticky } from 'react-sticky';
-//import CheckoutPlaceholder from 'components/Checkout/placeholder';
+import CheckoutPlaceholder from 'components/Checkout/placeholder';
 import ENV from 'config';
 import ApiClient from '../../stores/api-client';
 import moment from 'moment';
@@ -53,22 +57,43 @@ class Checkout extends React.Component {
         const queryString = this.props.location.search!==''?parseQuery(this.props.location.search):null;
         const points = queryString && queryString.points?queryString.points:null;
         const idGetPoints = queryString && queryString.idGetPoints?queryString.idGetPoints:null;
+        this.props.billing.retrieveData();
+
         this.props.checkout.retrieveCheckoutInfo(clusterID, product,idGetPoints,points).then(
            (res)=>{
-               console.log(res);
                 if(res.action === '1'){
                    this.setState({loadingReservation:false})
+                   
                }else{
                    window.location.href = res.url;
                }
            },
-           ()=>console.log('fallo')
+           ()=>{
+                this.setState({
+                    loadingReservation:false,
+                    error: {
+                        title: "Ocurrió un error",
+                        message: "Vuelva a intentarlo",
+                        critical: "critical"
+                    }
+                })
+           }
        )
       
         this.props.media({ maxWidth: 600 }, () => {
             this.setState({
                 isMobile: true
             })
+        })
+        window.addEventListener('resize', ()=>{
+            let mobile = false; 
+            this.props.media({ maxWidth: 600 }, () => {
+              mobile = true;
+            })
+            this.setState({
+                isMobile: mobile
+            })
+                
         })
 
         window.addEventListener('scroll', ()=>{
@@ -107,8 +132,10 @@ class Checkout extends React.Component {
     render() {
         const { error, availablePayment, loading, retrievingPms, productType,loadingReservation,reservationCode, checkContact} = this.state;
       return (
-            <StickyContainer>
-                {!loadingReservation?
+                !loadingReservation?
+                    error?
+                        <Error {...this.state.error}/>
+                    :
                     <div id="checkout-container">
                         <div className="section-checkout">
                             <Form 
@@ -128,9 +155,10 @@ class Checkout extends React.Component {
                             }
                         </div>
                     </div>
-                :null
-                }
-            </StickyContainer>
+                :
+                <CheckoutPlaceholder />
+                
+
         )
     }
 }

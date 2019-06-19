@@ -58,21 +58,21 @@ export default class ContactFormModule extends Component {
                                             forceValidation={this.props.sendAttempted}
                                             valid={contactStore.validCountryCode}
                                             value={contactStore.countryCode} action={contactStore.setCountryCode}
-                                            size='large' placeholder='54' />
+                                            size='small' placeholder='54' />
                                 </Input>
                                 <Input title="Cod. de area">
                                     <TextInput 
                                             forceValidation={this.props.sendAttempted}
                                             valid={contactStore.validAreaCode}
                                             value={contactStore.areaCode} action={contactStore.setAreaCode}
-                                            size='large' placeholder='011' />
+                                            size='small' placeholder='011' />
                                 </Input>
                                 <Input title="Numero">
                                     <TextInput 
                                             forceValidation={this.props.sendAttempted}
                                             valid={contactStore.validPhoneNumber}
                                             value={contactStore.phoneNumber} action={contactStore.setPhoneNumber}
-                                            size='large' placeholder='Ingresá tu numero' />
+                                            size='medium-sm' placeholder='Ingresá tu numero' />
                                 </Input>
                             </div>
                         </div>

@@ -120,7 +120,6 @@ const flattenResponseRewards = (paymentMethods, addedPrice) => {
     const binesList = [];
     if (paymentMethods) {
         paymentMethods.forEach(creditCard => {
-            console.log('credit',creditCard)
             const { isocode, credit_card, entities } = creditCard;
               entities.forEach(bank => {
                 if(bank.bcracode === "150"){
@@ -162,50 +161,13 @@ const flattenResponseRewards = (paymentMethods, addedPrice) => {
                             creditCards: [{
                                 cardCode: isocode,
                                 cardName: credit_card,
-                                paymentMethodId: promo.Id
+                                paymentMethodId: promo.id
                             }]
                         };  
                         addOrPushPromo(hsbc, isocode, credit_card, order, bankPromo, 9);
 
                     })
                 }
-               /* const { name, bcracode, order, payment_method } = bank;
-                payment_method.forEach(method => {
-                    const { Segment, financing, maxCuota } = method;
-                    financing.forEach(promo => {
-                        const firstInstallment = promo.InitialDue && Number(promo.dues) > 1 && ( promo.pricing.FEE > 0 || addedPrice>0) ? parseFloat(promo.pricing.FEE + promo.pricing.dueValue + addedPrice).toFixed(2) : 0;
-                        const bankPromo = {
-                            installments: Number(promo.dues),
-                            interestRate: parseFloat(promo.interest).toFixed(2),
-                            totalInterest: round(promo.pricing.InterestAmount),
-                            installmentCost: round((promo.pricing.dueValue + (promo.InitialDue && Number(promo.dues)?(Number(promo.dues) === 1 ? (promo.pricing.FEE + addedPrice) : 0):(addedPrice/promo.dues)))),
-                            firstInstallment: firstInstallment,
-                            fare: round(promo.pricing.TotalFare),
-                            fee: round(promo.pricing.FEE),
-                            total: round(promo.pricing.totalACobrar + addedPrice),
-                            testing:addedPrice,
-                            cft: promo.cftn,
-                            tea: parseFloat(promo.tea).toFixed(2),
-                            bines: promo.bines,
-                            initialDue:promo.InitialDue,
-                            creditCards: [{
-                                cardCode: isocode,
-                                cardName: credit_card,
-                                paymentMethodId: promo.Id
-                            }]
-                        };                        
-                        if (!promo.pricing.InterestAmount) {
-                            if (bcracode === '150') {
-                                const decoratedSegment = Segment ? Segment.toLowerCase().split(' ').map(a => a[0].toUpperCase() + a.slice(1)).join(' ') : '';
-                                addOrPushPromo(hsbc, bcracode, name, order, bankPromo, maxCuota, decoratedSegment);
-                            } else {
-                                addOrPushPromo(withoutInterest, bcracode, name, order, bankPromo, maxCuota);
-                            }
-                        } else {
-                            addOrPushPromo(withInterest, bcracode, name, order, bankPromo, maxCuota);
-                        }
-                    });
-                });*/
             });
         });
     }

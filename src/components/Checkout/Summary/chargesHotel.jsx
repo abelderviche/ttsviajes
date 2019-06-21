@@ -37,11 +37,11 @@ class Charges extends React.Component {
     render() {
   
         const { price, nights , rooms} = this.props;
-        const { price_detail } = price;
+        const { priceDetail } = price;
         const nightsText = nights>1?nights+' noches':nights+' noche';
         const roomsText = rooms>1?rooms+' habitaciones':rooms+' habitación';
-        const baseRate = price_detail.charges.find(charge => charge.type==="base_rate").amount;
-        const taxAndFee = price_detail.charges.reduce((acc, charge) =>{ 
+        const baseRate = priceDetail.charges.find(charge => charge.type==="base_rate").amount;
+        const taxAndFee = priceDetail.charges.reduce((acc, charge) =>{ 
             return acc + (charge.type==="tax_and_service_fee" ? charge.amount: 0)
         }, 0);
         return (
@@ -51,7 +51,7 @@ class Charges extends React.Component {
                         <span>DETALLE DEL PAGO</span>
                     </div>
                     <div className="charges__flat">
-                        {this.renderLine('Precio por noche por habitación', price.nightly_basis)}
+                        {this.renderLine('Precio por noche por habitación', price.nightlyBasis)}
                     </div>
                     <div className="charges__subtotals">
                         {this.renderLine(`${nightsText} - ${roomsText}`, baseRate)}

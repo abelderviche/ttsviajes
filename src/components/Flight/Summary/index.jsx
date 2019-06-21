@@ -1,5 +1,5 @@
 import React from 'react';
-import Segment from './segment';
+import {Segment} from './segment';
 
 const detailInfo = (label,icon,value) => (
     <div className="info">

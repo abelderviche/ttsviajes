@@ -2643,6 +2643,217 @@ body {
     align-items: center; }
     .thanks__flight--segments {
       flex: 1; }
+    .thanks__flight .segment {
+      display: flex;
+      flex-direction: column;
+      flex: 1; }
+      .thanks__flight .segment__headline {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center; }
+        .thanks__flight .segment__headline-desc {
+          display: flex;
+          flex-direction: row;
+          align-items: center; }
+          .thanks__flight .segment__headline-desc--icon {
+            width: 1.6rem;
+            height: 1.6rem;
+            color: #d32027;
+            margin-right: .8rem; }
+        .thanks__flight .segment__headline-label {
+          font-size: 1.4rem;
+          font-weight: 300;
+          color: #154156;
+          letter-spacing: .1px; }
+      .thanks__flight .segment__detail {
+        margin-bottom: 1.6rem;
+        margin-top: .8rem;
+        padding: 1.6rem;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.12);
+        background-color: #fff;
+        display: flex; }
+        @media only screen and (max-width: 37.5em) {
+          .thanks__flight .segment__detail {
+            min-height: 6.4rem;
+            height: auto; } }
+      .thanks__flight .segment__detail-extended {
+        background: #f4f4f4;
+        margin: 1rem;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 1.4rem; }
+        .thanks__flight .segment__detail-extended span.departure {
+          font-size: 1.4rem;
+          font-weight: 600;
+          margin: 1rem; }
+        .thanks__flight .segment__detail-extended .leg {
+          border-bottom: solid 1px #e7e7e7;
+          margin: 1rem;
+          display: flex;
+          justify-content: space-between;
+          padding-bottom: 1.4rem; }
+          @media only screen and (max-width: 37.5em) {
+            .thanks__flight .segment__detail-extended .leg {
+              flex-wrap: wrap; } }
+          .thanks__flight .segment__detail-extended .leg .leg-col {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start; }
+            @media only screen and (max-width: 37.5em) {
+              .thanks__flight .segment__detail-extended .leg .leg-col {
+                margin: 1rem 0; } }
+            .thanks__flight .segment__detail-extended .leg .leg-col .airline-time, .thanks__flight .segment__detail-extended .leg .leg-col .duration, .thanks__flight .segment__detail-extended .leg .leg-col .cabinname {
+              width: 100%; }
+            .thanks__flight .segment__detail-extended .leg .leg-col .airline-time {
+              font-size: 1.3rem;
+              margin: .5rem; }
+              .thanks__flight .segment__detail-extended .leg .leg-col .airline-time img {
+                height: 1.6rem;
+                width: 1.6rem;
+                margin-right: 1rem; }
+            @media only screen and (max-width: 37.5em) {
+              .thanks__flight .segment__detail-extended .leg .leg-col div {
+                margin: 2px 0; } }
+          .thanks__flight .segment__detail-extended .leg .cities {
+            width: 100%;
+            margin: 0.4rem 1.5rem; }
+            @media only screen and (max-width: 37.5em) {
+              .thanks__flight .segment__detail-extended .leg .cities {
+                margin: 0; } }
+            .thanks__flight .segment__detail-extended .leg .cities .code {
+              font-weight: bold;
+              color: red;
+              margin: 0 .5rem; }
+          .thanks__flight .segment__detail-extended .leg .aircraft {
+            margin: 0.4rem 1.5rem; }
+            @media only screen and (max-width: 37.5em) {
+              .thanks__flight .segment__detail-extended .leg .aircraft {
+                margin: 0; } }
+          .thanks__flight .segment__detail-extended .leg.stop {
+            flex-wrap: wrap; }
+            .thanks__flight .segment__detail-extended .leg.stop div {
+              width: 100%;
+              margin: .2rem 0;
+              margin: .5rem; }
+            .thanks__flight .segment__detail-extended .leg.stop .leg-title span {
+              font-weight: 600;
+              color: red; }
+            .thanks__flight .segment__detail-extended .leg.stop .aircraft-change {
+              color: red; }
+      .thanks__flight .segment__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1; }
+        .thanks__flight .segment__info--headline {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: row;
+          margin-bottom: 1rem; }
+          @media only screen and (max-width: 37.5em) {
+            .thanks__flight .segment__info--headline {
+              margin-bottom: 1rem; } }
+      .thanks__flight .segment__airline {
+        display: flex;
+        align-items: center; }
+        .thanks__flight .segment__airline--logo {
+          height: 1.6rem;
+          width: 1.6rem;
+          margin-right: .8rem; }
+        .thanks__flight .segment__airline--name {
+          font-size: 1.4rem;
+          letter-spacing: .1px;
+          color: #4a4a4a; }
+      .thanks__flight .segment__duration {
+        height: 1.6rem;
+        display: flex;
+        align-items: center; }
+        .thanks__flight .segment__duration span {
+          font-size: 1.2rem;
+          letter-spacing: .1px;
+          color: #4a4a4a; }
+    .thanks__flight .leg-summary {
+      margin-top: .4rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row; }
+      @media only screen and (max-width: 37.5em) {
+        .thanks__flight .leg-summary {
+          display: block; } }
+      .thanks__flight .leg-summary__heads {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center; }
+      .thanks__flight .leg-summary__head {
+        display: flex; }
+        .thanks__flight .leg-summary__head--airport {
+          font-size: 1.4rem;
+          letter-spacing: .1px;
+          color: #4a4a4a;
+          font-weight: 500; }
+        .thanks__flight .leg-summary__head--time {
+          font-size: 1.4rem;
+          letter-spacing: .1px;
+          color: #4a4a4a;
+          margin-left: .2rem; }
+        .thanks__flight .leg-summary__head--plus-days {
+          font-size: .8rem;
+          letter-spacing: .1px;
+          color: #d32027;
+          align-self: flex-start;
+          margin-left: .4rem;
+          margin-top: -.2rem; }
+      .thanks__flight .leg-summary__luggage {
+        display: flex;
+        flex-direction: row; }
+        @media only screen and (max-width: 37.5em) {
+          .thanks__flight .leg-summary__luggage {
+            justify-content: center;
+            margin-top: 1rem; } }
+        .thanks__flight .leg-summary__luggage-icon {
+          color: #1134d7; }
+          .thanks__flight .leg-summary__luggage-icon:not(:last-child) {
+            margin-right: .8rem; }
+    .thanks__flight .stops {
+      width: 4.8rem;
+      height: .4rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      position: relative;
+      margin: 0 .8rem; }
+      .thanks__flight .stops__line {
+        height: 2px;
+        width: 100%;
+        background-color: #1134d7; }
+        .thanks__flight .stops__line--green {
+          height: 2px;
+          width: 100%;
+          background-color: #4c9800; }
+      .thanks__flight .stops__circles {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        z-index: 1000;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly; }
+      .thanks__flight .stops__circle {
+        height: 6px;
+        width: 6px;
+        border-radius: 3px;
+        border: solid 1px #1134d7;
+        background-color: #fff; }
   .thanks__detailspayments {
     display: flex;
     align-items: center;

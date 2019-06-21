@@ -65,6 +65,8 @@ switch(env) {
     TRABAJA_URL    = 'http://dev.w3.ttsviajes.com/trabaja_con_nosotros';
     TTS_CROSSSELING_PRODS = "https://servicios.dev.ttsviajes.com:5500";
     SEND_EMAIL = "https://dev.ttsviajes.com/api/Paymentsemail";
+    TTS_CHECKOUT_SHOPPING = "https://servicios.dev.ttsviajes.com:8001/TTS.Shopping/api/shopping";
+
     break;
   case 'test':
     //SUBCHANNEL = 'tts';
@@ -133,7 +135,7 @@ const ENV = {
     GETHEADER: `${TTS_BASE}/header/${SUBCHANNEL==='turismocity'?'tts':SUBCHANNEL}/hide`
   },
   CHECKOUT: {
-    GETINFO:TTS_CHECKOUT_SHOPPING + '/getinfo',
+    GETINFO:TTS_CHECKOUT_SHOPPING + '/checkoutinfo',
     PM_FALLBACK: TTS_ALT + '/api/smr',
     PAYMENT_METHODS: TTS_CHECKOUT_WEBSERVICES + '/api/Aereos/checkoutSupportBasset/',
     PAYMENT_METHODS_HOTEL: TTS_CHECKOUT_WEBSERVICES_HOTEL + '/api/chas/checkoutSupportBasset/',

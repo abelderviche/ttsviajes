@@ -14,8 +14,8 @@ import moment from 'moment';
 @inject('checkout') @observer
 class Summary extends React.Component {
     render() {
-        const {infoProduct,activeComponents,points} = this.props.checkout;
-        const rewards = activeComponents.find(f=>f.name==='POINT');
+        const {infoProduct,activeComponents,points,isRewards} = this.props.checkout;
+        const rewards = isRewards;
         const {type,detail} = infoProduct;
         if(type === 'accommodations'){
             const nights = moment(detail.rates[0].checkout).diff(moment(detail.rates[0].checkin), 'days');
@@ -55,8 +55,8 @@ class SummaryMobile extends React.Component {
         this.setState({ collapsed: !this.state.collapsed });
     }
     render() {
-        const {infoProduct,activeComponents,points} = this.props.checkout;
-        const rewards = activeComponents.find(f=>f.name==='POINT');
+        const {infoProduct,activeComponents,points,isRewards} = this.props.checkout;
+        const rewards = isRewards;
         const {type,detail} = infoProduct;
         const nights = type==='accommodations'?moment(detail.rates[0].checkout).diff(moment(detail.rates[0].checkin), 'days'):null;
 

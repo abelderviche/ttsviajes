@@ -43,11 +43,11 @@ const flattenResponse = (paymentMethods, addedPrice) => {
     const withoutInterest = [];
     const hsbc = [];
     if (paymentMethods) {
-        paymentMethods.forEach(creditCard => {
-            const { isocode, credit_card, entities } = creditCard;
+        paymentMethods.forEach(creditCardObj => {
+            const { isocode, creditCard, entities } = creditCardObj;
             entities.forEach(bank => {
-                const { name, bcracode, order, payment_method } = bank;
-                payment_method.forEach(method => {
+                const { name, bcracode, order, paymentMethod } = bank;
+                paymentMethod.forEach(method => {
                     const { Segment, financing, maxCuota } = method;
                     financing.forEach(promo => {
                       /*  if(promo.InitialDue && Number(promo.dues) > 1){
@@ -73,7 +73,7 @@ const flattenResponse = (paymentMethods, addedPrice) => {
                             initialDue:promo.InitialDue,
                             creditCards: [{
                                 cardCode: isocode,
-                                cardName: credit_card,
+                                cardName: creditCard,
                                 paymentMethodId: promo.Id
                             }]
                         };                        
@@ -119,29 +119,18 @@ const flattenResponseRewards = (paymentMethods, addedPrice) => {
     const hsbc = [];
     const binesList = [];
     if (paymentMethods) {
-        paymentMethods.forEach(creditCard => {
-            const { isocode, credit_card, entities } = creditCard;
+        paymentMethods.forEach(creditCardObj => {
+            const { isocode, creditCard, entities } = creditCardObj;
               entities.forEach(bank => {
                 if(bank.bcracode === "150"){
-                    const { name, bcracode, order, payment_method } = bank;
-                    bank.payment_method.forEach(method =>{
+                    const { name, bcracode, order, paymentMethod } = bank;
+                    bank.paymentMethod.forEach(method =>{
                         const { Segment, financing, maxCuota } = method;
                         financing.forEach(promo => {
                             addOrPushBines(binesList,isocode,promo.dues,promo.bines)
                         })
                     })
-                    /*
-                    ARRAY DE BINES POR TARJETAS Y PUSHEARLO SEGUN CORRESPONDA
-                    primero recorrer todos los financing, guardar los bines por tarjeta, y despues irlos a buscar por el codigo de la tarjeta
-                    listorti jose maria
-                    A
-                    
-                    425821, 425822
-                    
-                    
-                    465403, 465494*/
-                    
-                    bank.payment_method[0].financing.forEach(promo=>{
+                    bank.paymentMethod[0].financing.forEach(promo=>{
                         const firstInstallment = promo.InitialDue && Number(promo.dues) > 1 && ( promo.pricing.FEE > 0 || addedPrice>0) ? parseFloat(promo.pricing.FEE + promo.pricing.dueValue + addedPrice).toFixed(2) : 0;
                         const bankPromo = {
                             installments: Number(promo.dues),
@@ -160,11 +149,11 @@ const flattenResponseRewards = (paymentMethods, addedPrice) => {
                             initialDue:promo.InitialDue,
                             creditCards: [{
                                 cardCode: isocode,
-                                cardName: credit_card,
+                                cardName: creditCard,
                                 paymentMethodId: promo.id
                             }]
                         };  
-                        addOrPushPromo(hsbc, isocode, credit_card, order, bankPromo, 9);
+                        addOrPushPromo(hsbc, isocode, creditCard, order, bankPromo, 9);
 
                     })
                 }
@@ -228,12 +217,16 @@ class PaymentMethodStore {
         });
     }
 
-    @action setPaymentMethods(paymentMethods){
+    @action setPaymentMethods(paymentMethods,rewards){
     /*    const { CheckoutStrategies, CheckoutId } = res.data.Body;
         this.checkoutId = CheckoutId;*/
         this.OGPaymentsMethods = paymentMethods;
      //  console.log(flattenResponseRewards(this.OGPaymentsMethods,0));
-        this.paymentMethods = flattenResponseRewards(this.OGPaymentsMethods,0);
+        if(rewards){
+            this.paymentMethods = flattenResponseRewards(this.OGPaymentsMethods,0);
+        }else{
+            this.paymentMethods = flattenResponse(this.OGPaymentsMethods,0);
+        }
     }
 
     @action updatePaymentMethodBank(precio){

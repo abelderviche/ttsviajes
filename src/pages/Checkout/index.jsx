@@ -52,20 +52,23 @@ class Checkout extends React.Component {
     }
 
     componentDidMount() {
-        let clusterID = this.props.match.params.id;
-        let product = this.props.match.params.product;
-        const queryString = this.props.location.search!==''?parseQuery(this.props.location.search):null;
+        const clusterID = this.props.match.params.id;
+        const product = this.props.match.params.product;
+        const points = this.props.match.params.sellPoints;
+        const idGetPoints = this.props.match.params.idGetPoints;
+        const channelMotor = this.props.match.params.channelMotor;
+        /*const queryString = this.props.location.search!==''?parseQuery(this.props.location.search):null;
         const points = queryString && queryString.points?queryString.points:null;
-        const idGetPoints = queryString && queryString.idGetPoints?queryString.idGetPoints:null;
+        const idGetPoints = queryString && queryString.idGetPoints?queryString.idGetPoints:null;*/
         this.props.billing.retrieveData();
 
         this.props.checkout.retrieveCheckoutInfo(clusterID, product,idGetPoints,points).then(
            (res)=>{
                 if(res.action === '1'){
-                   this.setState({loadingReservation:false})
+                    this.setState({loadingReservation:false})
                    
                }else{
-                   window.location.href = res.url;
+                    window.location.href = res.url;
                }
            },
            ()=>{

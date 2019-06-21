@@ -16,13 +16,13 @@ const formatPrice = (price) => {
 }
 @inject('checkout','paymentMethod') @observer
 class Form extends React.Component {
-    state = {
+    state = { 
         sendAttempted: false
     }
     
     render() {
         const { action, loading, error, availablePayment, checkContact, changeCheck, product, checkout} = this.props;
-        const rewards = checkout.activeComponents.find(f=>f.name==='POINT');
+        const rewards = checkout.isRewards;
         return (
             <div className="form">
                 {

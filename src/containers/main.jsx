@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Checkout from '../pages/Checkout';
-/*import Thanks from '../pages/Thanks';
-import ThanksContact from '../pages/Thanks/index-contact';*/
+import Thanks from '../pages/Thanks';
+import ThanksContact from '../pages/Thanks/index-contact';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
@@ -39,12 +39,14 @@ class Main extends React.Component {
                     <Header route={this.props.match.url}/>
                     <main>
                         <Switch>
-                           <Route exact path='/checkout/:product/:id' component={Checkout} />
-                           <Route exact path='/:subchannel/checkout/:product/:id' component={Checkout} />
-                            {/* <Route exact path='/thanks/:id' component={Thanks} />
-                            <Route exact path='/thankscontact/:id' component={ThanksContact} />
+                            <Route exact path='/thanks/:id' component={Thanks} />
                             <Route exact path='/:subchannel/thanks/:id' component={Thanks} /> 
-                            */}
+                           <Route exact path='/checkout/:product/:id/:channelMotor' component={Checkout} />
+                           <Route exact path='/checkout/:product/:id/:idGetPoints/:sellPoints/:channelMotor' component={Checkout} />
+                           <Route exact path='/:subchannel/checkout/:product/:id/:channelMotor' component={Checkout} />
+                           <Route exact path='/:subchannel/checkout/:product/:id/:idGetPoints/:sellPoints/:channelMotor' component={Checkout} />
+                            <Route exact path='/thankscontact/:id' component={ThanksContact} />
+                            
                             <Route exact path='/*' component={ErrorPage} />
                         </Switch>
                     </main>

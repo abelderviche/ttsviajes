@@ -17,6 +17,7 @@ class CheckoutStore {
     @observable activeComponents = [];
     @observable infoProduct = {};
     @observable points = null;
+    @observable isRewards = false;
     
     @action retrieveCheckoutInfo = (clusterID, product,idGetPoints,points) => {
         let headers = ENV.CHECKOUT.REQUEST_HEADERS;
@@ -43,16 +44,16 @@ class CheckoutStore {
                      let { fcb,activeComponents, infoProduct } = data;
                      switch (action) {
                             case '1':   
-                            this.activeComponents = activeComponents;
+                                this.activeComponents = activeComponents;
                                 this.infoProduct = infoProduct;
-                                console.error(fcb.financing)
+                                this.isRewards = data.points.isRewards;
                                 if(fcb.financing.creditsCards.enabled){
-                                    PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods);
+                                    PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods, (idGetPoints && points));
                                 }
                                 if(product==='flights'){
-                                    GuestsStore.setPaxArray(res.data.data.paxf, res.data.data.paxf.every(GuestsStore.validPax));
+                                    GuestsStore.setPaxArray(data.paxf, data.paxf.every(GuestsStore.validPax));
                                 }else if(product ==='accommodations'){
-                                    GuestsStore.setGuestArray(res.data.data.paxa, res.data.data.paxa.every(GuestsStore.validGuest));
+                                    GuestsStore.setGuestArray(data.paxa, data.paxa.every(GuestsStore.validGuest));
                                 }
                                
                                 
@@ -100,7 +101,7 @@ class CheckoutStore {
                         reject(res.status)
                     }*/
                 }
-            ).catch(_ => reject());
+            ).catch(e => console.log(e));
         });
     }
 

@@ -3,9 +3,9 @@ import ReactGA from 'react-ga';
 import { inject, observer } from "mobx-react";
 import Responsive from 'react-responsive-decorator';
 
-import Segment from 'components/Flight/Summary/segment';
+import {SegmentThanks} from 'components/Flight/Summary/segment';
 import Loader from 'components/Global/loader';
-import Detail from 'components/Hotel/Summary/detail';
+import Detail from 'components/Hotel/Summary/detail.1';
 import PaymentInfo from 'components/Thanks/payment-info';
 import moment from 'moment-timezone';
 import ENV from 'config';
@@ -73,12 +73,12 @@ class Thanks extends React.Component {
             <div className="thanks__flight">
                 {roundtrip ? 
                 <div className="thanks__flight--segments">
-                    <Segment flat={!this.state.isMobile} data={segments[0]} type='outbound' pos={0} showExtendedDetail={true}/>
-                    <Segment flat={!this.state.isMobile} data={segments[1]} type='inbound' pos={1}  showExtendedDetail={true}/>
+                    <SegmentThanks flat={!this.state.isMobile} data={segments[0]} type='outbound' pos={0} showExtendedDetail={true}/>
+                    <SegmentThanks flat={!this.state.isMobile} data={segments[1]} type='inbound' pos={1}  showExtendedDetail={true}/>
                 </div>
                 :
                 <div className="thanks__flight--segments">
-                    {segments.map((segment, i) => <Segment flat={!this.state.isMobile} data={segment} pos={i} key={i} showExtendedDetail={true} />)}
+                    {segments.map((segment, i) => <SegmentThanks flat={!this.state.isMobile} data={segment} pos={i} key={i} showExtendedDetail={true} />)}
                 </div>
                 }
                 

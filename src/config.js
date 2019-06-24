@@ -51,7 +51,7 @@ switch(env) {
   case 'dev':
     //SUBCHANNEL = 'redapp';
     //APTEK_BASE = DEV_API;
-    TTS_BASE = 'https://www.qattsviajes.com';//DEV_API;
+    TTS_BASE = 'https://www.qa.ttsviajes.com';//DEV_API;
     TTS_WEBSERVICES = 'https://servicios.dev.ttsviajes.com:11000';
     TTS_CHECKOUT_WEBSERVICES = 'https://serviciospayment.dev.ttsviajes.com/ConcentradorAereos';//'http://servicios.qattsviajes.com:9001';
     TTS_CHECKOUT_WEBSERVICES_HOTEL = 'https://serviciospayment.dev.ttsviajes.com/CMP';

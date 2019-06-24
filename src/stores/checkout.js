@@ -106,79 +106,78 @@ class CheckoutStore {
     }
 
     @action doPayment = () =>{
-        console.log('paymentmethod',PaymentMethodStore)
-        console.log('BillingStore',BillingStore.validFields)
-        console.log('Contact',Contact.validFields)
-        console.log('GuestsStore', GuestsStore.validFields);
-        console.log('CheckoutFormStore', CheckoutFormStore);
+        return new Promise((resolve, reject) => {
 
-        console.log('payment',PaymentMethodStore)
-     /*   if(BillingStore.validFields && Contact.validFields && GuestsStore.validFields 
-        && (PaymentMethodStore.paymentMethodId>=0 && !CheckoutFormStore.validFields)){
-*/
-if(true){
-        let body = {
-            trackId: null,
-            clusterId: null,
-            activeComponents:this.activeComponents,
-            fcb:{
-                financing:null,
-                billingData:{
-                    address: {
-                        state: BillingStore.state,
-                        city: BillingStore.city,
-                        country: "AR",
-                        street: BillingStore.street,
-                        number: BillingStore.number,
-                        floor:  BillingStore.floor,
-                        door:  BillingStore.apt,
-                        postal_code: BillingStore.zipCode
+            console.log('paymentmethod',PaymentMethodStore)
+            console.log('BillingStore',BillingStore.validFields)
+            console.log('Contact',Contact.validFields)
+            console.log('GuestsStore', GuestsStore.validFields);
+            console.log('CheckoutFormStore', CheckoutFormStore);
+
+            console.log('payment',PaymentMethodStore)
+        /*   if(BillingStore.validFields && Contact.validFields && GuestsStore.validFields 
+            && (PaymentMethodStore.paymentMethodId>=0 && !CheckoutFormStore.validFields)){
+    */
+            if(true){
+                let body = {
+                    trackId: null,
+                    clusterId: null,
+                    activeComponents:this.activeComponents,
+                    fcb:{
+                        financing:null,
+                        billingData:{
+                            address: {
+                                state: BillingStore.state,
+                                city: BillingStore.city,
+                                country: "AR",
+                                street: BillingStore.street,
+                                number: BillingStore.number,
+                                floor:  BillingStore.floor,
+                                door:  BillingStore.apt,
+                                postal_code: BillingStore.zipCode
+                            },
+                            identification: {
+                                number: BillingStore.cuit,
+                                fiscalName: BillingStore.fiscalName,
+                                type: BillingStore.fiscalIdType,
+                                taxSituation: BillingStore.cuitType
+                            }
+                        },
+                        cardData:null
                     },
-                    identification: {
-                        number: BillingStore.cuit,
-                        fiscalName: BillingStore.fiscalName,
-                        type: BillingStore.fiscalIdType,
-                        taxSituation: BillingStore.cuitType
-                    }
-                },
-                cardData:null
-            },
-            cont: {
-                email: Contact.email,
-                language: "es",
-                telephone: {
-                    type: Contact.phoneType,
-                    country_code: Contact.countryCode,
-                    area_code: Contact.areaCode,
-                    number: Contact.phoneNumber
+                    cont: {
+                        email: Contact.email,
+                        language: "es",
+                        telephone: {
+                            type: Contact.phoneType,
+                            country_code: Contact.countryCode,
+                            area_code: Contact.areaCode,
+                            number: Contact.phoneNumber
+                        }
+                    },
                 }
-            },
-        }
 
-        if(this.infoProduct.type==='accommodations'){
-            body.pax = GuestsStore.guestsArray;
-        }else{
-            body.pax = GuestsStore.paxArray;
-        }
+                if(this.infoProduct.type==='accommodations'){
+                    body.pax = GuestsStore.guestsArray;
+                }else{
+                    body.pax = GuestsStore.paxArray;
+                }
 
-        if(PaymentMethodStore.paymentMethodId >= 0){
-            body.fcb.financing = {selectedPaymentMethodId:PaymentMethodStore.paymentMethodId};
-            body.fcb.cardData = {
-                creditCardNumber: CheckoutFormStore.creditCardNumber,
-			    expirationDate: CheckoutFormStore.expirationDate,
-			    securityCode: CheckoutFormStore.securityCode,
-			    creditCardHolderName: CheckoutFormStore.cardholderName,
-			    typeCard: "Credit"
+                if(PaymentMethodStore.paymentMethodId >= 0){
+                    body.fcb.financing = {selectedPaymentMethodId:PaymentMethodStore.paymentMethodId};
+                    body.fcb.cardData = {
+                        creditCardNumber: CheckoutFormStore.creditCardNumber,
+                        expirationDate: CheckoutFormStore.expirationDate,
+                        securityCode: CheckoutFormStore.securityCode,
+                        creditCardHolderName: CheckoutFormStore.cardholderName,
+                        typeCard: "Credit"
+                    }
+                }
+                resolve({status:2,message:'ERROR EN COMPRA'})   
+            }else{
+                reject({ invalidFields: true });
             }
-        }
-
-        console.log(body);
-
-    }
-
-       // if(BillingStore.pay)
-        
-        
+        });
     }
 }
 

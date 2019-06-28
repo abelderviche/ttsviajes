@@ -24,7 +24,7 @@ class FlightSummary extends React.Component {
         const { collapsed } = this.state;
         const roundtrip = cluster.flight_type === 'ROUND_TRIP';
         return (
-            <div className={`flight noselect ${collapsed ? 'flight__collapsed' : ''}`} onClick={() => this.setState({collapsed: !collapsed})}>
+            <div className={`flight noselect ${collapsed ? 'flight__collapsed' : ''}`}  style={{marginTop:this.props.scrolled?'30vh':null}} onClick={() => this.setState({collapsed: !collapsed})}>
                 <div className="flight__headline">
                 <span className="flight__headline-city">DETALLE DE TU COMPRA</span>
                 </div>

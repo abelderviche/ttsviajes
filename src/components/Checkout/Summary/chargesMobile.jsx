@@ -13,7 +13,7 @@ class Charges extends React.Component {
         return (
             <div className="summary_mobile__line">
                 <span>{text}</span>
-                <span>ARS {formatPrice(price)}</span>
+                <span className="price">ARS {formatPrice(price)}</span>
             </div>
         )
     }
@@ -21,7 +21,7 @@ class Charges extends React.Component {
         return (
             <div className="summary_mobile__line">
                 <span>{text}</span>
-                <span>{points} Puntos</span>
+                <span className="price">{points} Puntos</span>
             </div>
         )
     }
@@ -30,7 +30,7 @@ class Charges extends React.Component {
         return (
             <div className="summary_mobile__line">
                 <span>{text} ({qty})</span>
-                <span>ARS {formatPrice(price * qty)}</span>
+                <span className="price">ARS {formatPrice(price * qty)}</span>
             </div>
         )
     }

@@ -130,23 +130,32 @@ class Checkout extends React.Component {
     doPayment = () => {
         this.setState({loading:true})
     
-       this.props.checkout.doPayment().then(
-            res=>{
-                const { status , message} = res;
-                if(status===1){
-                    console.log('PERFECTO')
-                }else{
-                    this.handleError(message);
+        this.props.checkout.doPayment().then(
+                res=>{
+                    const { action , message, data} = res;
+                    if(action==="3"){
+                        this.handleError(message);
+                    }else{
+                        window.location.href = data;
+                    }
+                  /*  
+                    if(action===1 || action === 4){
+                        console.log('PERFECTO')
+                    }else if(action===3){
+                        this.handleError(message);
+                    }else{
+
+                    }
+                    */
+                },
+                err=>{
+                    if (err && err.invalidFields) {
+                        this.handleError("Algunos campos están incompletos.");
+                    } else {
+                        this.thanksPage('PAYMENT_ERROR');
+                    }
                 }
-            },
-            err=>{
-                if (err && err.invalidFields) {
-                    this.handleError("Algunos campos están incompletos.");
-                } else {
-                    this.thanksPage('PAYMENT_ERROR');
-                }
-            }
-       );
+        );
     }
    
     render() {

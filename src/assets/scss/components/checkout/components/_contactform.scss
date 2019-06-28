@@ -8,12 +8,14 @@
             padding: 1rem;
         }
         &-title{
-            width: 100%;
             background:$primary-soft;
             font-size: 1.6rem;
             cursor: pointer;
             font-weight: bold;
-            padding: 2rem 1.4rem;
+            padding: 1rem 1.4rem;
+            color:$grey-light-dark;
+            border-radius: 3px;
+            width: 100%;
         }
         &-form{
             display: flex;

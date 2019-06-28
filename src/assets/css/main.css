@@ -625,7 +625,7 @@ body {
   transition: max-height .5s;
   margin-bottom: 1.6rem;
   flex: 1;
-  box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6); }
+  box-shadow: 2px 5px 12px 0px rgba(128, 128, 128, 0.6); }
   @media only screen and (max-width: 55.62em) and (min-width: 48em) {
     .flight {
       margin-left: .8rem;
@@ -1077,7 +1077,7 @@ body {
   transition: max-height .5s;
   margin-bottom: 1.6rem;
   flex: 1;
-  box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6); }
+  box-shadow: 2px 5px 12px 0px rgba(128, 128, 128, 0.6); }
   @media only screen and (max-width: 55.62em) and (min-width: 48em) {
     .hotel {
       margin-left: .8rem;
@@ -1158,11 +1158,12 @@ body {
         .hotel-box__section.guestrooms .info .title {
           font-weight: bold;
           display: flex;
-          align-items: center; }
+          align-items: center;
+          color: #7e7e7e; }
           .hotel-box__section.guestrooms .info .title .info-icon {
             height: 1.7rem;
             width: 1.7rem;
-            fill: #4a4a4a;
+            fill: #7e7e7e;
             margin: 6px 9px; }
         .hotel-box__section.guestrooms .info .label {
           padding-left: 3.6rem; }
@@ -1463,7 +1464,7 @@ body {
   margin-bottom: 1.6rem;
   background-color: #fff;
   border-radius: 1rem;
-  box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6);
+  box-shadow: 2px 5px 12px 0px rgba(128, 128, 128, 0.6);
   padding: 1rem; }
   .module__top-headline {
     font-size: 1.6rem;
@@ -1480,7 +1481,8 @@ body {
     color: #4a4a4a;
     margin-left: 1.6rem;
     margin-bottom: .8rem;
-    display: flex; }
+    display: flex;
+    margin-top: 1rem; }
     .module__top-advertise__icon {
       fill: #d32027;
       height: 1.4rem;
@@ -1938,10 +1940,11 @@ body {
   .guest-form-headline {
     background: #ffd0d0;
     font-size: 1.6rem;
-    padding: 1rem;
     cursor: pointer;
     font-weight: bold;
-    padding: 2rem 1.4rem; }
+    padding: 1rem 1.4rem;
+    color: #7e7e7e;
+    border-radius: 3px; }
   .guest-form--collapsed {
     max-height: 100rem; }
   .guest-form__form-container {
@@ -1960,12 +1963,14 @@ body {
     .contact-form-section {
       padding: 1rem; } }
   .contact-form-section-title {
-    width: 100%;
     background: #ffd0d0;
     font-size: 1.6rem;
     cursor: pointer;
     font-weight: bold;
-    padding: 2rem 1.4rem; }
+    padding: 1rem 1.4rem;
+    color: #7e7e7e;
+    border-radius: 3px;
+    width: 100%; }
   .contact-form-section-form {
     display: flex;
     flex-wrap: wrap;
@@ -1991,12 +1996,24 @@ body {
   max-height: 4.8rem;
   border-radius: 1rem;
   background-color: white;
-  box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6);
+  box-shadow: 2px 5px 12px 0px rgba(128, 128, 128, 0.6);
   padding-top: 0;
   cursor: pointer;
   transition: max-height .5s;
   flex: 1;
+  min-width: 28%;
   margin-bottom: 3rem; }
+  .charges--floating {
+    position: fixed;
+    top: 0; }
+    @media only screen and (max-width: 55.62em) and (min-width: 48em) {
+      .charges--floating {
+        max-width: 83%;
+        width: 100%; } }
+    @media only screen and (max-width: 48em) {
+      .charges--floating {
+        max-width: 96%;
+        width: 100%; } }
   .charges--collapsed {
     max-height: 24rem; }
   @media only screen and (max-width: 55.62em) and (min-width: 48em) {
@@ -2021,8 +2038,7 @@ body {
       color: #000;
       font-weight: 500; }
   .charges__flat {
-    padding: 0rem 1.5rem;
-    padding-top: 1rem; }
+    padding: 0rem 1.5rem; }
   .charges__subtotals {
     padding: 0 1.5rem;
     padding-bottom: 2rem; }
@@ -2066,7 +2082,8 @@ body {
 
 .summary {
   flex: 1;
-  margin-left: 1.6rem; }
+  margin-left: 1.6rem;
+  width: 25%; }
   @media only screen and (max-width: 55.62em) and (min-width: 48em) {
     .summary {
       margin-left: 0;
@@ -2082,7 +2099,7 @@ body {
     font-size: 1.4rem; }
 
 .summary_mobile {
-  background: #e7e7e7 !important;
+  background: #f1f1f1;
   width: 100%;
   margin-bottom: 1rem;
   border-radius: 1rem;
@@ -2096,21 +2113,29 @@ body {
     font-weight: bold;
     color: #9b9b9b; }
   .summary_mobile__line {
+    text-transform: uppercase;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 1rem 0; }
+    margin: 1rem 0;
+    padding: 0 0.7rem; }
     .summary_mobile__line span {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       line-height: 1.14;
       letter-spacing: .1px;
       color: #d32027;
       font-weight: 300; }
+    .summary_mobile__line .price {
+      font-weight: bold;
+      font-size: 1.4rem; }
   .summary_mobile__fixed {
     position: fixed;
     top: 0;
-    width: 96%;
-    box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6); }
+    box-shadow: 2px 5px 12px 0px rgba(128, 128, 128, 0.6); }
+    @media only screen and (max-width: 48em) {
+      .summary_mobile__fixed {
+        max-width: 96%;
+        width: 100%; } }
 
 .header {
   position: relative;
@@ -2441,15 +2466,21 @@ body {
   background-color: #fff; }
 
 #checkout-container {
-  background-color: #f4f4f4;
   padding: .8rem 4rem;
   padding-bottom: 3.2rem;
   min-height: 60vh;
   position: relative;
-  max-width: 1320px;
+  max-width: 85%;
+  width: 100%;
   margin: 0px auto;
   padding: 16px 8px;
   flex: 1 1 0%; }
+  @media only screen and (max-width: 48em) {
+    #checkout-container {
+      max-width: 100%; } }
+  @media only screen and (max-width: 55.62em) and (min-width: 48em) {
+    #checkout-container {
+      background: blue; } }
 
 .section-title {
   margin-top: 1.6rem;

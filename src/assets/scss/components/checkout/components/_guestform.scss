@@ -11,10 +11,11 @@
     &-headline{
         background:$primary-soft;
         font-size: 1.6rem;
-        padding: 1rem;
         cursor: pointer;
         font-weight: bold;
-            padding: 2rem 1.4rem;
+        padding: 1rem 1.4rem;
+        color:$grey-light-dark;
+        border-radius: 3px;
     }
     &--collapsed {
         max-height: 100rem;

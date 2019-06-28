@@ -77,7 +77,9 @@ const InstallmentList = ({ id, bankId, promoId, cardId, installments, selectProm
 const Option = ({id, selected, banks, selectedPromos, bankId, promoId, cardId, selectBank, selectPromo, selectCreditCard,rewards}) => {
     return (
         <div className={`payment-method__available ${!selected ? 'payment-method__noheight' : ''}`}>
-            <div className="payment-method__available--title">{rewards?'Elegí tu tu tarjeta':'Elegí tu banco'}</div>
+            <div className="payment-method__available--title" style={{
+                marginTop:rewards?'0':null
+            }}>{rewards?'Elegí tu tu tarjeta':'Elegí tu banco'}</div>
             <div className="payment-method__banks-list">
                 {banks.map(bank => {
                     const key = `${bank.bankCode}-${bank.segment}-${bank.promos.length}`;

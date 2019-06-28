@@ -3,12 +3,26 @@
     max-height: 4.8rem;
     border-radius: 1rem;
     background-color:white;
-    box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6);
+    box-shadow: 2px 5px 12px 0px rgba(128, 128, 128, 0.6);
    // padding: 1.6rem;
     padding-top: 0;
     cursor: pointer;
     transition: max-height .5s;
     flex: 1;
+    min-width: 28%;
+
+    &--floating{
+        position: fixed;
+        top:0;
+        @include respond(tablet-land) {
+            max-width: 83%;
+            width: 100%;
+        }
+        @include respond(tablet) {
+            max-width: 96%;
+            width: 100%;
+        }
+    }
 
     margin-bottom: 3rem;
     &--collapsed {
@@ -46,7 +60,6 @@
 
     &__flat {
         padding: 0rem 1.5rem;
-        padding-top: 1rem;
     }
 
     &__subtotals {

@@ -3,7 +3,7 @@
     background-color: $white;
     border-radius: 1rem;
    // border: solid 2px $grey-light;
-    box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6);
+    box-shadow: 2px 5px 12px 0px rgba(128, 128, 128, 0.6);
     padding: 1rem;
 
     &__top-headline {
@@ -24,6 +24,8 @@
         margin-left: 1.6rem;
         margin-bottom: .8rem;
         display: flex;
+        margin-top:1rem;
+
         &__icon{
             fill:$primary;
             height: 1.4rem;

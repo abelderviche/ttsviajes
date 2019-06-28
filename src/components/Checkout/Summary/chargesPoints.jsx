@@ -47,9 +47,9 @@ class Charges extends React.Component {
 
     render() {
   
-        const { points, paymentMethod } = this.props;
+        const { points, paymentMethod, scrolled } = this.props;
         return (
-            <div className={`charges noselect ${this.state.collapsed ? 'charges--collapsed' : ''}`} onClick={this.toggleCollapsed}>
+            <div className={`charges noselect ${this.state.collapsed ? 'charges--collapsed' : ''} ${scrolled ? 'charges--floating' : ''}`} onClick={this.toggleCollapsed}>
                 <div className={`charges__details ${!this.state.collapsed ? 'charges__hidden' : ''}`}>
                     <div className="charges__headline">
                         <span>DETALLE DEL CANJE</span>

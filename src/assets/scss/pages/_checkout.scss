@@ -1,13 +1,19 @@
 #checkout-container {
-    background-color: $grey-lighter;
     padding: .8rem 4rem;
     padding-bottom: 3.2rem;
     min-height: 60vh;
     position: relative;
-    max-width: 1320px;
+    max-width: 85%;
+    width:100%;
     margin: 0px auto;
     padding: 16px 8px;
     flex: 1 1 0%;
+    @include respond(tablet) {
+        max-width: 100%;
+    }
+    @include respond(tablet-land) {
+        background:blue;
+    }
 }
 
 .section-title {

@@ -22,22 +22,22 @@ class Summary extends React.Component {
             return(
                 <div className={`summary`}>
                     {rewards?
-                        <ChargesPoints points={points}/>
+                        <ChargesPoints scrolled={this.props.scrolled} points={points}/>
                         :
-                        <ChargesHotel price={detail.rates[0].price}  nights={nights} rooms={detail.rooms.length}/> 
+                        <ChargesHotel scrolled={this.props.scrolled} price={detail.rates[0].price}  nights={nights} rooms={detail.rooms.length}/> 
                     }
-                    <HotelSummary />
+                    <HotelSummary scrolled={this.props.scrolled} />
                 </div>
             )
         }else{
             return(
                 <div className={`summary`}>
                     {rewards?
-                        <ChargesPoints points={points}/>
+                        <ChargesPoints points={points} scrolled={this.props.scrolled}/>
                         :
-                        <Charges price={detail.price} /> 
+                        <Charges price={detail.price}  scrolled={this.props.scrolled}/> 
                     }
-                    <FlightSummary cluster={detail} />
+                    <FlightSummary cluster={detail} scrolled={this.props.scrolled} />
 
                 </div>
             )

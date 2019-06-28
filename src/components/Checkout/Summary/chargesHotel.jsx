@@ -36,7 +36,7 @@ class Charges extends React.Component {
 
     render() {
   
-        const { price, nights , rooms} = this.props;
+        const { price, nights , rooms, scrolled} = this.props;
         const { priceDetail } = price;
         const nightsText = nights>1?nights+' noches':nights+' noche';
         const roomsText = rooms>1?rooms+' habitaciones':rooms+' habitación';
@@ -45,7 +45,7 @@ class Charges extends React.Component {
             return acc + (charge.type==="tax_and_service_fee" ? charge.amount: 0)
         }, 0);
         return (
-            <div className={`charges noselect ${this.state.collapsed ? 'charges--collapsed' : ''}`} onClick={this.toggleCollapsed}>
+            <div className={`charges noselect ${this.state.collapsed ? 'charges--collapsed' : ''} ${scrolled ? 'charges--floating' : ''}`} onClick={this.toggleCollapsed}>
                 <div className={`charges__details ${!this.state.collapsed ? 'charges__hidden' : ''}`}>
                     <div className="charges__headline">
                         <span>DETALLE DEL PAGO</span>

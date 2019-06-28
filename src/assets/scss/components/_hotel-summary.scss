@@ -9,7 +9,7 @@
     transition: max-height .5s;
     margin-bottom: 1.6rem;
     flex: 1;
-    box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6);
+    box-shadow: 2px 5px 12px 0px rgba(128, 128, 128, 0.6);
 
 
     @include respond(tablet-land) {
@@ -118,10 +118,11 @@
                     font-weight: bold;
                     display: flex;
                     align-items: center;
+                    color:$grey-light-dark;
                     & .info-icon{
                         height: 1.7rem;
                         width: 1.7rem;
-                        fill: $grey-dark;
+                        fill: $grey-light-dark;
                         margin: 6px 9px;
                         
                     }

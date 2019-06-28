@@ -173,7 +173,13 @@ class CheckoutStore {
                         typeCard: "Credit"
                     }
                 }
-                resolve({status:2,message:'ERROR EN COMPRA'})   
+                resolve(
+                    {
+                        "action": "3",
+                        "message": "Volver a intentar",
+                        "data": "Reintentar"
+                     }
+                    )   
             }else{
                 reject({ invalidFields: true });
             }

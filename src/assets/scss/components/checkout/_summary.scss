@@ -1,8 +1,9 @@
 @import "components/charges";
 
 .summary {
-    flex: 1;
+     flex: 1; 
     margin-left: 1.6rem;
+    width: 25%;
 
     @include respond(tablet-land) {
         margin-left: 0;
@@ -21,9 +22,10 @@
         font-size: 1.4rem;
     }
     
+    
 }
 .summary_mobile{
-    background: $grey-light !important;
+    background: $grey-dark-light;
     width: 100%;
     margin-bottom: 1rem;
     border-radius: 1rem;
@@ -39,23 +41,31 @@
         color: $grey;
     }
     &__line {
+        text-transform: uppercase;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         margin: 1rem 0;
+        padding: 0 0.7rem;
         span {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             line-height: 1.14;
             letter-spacing: .1px;
             color: $primary;
             font-weight: 300;
         }
+        .price{
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
     }
     &__fixed{
         position: fixed;
         top:0;
-        width: 96%;
-        box-shadow: 2px 5px 12px 0px rgba(70, 70, 70, 0.6);
-
+        box-shadow: 2px 5px 12px 0px rgba(128, 128, 128, 0.6);
+        @include respond(tablet) {
+            max-width: 96%;
+            width: 100%;
+        }
     }
 }

@@ -40,9 +40,9 @@ class Charges extends React.Component {
 
 
     render() {
-        const { price } = this.props;
+        const { price, scrolled } = this.props;
         return (
-            <div className={`charges noselect ${this.state.collapsed ? 'charges--collapsed' : ''} ${ENV.SUBCHANNEL!=='tts'?`charges--${ENV.SUBCHANNEL}`:''}`} onClick={this.toggleCollapsed}>
+            <div className={`charges noselect ${this.state.collapsed ? 'charges--collapsed' : ''} ${scrolled ? 'charges--floating' : ''} ${ENV.SUBCHANNEL!=='tts'?`charges--${ENV.SUBCHANNEL}`:''}`} onClick={this.toggleCollapsed}>
                 <div className={`charges__details ${!this.state.collapsed ? 'charges__hidden' : ''}`}>
                     <div className="charges__headline">
                         <span>Detalle de su pago</span>

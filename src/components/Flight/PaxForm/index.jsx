@@ -27,7 +27,7 @@ class PaxForm extends Component {
      //   this.props.pax.firstName=value;
     }
     setLastname = (value)=>{
-        this.props.guestsStore.paxArray[this.props.keyData].lastname=value;
+        this.props.guestsStore.paxArray[this.props.keyData].lastName=value;
     }
     setDocType = (value)=>{
         this.props.guestsStore.paxArray[this.props.keyData].document.type=value;
@@ -110,8 +110,8 @@ class PaxForm extends Component {
                         <Input title="Apellido/s">
                             <TextInput 
                                     forceValidation={this.props.sendAttempted}
-                                    valid={guestsStore.validLastName(passenger.lastname)}
-                                    value={passenger.lastname} action={this.setLastname}
+                                    valid={guestsStore.validLastName(passenger.lastName)}
+                                    value={passenger.lastName} action={this.setLastname}
                                     size='medium-sm' placeholder='Como figura en el documento' />
                         </Input>
                         <Input title="Tipo y número de documento">

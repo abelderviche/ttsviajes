@@ -86,10 +86,6 @@ class GuestsStore {
         return validator(lastName, { required: true })
     }
 
-    @action validLastName = (lastName) =>{
-        return validator(lastName, { required: true })
-    }
-
     @action validDocType = (docType) =>{
         return validator(docType, { required: true })
     }

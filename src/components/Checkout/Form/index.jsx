@@ -6,6 +6,7 @@ import BillingModule from './billing-module';
 import AssistcardModule from './assistcard-module';
 import ContactModule from './contact-module';
 import GuestModule from './guest-module';
+import CheckFormData from './check-form-data';
 import Button from './button';
 import Error from '../Error';
 import { animateScroll } from 'react-scroll'
@@ -59,6 +60,8 @@ class Form extends React.Component {
 
                     })
                 }
+
+            <CheckFormData />
 
             <Button action={action}   action={() => {
                         this.setState({ sendAttempted: true })

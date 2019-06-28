@@ -11,9 +11,6 @@
     @include respond(tablet) {
         max-width: 100%;
     }
-    @include respond(tablet-land) {
-        background:blue;
-    }
 }
 
 .section-title {

@@ -7,6 +7,7 @@ import ChargesPoints from './chargesPoints';
 import ChargesMobile from './chargesMobile';
 import FlightSummary from 'components/Flight/Summary';
 import HotelSummary from 'components/Hotel/Summary';
+import TermAndConditions from 'components/Hotel/Summary/term-and-conditions';
 import { inject, observer } from 'mobx-react';
 import moment from 'moment';
 
@@ -27,6 +28,10 @@ class Summary extends React.Component {
                         <ChargesHotel scrolled={this.props.scrolled} price={detail.rates[0].price}  nights={nights} rooms={detail.rooms.length}/> 
                     }
                     <HotelSummary scrolled={this.props.scrolled} />
+                    <TermAndConditions 
+                        instructions={detail.accommodation.checkin.instructions}
+                        cancelPenalties={detail.rates[0].cancelPenalties}
+                    />
                 </div>
             )
         }else{
@@ -71,6 +76,11 @@ class SummaryMobile extends React.Component {
                     <Charges price={detail.price} /> 
                     }
                     {type==='accommodations'? <HotelSummary />:<FlightSummary cluster={detail} />}
+                    {type==='accommodations'? 
+                        <TermAndConditions 
+                            instructions={detail.accommodation.checkin.instructions}
+                            cancelPenalties={detail.rates[0].cancelPenalties}
+                        />:null}
                 </div>
                 :
                 <ChargesMobile 

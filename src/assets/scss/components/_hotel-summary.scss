@@ -112,8 +112,8 @@
         &.guestrooms{
             flex-wrap: wrap;
             border-bottom: none;
+            justify-content: space-between;
             .info{
-                width: 33%;
                 .title{
                     font-weight: bold;
                     display: flex;

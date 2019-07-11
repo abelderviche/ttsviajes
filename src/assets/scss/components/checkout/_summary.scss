@@ -60,12 +60,13 @@
         }
     }
     &__fixed{
-        position: fixed;
+        position: sticky;
         top:0;
         box-shadow: 2px 5px 12px 0px rgba(128, 128, 128, 0.6);
         @include respond(tablet) {
-            max-width: 96%;
             width: 100%;
+            max-height: 99vh;
+            overflow: auto;
         }
     }
 }

@@ -26,23 +26,18 @@ const Detail = ({name,stars,image,address,checkin,checkout,nights,rooms,mealPlan
     let childAges = [];
    let adultsQty = 0;
    let childsQty = 0;
-   let infantsQty = 0;
 
     for (let room of rooms) {
-        if (room.child_ages) {
-        childAges.push(...room.child_ages)
-        adultsQty += room.capacity - room.child_ages.length
+        if (room.childAges) {
+        childAges.push(...room.childAges)
+        adultsQty += room.capacity - room.childAges.length
         } else {
         adultsQty += room.capacity
         }
     }
     
     for (let childAge of childAges){
-        if(childAge>3){
-            childsQty++;
-        }else{
-            infantsQty++;
-        }
+        childsQty++;
     }
 
     return (
@@ -84,9 +79,8 @@ const Detail = ({name,stars,image,address,checkin,checkout,nights,rooms,mealPlan
             <div className="hotel-box__section  guestrooms">
                 {detailInfo('Adultos','person',adultsQty)}
                 {detailInfo('Niños','child',childsQty)}
-                {detailInfo('Bebes','child',infantsQty)}
                 {detailInfo('Habitaciones','hotels',rooms.length)}
-                {detailInfo('Tipo','info','Standard')}
+                {detailInfo('Tipo','info',rooms[0].name)}
             </div>
         </div>
     )

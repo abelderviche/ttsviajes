@@ -3,13 +3,12 @@ import { inject, observer } from "mobx-react";
 
 import PaymentModule from './payment-module';
 import BillingModule from './billing-module';
-import AssistcardModule from './assistcard-module';
 import ContactModule from './contact-module';
 import GuestModule from './guest-module';
 import CheckFormData from './check-form-data';
+import {Input} from './input';
 import Button from './button';
 import Error from '../Error';
-import { animateScroll } from 'react-scroll'
 import PaxModule from './pax-module';
 import paymentMethod from '../../../stores/payment-method';
 const formatPrice = (price) => {
@@ -61,7 +60,18 @@ class Form extends React.Component {
                     })
                 }
 
-            <CheckFormData />
+            {product==='flights'?<CheckFormData scrollTo={this.props.scrollTo} />:null}
+            
+            <div className="term-conditions">
+                <input type="checkbox"
+                    checked={checkout.termAndConditions}
+                    onChange={checkout.setTermAndConditions}
+                />
+                <span>Acepto los terminos y condiciones</span>
+                {this.state.sendAttempted && !checkout.termAndConditions ?
+                <span className="error">Debe aceptar los terminos y condiciones</span>
+                :null}
+            </div>
 
             <Button action={action}   action={() => {
                         this.setState({ sendAttempted: true })

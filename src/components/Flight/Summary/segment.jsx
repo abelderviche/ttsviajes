@@ -3,6 +3,23 @@ import moment from 'moment-timezone';
 import SegmentDetail from './segment-detail';
 moment.tz.setDefault("GMT");
 
+const  renderLugagge = (luggage) =>{
+    if(luggage && luggage.length >0){
+        return luggage.map((l,k) =>
+            <div className="flight-luggage" key={k}>
+                <img alt={`Pieza de ${l.weight} kilos`} key={`${l.weight}`} className="leg-summary__luggage-icon" src={require(`assets/img/flights/equipaje.png`)} />
+                <span>{l.quantity} equipaje{l.quantity>1?'s':''} de {l.weight} kg para despachar</span>
+            </div>
+        )
+    }else{
+        return (
+            <div className="flight-luggage">
+                <img alt="No incluye equipaje para despachar" className="leg-summary__luggage-icon" src={require(`assets/img/flights/no-luggage.svg`)} />
+                <span>No incluye equipaje para despachar</span>
+            </div>
+        )
+    }
+}
 
 const FlightCityDetail = ({code,name}) =>(
     <div className="city">
@@ -24,6 +41,16 @@ const FlightDateDetail = ({hour,date}) =>(
         </div>
     </div>
 );
+const Luggage = ({luggage}) =>{
+    return(
+        <div className="segment-luggage">
+            <div className="flight-luggage" >
+                <img alt="Equipaje de mano" className="leg-summary__luggage-icon" src={require('assets/img/flights/equipaje-mano.png')} />1 (un) equipaje de mano
+            </div>
+            {renderLugagge(luggage)}
+        </div>
+    )
+}
 
 const FlightDetail = ({cityCode,cityName,hour,date})=>(
     <div className="col">
@@ -35,6 +62,7 @@ const FlightDetail = ({cityCode,cityName,hour,date})=>(
             hour={hour}
             date={date} 
         />
+
     </div>
 )
 
@@ -64,7 +92,7 @@ class Segment extends React.Component {
                     hour     =   {option.departure_time}
                     date     =   {moment(option.departure_date).format('DD MMM Y')} 
                 />
-                   
+                
                 <div className="col arrow">  
                     <div className="arrow-img">
                         <img src={require('assets/img/arrow-reservas.png')} alt=""/> 
@@ -80,6 +108,10 @@ class Segment extends React.Component {
                     cityName =   {data.destination.name}
                     hour     =   {option.arrival_time}
                     date     =   {moment(option.arrival_date).format('DD MMM Y')} 
+                />
+                
+                <Luggage 
+                    luggage={option.baggage_allowance}
                 />
             </div>
            

@@ -141,6 +141,7 @@ class BillingStore {
 
     @action setCuitType = (value) => {
         this.cuitType = value;
+        this.setFiscalIdType(value==='CF'?'CUIL':'CUIT');
     }
 
     @action setFiscalIdType = (value) => {

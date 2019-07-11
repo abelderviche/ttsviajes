@@ -687,9 +687,22 @@ body {
         justify-content: space-between;
         width: 100%;
         padding: 1rem;
-        border-bottom: 0.5px dashed #e7e7e7; }
+        border-bottom: 0.5px dashed #e7e7e7;
+        flex-wrap: wrap; }
         .flight-box__section .segments .segment.inbound {
           border-bottom: none; }
+        .flight-box__section .segments .segment .segment-luggage {
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+          font-size: 1rem;
+          height: 2rem;
+          align-items: center; }
+          .flight-box__section .segments .segment .segment-luggage .flight-luggage {
+            display: flex; }
+            .flight-box__section .segments .segment .segment-luggage .flight-luggage img {
+              margin-right: 5px;
+              height: 1.6rem; }
         .flight-box__section .segments .segment .col {
           display: flex;
           max-width: 33%;
@@ -1152,21 +1165,20 @@ body {
         height: 1.2rem; }
     .hotel-box__section.guestrooms {
       flex-wrap: wrap;
-      border-bottom: none; }
-      .hotel-box__section.guestrooms .info {
-        width: 33%; }
-        .hotel-box__section.guestrooms .info .title {
-          font-weight: bold;
-          display: flex;
-          align-items: center;
-          color: #7e7e7e; }
-          .hotel-box__section.guestrooms .info .title .info-icon {
-            height: 1.7rem;
-            width: 1.7rem;
-            fill: #7e7e7e;
-            margin: 6px 9px; }
-        .hotel-box__section.guestrooms .info .label {
-          padding-left: 3.6rem; }
+      border-bottom: none;
+      justify-content: space-between; }
+      .hotel-box__section.guestrooms .info .title {
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        color: #7e7e7e; }
+        .hotel-box__section.guestrooms .info .title .info-icon {
+          height: 1.7rem;
+          width: 1.7rem;
+          fill: #7e7e7e;
+          margin: 6px 9px; }
+      .hotel-box__section.guestrooms .info .label {
+        padding-left: 3.6rem; }
   .hotel-box__hotel-info {
     display: flex;
     flex-direction: column;
@@ -2022,6 +2034,18 @@ body {
   .form input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0; }
+  .form .term-conditions {
+    display: flex;
+    align-items: center; }
+    .form .term-conditions input {
+      transform: scale(1.3);
+      margin: .5rem; }
+    .form .term-conditions span {
+      font-size: 1.4rem; }
+    .form .term-conditions .error {
+      color: #d32027;
+      font-size: 1.2rem;
+      padding-left: 1rem; }
 
 .charges {
   max-height: 4.8rem;
@@ -2035,7 +2059,7 @@ body {
   min-width: 28%;
   margin-bottom: 3rem; }
   .charges--floating {
-    position: fixed;
+    position: sticky;
     top: 0; }
     @media only screen and (max-width: 55.62em) and (min-width: 48em) {
       .charges--floating {
@@ -2160,13 +2184,14 @@ body {
       font-weight: bold;
       font-size: 1.4rem; }
   .summary_mobile__fixed {
-    position: fixed;
+    position: sticky;
     top: 0;
     box-shadow: 2px 5px 12px 0px rgba(128, 128, 128, 0.6); }
     @media only screen and (max-width: 48em) {
       .summary_mobile__fixed {
-        max-width: 96%;
-        width: 100%; } }
+        width: 100%;
+        max-height: 99vh;
+        overflow: auto; } }
 
 .header {
   position: relative;

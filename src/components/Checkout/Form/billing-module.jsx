@@ -32,15 +32,6 @@ class BillingModule extends React.Component {
                                 value={billing.cuitType} action={billing.setCuitType}
                                 size='medium-sm' placeholder='Consumidor final' />
                         </Input>
-                        <Input title="CUIT/CUIL">
-                            <DropdownInput 
-                                forceValidation={this.props.sendAttempted}
-                                valid={billing.validFiscalIdType}
-                                defaultValue={billing.fiscalIdTypes[0]}
-                                options={billing.fiscalIdTypes}
-                                action={billing.setFiscalIdType} value={billing.fiscalIdType}
-                                size='small' placeholder='Tipo' />
-                        </Input>
                         <Input title="Identificación fiscal">
                             <TextInput 
                                 forceValidation={this.props.sendAttempted}

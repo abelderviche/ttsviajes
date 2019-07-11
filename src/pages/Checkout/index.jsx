@@ -54,6 +54,7 @@ class Checkout extends React.Component {
     componentDidMount() {
         const clusterID = this.props.match.params.id;
         const product = this.props.match.params.product;
+        this.setState({productType:product})
         const points = this.props.match.params.sellPoints;
         const idGetPoints = this.props.match.params.idGetPoints;
         const channelMotor = this.props.match.params.channelMotor;
@@ -109,6 +110,9 @@ class Checkout extends React.Component {
         })
     }
 
+    scrollTo = (elementId) =>{
+        animateScroll.scrollTo(document.getElementById(elementId).offsetTop,{duration:500})
+    }
     handleError = (title, message, critical) => {
         setTimeout(() => {
             this.setState({ loading: false });
@@ -119,9 +123,11 @@ class Checkout extends React.Component {
                     critical: critical
                 }
             });
-            animateScroll.scrollToTop({
-                duration: 500
-            });
+            //console.log(document.getElementsByClassName("checkout-error")[0].offsetTop)
+            animateScroll.scrollTo(document.getElementsByClassName("module__input-errors")[0].offsetTop,{duration:500})
+            /*animateScroll.scrollToTop({
+                duration: document.getElementsByClassName("module__input-errors")[0].offsetTop
+            });*/
         }, 1000);
     }
 
@@ -169,6 +175,8 @@ class Checkout extends React.Component {
                                 error={error}
                                 action={this.doPayment}
                                 loading={loading}
+                                product={productType}
+                                scrollTo={this.scrollTo}
                                 />
                             {this.state.isMobile?
                             <SummaryMobile 

@@ -18,7 +18,13 @@ class CheckoutStore {
     @observable infoProduct = {};
     @observable points = null;
     @observable isRewards = false;
+    @observable termAndConditions = false;
     
+
+    @action setTermAndConditions = (TandCInput) => {
+        this.termAndConditions = TandCInput.target.checked;
+    }
+
     @action retrieveCheckoutInfo = (clusterID, product,idGetPoints,points) => {
         let headers = ENV.CHECKOUT.REQUEST_HEADERS;
        /* headers['Product'] = typeProduct.translate_plural;
@@ -116,7 +122,8 @@ class CheckoutStore {
 
             console.log('payment',PaymentMethodStore)
         /*   if(BillingStore.validFields && Contact.validFields && GuestsStore.validFields 
-            && (PaymentMethodStore.paymentMethodId>=0 && !CheckoutFormStore.validFields)){
+            && (PaymentMethodStore.paymentMethodId>=0 && !CheckoutFormStore.validFields)
+            && this.termAndConditions){
     */
             if(true){
                 let body = {

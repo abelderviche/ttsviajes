@@ -11,7 +11,7 @@ class GuestModule extends Component {
             <div className="module">
                 <div className="module__top-headline">Datos de los pasajeros</div>   
                 {guestsStore.guestsArray.map((room,k)=>
-                    <GuestForm sendAttempted={this.props.sendAttempted} guest={room}  key={k}  keyData={k+1}/>
+                    <GuestForm sendAttempted={this.props.sendAttempted} guest={room}  key={`guestform-${k}`}  keyData={k+1}/>
                 )}
 
 

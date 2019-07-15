@@ -22,7 +22,7 @@ class Form extends React.Component {
     
     render() {
         const { action, loading, error, availablePayment, checkContact, changeCheck, product, checkout} = this.props;
-        const rewards = checkout.isRewards;
+        const rewards = checkout.entityBank;
         return (
             <div className="form">
                 {
@@ -31,29 +31,33 @@ class Form extends React.Component {
                     : null
                 }
                 {
-                    checkout.activeComponents.map(component=>{
+                    checkout.activeComponents.map((component,k)=>{
                        if(component.name === 'FCB'){
                         return(
-                            <div>
+                            <div key={`component-${k}`}key={`component-${k}`}>
                                 {Object.entries(this.props.paymentMethod.paymentMethods).length>0?
-                                    <PaymentModule sendAttempted={this.state.sendAttempted} rewards={rewards} />
+                                    <PaymentModule 
+                                        paymentMethodId = {this.props.paymentMethod.paymentMethodId}
+                                        sendAttempted={this.state.sendAttempted} 
+                                        rewards={rewards} 
+                                    />
                                 :null}
                                 <BillingModule sendAttempted={this.state.sendAttempted} />
                             </div>
                         )}
                         if(component.name === 'CONT'){
                             return(
-                                <ContactModule sendAttempted={this.state.sendAttempted} />
+                                <ContactModule key={`component-${k}`} sendAttempted={this.state.sendAttempted} />
                             )
                         }
                         if(component.name === 'PAXF'){
                             return(
-                                <PaxModule     sendAttempted={this.state.sendAttempted} />
+                                <PaxModule  key={`component-${k}`}    sendAttempted={this.state.sendAttempted} />
                             )
                         }
                         if(component.name === 'PAXA'){
                             return(
-                                <GuestModule     sendAttempted={this.state.sendAttempted} />
+                                <GuestModule  key={`component-${k}`}    sendAttempted={this.state.sendAttempted} />
                             )
                         }
 
@@ -62,26 +66,23 @@ class Form extends React.Component {
 
             {product==='flights'?<CheckFormData scrollTo={this.props.scrollTo} />:null}
             
-            <div className="term-conditions">
-                <input type="checkbox"
-                    checked={checkout.termAndConditions}
-                    onChange={checkout.setTermAndConditions}
-                />
-                <span>Acepto los terminos y condiciones</span>
-                {this.state.sendAttempted && !checkout.termAndConditions ?
-                <span className="error">Debe aceptar los terminos y condiciones</span>
-                :null}
-            </div>
+                <div className="term-conditions">
+                    <input type="checkbox"
+                        checked={checkout.termAndConditions}
+                        onChange={checkout.setTermAndConditions}
+                    />
+                    <span>Acepto los terminos y condiciones</span>
+                    {this.state.sendAttempted && !checkout.termAndConditions ?
+                    <span className="error">Debe aceptar los terminos y condiciones</span>
+                    :null}
+                </div>
 
-            <Button action={action}   action={() => {
-                        this.setState({ sendAttempted: true })
-                        action();
+                <Button action={() => {
+                            this.setState({ sendAttempted: true })
+                            action();
                         }} 
-                        
-                        loading={loading} />
-
-
-
+                        loading={loading} 
+                />
             </div>
         )
 

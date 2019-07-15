@@ -4,7 +4,7 @@ const formPlaceholder = (rows, headlines) => {
     return (
         <div className="ph-item">
             <div className="ph-col-12">
-                {Array.apply(null, { length: headlines }).map(() => {
+                {Array.apply(null, { length: headlines }).map((v,k) => {
                     return (
                         <div className="ph-row">
                             <div className="ph-col-2"></div>
@@ -44,6 +44,8 @@ const CheckoutPlaceholder = () => {
                     {formPlaceholder(2, 1)}
                 </div>
                 <div className="summary">
+                    <div className="ph-picture">
+                    </div>
                     <div className="ph-picture">
                     </div>
                     <div className="ph-picture">

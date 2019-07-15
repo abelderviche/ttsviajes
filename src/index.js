@@ -5,7 +5,8 @@ import moment from 'moment';
 import { render } from 'react-dom';
 import { Router, Route } from 'react-router-dom';
 import { Provider } from 'mobx-react';
-import createBrowserHistory from 'history/createBrowserHistory';
+import {createBrowserHistory} from 'history';
+
 import { RouterStore, syncHistoryWithStore } from 'mobx-react-router';
 
 // Service Worker for PWA

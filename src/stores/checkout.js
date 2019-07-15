@@ -18,6 +18,7 @@ class CheckoutStore {
     @observable infoProduct = {};
     @observable points = null;
     @observable isRewards = false;
+    @observable entityBank = false;
     @observable termAndConditions = false;
     
 
@@ -27,6 +28,8 @@ class CheckoutStore {
 
     @action retrieveCheckoutInfo = (clusterID, product,idGetPoints,points) => {
         let headers = ENV.CHECKOUT.REQUEST_HEADERS;
+        this.entityBank = headers.subchannel.search('hsbc') >= 0? true:false;
+
        /* headers['Product'] = typeProduct.translate_plural;
         headers['sourcegds'] = Reservations.product.source;*/
         this.points = points;
@@ -43,7 +46,6 @@ class CheckoutStore {
                 headers: headers
             }).then(
                 res => {
-                    console.log(res)
                     if(res.data){
                      //   console.log(res.data.data);
                      let { action, message, data } = res.data;
@@ -54,7 +56,7 @@ class CheckoutStore {
                                 this.infoProduct = infoProduct;
                                 this.isRewards = data.points.isRewards;
                                 if(fcb.financing.creditsCards.enabled){
-                                    PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods, (idGetPoints && points));
+                                    PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods, this.entityBank);
                                 }
                                 if(product==='flights'){
                                     GuestsStore.setPaxArray(data.paxf, data.paxf.every(GuestsStore.validPax));
@@ -114,15 +116,17 @@ class CheckoutStore {
     @action doPayment = () =>{
         return new Promise((resolve, reject) => {
 
-            console.log('paymentmethod',PaymentMethodStore)
+           /* console.log('paymentmethod',PaymentMethodStore)
             console.log('BillingStore',BillingStore.validFields)
             console.log('Contact',Contact.validFields)
             console.log('GuestsStore', GuestsStore.validFields);
             console.log('CheckoutFormStore', CheckoutFormStore);
 
             console.log('payment',PaymentMethodStore)
+
+            */
         /*   if(BillingStore.validFields && Contact.validFields && GuestsStore.validFields 
-            && (PaymentMethodStore.paymentMethodId>=0 && !CheckoutFormStore.validFields)
+            && (PaymentMethodStore.paymentMethodId>=0 && CheckoutFormStore.validFields)
             && this.termAndConditions){
     */
             if(true){
@@ -180,6 +184,7 @@ class CheckoutStore {
                         typeCard: "Credit"
                     }
                 }
+                console.log('DoTransactionBody',body);
                 resolve(
                     {
                         "action": "3",

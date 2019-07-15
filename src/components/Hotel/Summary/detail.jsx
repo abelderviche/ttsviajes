@@ -78,7 +78,7 @@ const Detail = ({name,stars,image,address,checkin,checkout,nights,rooms,mealPlan
             </div>
             <div className="hotel-box__section  guestrooms">
                 {detailInfo('Adultos','person',adultsQty)}
-                {detailInfo('Niños','child',childsQty)}
+                {detailInfo('Menores','child',childsQty)}
                 {detailInfo('Habitaciones','hotels',rooms.length)}
                 {detailInfo('Tipo','info',rooms[0].name)}
             </div>

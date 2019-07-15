@@ -170,6 +170,7 @@ class Checkout extends React.Component {
                 !loadingReservation?
                     error && error.critical?<Error {...this.state.error}/>:
                     <div id="checkout-container">
+                        <div className="section-title"><span>¡Asegurá tu lugar ahora!</span></div>
                         <div className="section-checkout">
                             <Form 
                                 error={error}

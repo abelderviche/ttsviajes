@@ -4,6 +4,7 @@ import React from 'react';
 import PaymentType from './payment-type';
 import PaymentRewards from './payment-rewards';
 import PaymentInfo from './payment-info';
+import CreditCardModule from './credit-card-module'
 
 class PaymentModule extends React.Component {
     render () {
@@ -22,7 +23,8 @@ class PaymentModule extends React.Component {
                 </div>
                 <div className="module">
                     <div className="module__top-headline">Datos de tu tarjeta</div>
-                    <PaymentInfo sendAttempted={this.props.sendAttempted} />
+                    {/*<PaymentInfo sendAttempted={this.props.sendAttempted} /> */}
+                    <CreditCardModule />
                 </div>
             </div>
         );

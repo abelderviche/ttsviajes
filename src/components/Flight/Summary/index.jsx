@@ -22,11 +22,11 @@ class FlightSummary extends React.Component {
     render() {
         const { cluster } = this.props;
         const { collapsed } = this.state;
-        const roundtrip = cluster.flight_type === 'ROUND_TRIP';
+        const roundtrip = cluster.flightType === 'ROUND_TRIP';
         return (
             <div className={`flight noselect ${collapsed ? 'flight__collapsed' : ''}`} onClick={() => this.setState({collapsed: !collapsed})}>
                 <div className="flight__headline">
-                <span className="flight__headline-city">DETALLE DE TU COMPRA</span>
+                <span className="flight__headline-city">DETALLE DE TU SELECCIÓN</span>
                 </div>
                 <div className="flight-box">
                     <div className="flight-box__section segments">
@@ -36,7 +36,10 @@ class FlightSummary extends React.Component {
                             <Segment data={cluster.segments[1]} type='inbound' pos={1} />
                         </div>
                         :
-                        cluster.segments.map((segment, i) => <Segment data={segment} pos={i} key={i}/>)
+                        <div className="segments">
+                            {cluster.segments.map((segment, i) => <Segment data={segment} pos={i} key={i}/>)}   
+                        </div>
+
                         }
                     </div>
                     <div className="flight-box__section pax">

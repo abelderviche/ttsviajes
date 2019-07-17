@@ -6,7 +6,7 @@ import { validator } from '../../../stores/validators';
 
 const _PASSENGERS__LABELS = {
     "ADT": "Adulto",
-    "CH": "Niño",
+    "CHD": "Niño",
     "INF": "Infante"
 }
 @inject('guestsStore') @observer
@@ -81,7 +81,7 @@ class PaxForm extends Component {
         if(paxType==='ADT'){
             maxYear = present_year-12;
             minYear = maxYear-97;
-        }else if(paxType==='CH'){
+        }else if(paxType==='CHD'){
             maxYear = present_year-2;
             minYear = maxYear-11;
         }else if(paxType==='INF'){

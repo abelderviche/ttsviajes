@@ -75,6 +75,7 @@ const InstallmentList = ({ id, bankId, promoId, cardId, installments, selectProm
 }
 
 const Option = ({id, selected, banks, selectedPromos, bankId, promoId, cardId, selectBank, selectPromo, selectCreditCard,rewards}) => {
+    const unique = banks.length===1;
     return (
         <div className={`payment-method__available ${!selected ? 'payment-method__noheight' : ''}`}>
             <div className="payment-method__available--title" style={{
@@ -83,7 +84,7 @@ const Option = ({id, selected, banks, selectedPromos, bankId, promoId, cardId, s
             <div className="payment-method__banks-list">
                 {banks.map(bank => {
                     const key = `${bank.bankCode}-${bank.segment}-${bank.promos.length}`;
-                    const selected = key === bankId;
+                    const selected = key === bankId || unique;
                     return (
                         <div key={key} onClick={() => selectBank(bank, key)}
                             className={`payment-method__bank margin-bottom-16 ${selected ? 'payment-method__bank--selected' : ''}`}>

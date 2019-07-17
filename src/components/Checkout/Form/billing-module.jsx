@@ -32,7 +32,7 @@ class BillingModule extends React.Component {
                                 value={billing.cuitType} action={billing.setCuitType}
                                 size='medium-sm' placeholder='Consumidor final' />
                         </Input>
-                        <Input title="Identificación fiscal">
+                        <Input title="CUIT/CUIL">
                             <TextInput 
                                 forceValidation={this.props.sendAttempted}
                                 valid={billing.validCuit} type='number'

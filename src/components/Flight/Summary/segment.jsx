@@ -85,12 +85,12 @@ class Segment extends React.Component {
         const option = data.options[0];
         const plusDays = moment(option.arrival_date).diff(moment(option.departure_date), 'days');
         return (
-            <div className={`segment ${type}`}>
+            <div className={`segment ${type?type:'inbound'}`}>
                 <FlightDetail 
                     cityCode =   {data.origin.code}
                     cityName =   {data.origin.name}
-                    hour     =   {option.departure_time}
-                    date     =   {moment(option.departure_date).format('DD MMM Y')} 
+                    hour     =   {option.departureTime}
+                    date     =   {moment(option.departureDate).format('DD MMM Y')} 
                 />
                 
                 <div className="col arrow">  
@@ -98,20 +98,20 @@ class Segment extends React.Component {
                         <img src={require('assets/img/arrow-reservas.png')} alt=""/> 
                     </div>
                     <div className="airline">
-                        <img className="airline--logo" src={`https://statics.basset.la/airlines/${option.legs[0].marketing_carrier.code}-ISO.svg`} alt={option.legs[0].marketing_carrier.code}/>
-                        <span className="airline--name">{option.legs[0].marketing_carrier.name}</span>
+                        <img className="airline--logo" src={`https://statics.basset.la/airlines/${option.legs[0].marketingCarrier.code}-ISO.svg`} alt={option.legs[0].marketingCarrier.code}/>
+                        <span className="airline--name">{option.legs[0].marketingCarrier.name}</span>
                     </div>
                 
                 </div>
                 <FlightDetail 
                     cityCode =   {data.destination.code}
                     cityName =   {data.destination.name}
-                    hour     =   {option.arrival_time}
-                    date     =   {moment(option.arrival_date).format('DD MMM Y')} 
+                    hour     =   {option.arrivalTime}
+                    date     =   {moment(option.arrivalDate).format('DD MMM Y')} 
                 />
                 
                 <Luggage 
-                    luggage={option.baggage_allowance}
+                    luggage={option.baggageAllowance}
                 />
             </div>
            

@@ -69,7 +69,8 @@ class Checkout extends React.Component {
                     this.setState({loadingReservation:false})
                    
                }else{
-                    window.location.href = res.url;
+                   console.log("ocurrio un error", res);
+                    //window.location.href = res.url;
                }
            },
            ()=>{

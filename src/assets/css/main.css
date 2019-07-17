@@ -1988,15 +1988,22 @@ body {
     flex-wrap: wrap;
     margin-left: 1.2rem; }
 
+.resume-body {
+  padding: 0 3rem 3rem 3rem; }
+
 .resume-title {
-  color: #d32027;
-  font-size: 1.4rem;
+  background: #ffd0d0;
+  font-size: 1.6rem;
+  cursor: pointer;
   font-weight: bold;
-  padding: 0rem 1rem; }
+  padding: 1rem 1.4rem;
+  color: #7e7e7e;
+  border-radius: 3px;
+  width: 100%; }
 
 .resume-date {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   padding: 1rem 2rem; }
   .resume-date span {
     font-weight: 300; }
@@ -2012,7 +2019,18 @@ body {
     border-left: 3px solid #7e7e7e;
     padding: 1rem;
     font-weight: bold;
-    font-size: 1.2rem; }
+    font-size: 1.3rem;
+    cursor: pointer; }
+    .resume-pax-data .icon-pencil {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center; }
+      .resume-pax-data .icon-pencil svg {
+        height: 1.4rem;
+        width: 1.4rem; }
+      .resume-pax-data .icon-pencil span {
+        margin-left: .5rem; }
     .resume-pax-data span {
       font-weight: 300; }
     @media only screen and (max-width: 37.5em) {

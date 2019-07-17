@@ -75,7 +75,7 @@ class GuestsStore {
     }
 
     @action setPaxArray = (paxArr,valid) =>{
-        this.paxArray = this.paxArray.length>0 && !valid ?this.paxArray : paxArr.map(p => new Pax(p.firstName,p.lastName,p.document.type,p.document.number,p.nationality,p.birth,p.gender,p.type))
+        this.paxArray = this.paxArray.length>0 && !valid ?this.paxArray : paxArr.map(p => new Pax(p.firstName,p.lastName,p.document?p.document.type:null,p.document?p.document.number:null,p.nationality,p.birth,p.gender,p.type))
     }
 
     @action validName = (name) =>{

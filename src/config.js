@@ -35,7 +35,7 @@ switch(env) {
     //TTS_CHECKOUT_WEBSERVICES = 'https://servicios.qa.ttsviajes.com:9001';//'http://servicios.qattsviajes.com:9001';
     TTS_CHECKOUT_WEBSERVICES = DEV_API;//'http://servicios.qattsviajes.com:9001';
     TTS_CHECKOUT_WEBSERVICES_HOTEL = DEV_API;//'http://servicios.qattsviajes.com:9001';
-    TTS_CDN_BASE = 'http://cdn.devttsviajes.com/';//DEV_API;
+    TTS_CDN_BASE = 'https://cdn.dev.ttsviajes.com';//DEV_API;
     BASSET = 'https://api.basset.ws';
     BASSET_FLIGHTS = 'https://search.ttsviajes.com';//https://dev.tts-viajes.basset.la';
     TTS_SERVICES = "https://servicios.dev.ttsviajes.com:8300";
@@ -55,7 +55,7 @@ switch(env) {
     TTS_WEBSERVICES = 'https://servicios.dev.ttsviajes.com:11000';
     TTS_CHECKOUT_WEBSERVICES = 'https://serviciospayment.dev.ttsviajes.com/ConcentradorAereos';//'http://servicios.qattsviajes.com:9001';
     TTS_CHECKOUT_WEBSERVICES_HOTEL = 'https://serviciospayment.dev.ttsviajes.com/CMP';
-    TTS_CDN_BASE = 'http://cdn.devttsviajes.com/';//DEV_API;
+    TTS_CDN_BASE = 'https://cdn.dev.ttsviajes.com';//DEV_API;
     BASSET = 'https://api.basset.ws';
     BASSET_FLIGHTS = 'https://search.ttsviajes.com';//https://dev.tts-viajes.basset.la';
     TTS_SERVICES = "https://servicios.dev.ttsviajes.com:8300";
@@ -132,7 +132,9 @@ const ENV = {
     EVENTOS:  EVENTOS_URL,
     CASAMIENTOS:  CASAMIENTOS_URL,
     TRABAJA: TRABAJA_URL,
-    GETHEADER: `${TTS_BASE}/header/${SUBCHANNEL==='turismocity'?'tts':SUBCHANNEL}/hide`
+    //GETHEADER: `${TTS_BASE}/header/${SUBCHANNEL==='turismocity'?'tts':SUBCHANNEL}/hide`,
+    GETHEADER: `${TTS_CDN_BASE}/header/api/?subchannel=${SUBCHANNEL==='turismocity'?'tts':SUBCHANNEL}&hidemenu=true&wfull=true`
+
   },
   CHECKOUT: {
     GETINFO:TTS_CHECKOUT_SHOPPING + '/checkoutinfo',

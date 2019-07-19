@@ -16,15 +16,8 @@ import moment from 'moment';
 
 import Responsive from 'react-responsive-decorator';
 
-
-function parseQuery(queryString) {
-    var query = {};
-    var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
-    for (var i = 0; i < pairs.length; i++) {
-        var pair = pairs[i].split('=');
-        query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
-    }
-    return query;
+const formatPrice = (price) => {
+    return price.toFixed(0).toString().replace(',', '.').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 @inject('checkout', 'reservations', 'billing','assistcard') @observer
@@ -55,7 +48,7 @@ class Checkout extends React.Component {
         const clusterID = this.props.match.params.id;
         const product = this.props.match.params.product;
         this.setState({productType:product})
-        const points = this.props.match.params.sellPoints;
+        const points = this.props.match.params.sellPoints?formatPrice(Number(this.props.match.params.sellPoints)):0;
         const idGetPoints = this.props.match.params.idGetPoints;
         const channelMotor = this.props.match.params.channelMotor;
         /*const queryString = this.props.location.search!==''?parseQuery(this.props.location.search):null;

@@ -71,11 +71,11 @@ switch(env) {
   case 'test':
     //SUBCHANNEL = 'tts';
     //APTEK_BASE = DEV_API;
-    TTS_BASE = 'https://www.qattsviajes.com';
+    TTS_BASE = 'https://www.qa.ttsviajes.com';
     TTS_WEBSERVICES = 'https://servicios.qa.ttsviajes.com:11000';
     TTS_CHECKOUT_WEBSERVICES = 'https://serviciospayment.qa.ttsviajes.com/ConcentradorAereos';//'http://servicios.qattsviajes.com:9001';
     TTS_CHECKOUT_WEBSERVICES_HOTEL = 'https://serviciospayment.qa.ttsviajes.com/CMP';
-    TTS_CDN_BASE = 'https://cdn.qattsviajes.com/';
+    TTS_CDN_BASE = 'https://cdn.qa.ttsviajes.com/';
     BASSET = 'https://api.basset.ws';//'https://dev.api.basset.ws';
     BASSET_FLIGHTS = 'https://search.ttsviajes.com';//'https://dev.tts-viajes.basset.la';
     TTS_SERVICES = "https://servicios.qa.ttsviajes.com:8300";
@@ -86,6 +86,9 @@ switch(env) {
     TTS_ALT = 'https://www.qattsviajes.com';
     TTS_CROSSSELING_PRODS = "https://servicios.qa.ttsviajes.com:5500";
     SEND_EMAIL = "https://www.qa.ttsviajes.com/api/Paymentsemail";
+    TTS_CHECKOUT_SHOPPING = "https://serviciospayment.qa.ttsviajes.com/Cobros.Main/TTS.Shopping/api/shopping";
+
+
     break;
   case 'prod':
     //SUBCHANNEL = 'tts';
@@ -97,6 +100,8 @@ switch(env) {
     TTS_SERVICES = "https://servicios.ttsviajes.com:8300";//"https://servicios.qa.ttsviajes.com:8300";
     TTS_CROSSSELING_PRODS = "https://servicios.ttsviajes.com:5500";
     SEND_EMAIL = "https://www.ttsviajes.com/api/Paymentsemail";
+    TTS_CHECKOUT_SHOPPING = "https://serviciospayment.ttsviajes.com:8001/TTS.Shopping/api/shopping";
+
     break;
   default:
     break;

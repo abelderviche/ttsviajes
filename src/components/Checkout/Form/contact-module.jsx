@@ -28,14 +28,14 @@ export default class ContactFormModule extends Component {
                                             forceValidation={this.props.sendAttempted}
                                             valid={contactStore.validEmail}
                                             value={contactStore.email} action={contactStore.setEmail}
-                                            size='large' placeholder='Ingresa tu Email' />
+                                            size='medium' placeholder='Ingresa tu Email' />
                                 </Input>
                                 <Input title="Confirma Tu email">
                                     <TextInput 
                                             forceValidation={this.props.sendAttempted}
                                             valid={contactStore.validConfirmEmail}
                                             value={contactStore.confirmEmail} action={contactStore.setConfirmEmail}
-                                            size='large' placeholder='Vuelve a ingresar tu Email' />
+                                            size='medium' placeholder='Vuelve a ingresar tu Email' />
                                 </Input>
                             </div>
                         </div>

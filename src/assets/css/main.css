@@ -1558,7 +1558,7 @@ body {
     display: flex;
     flex-direction: row; }
   .module__text-input {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     border: none;
     outline: none;
     width: 100%;
@@ -2591,10 +2591,10 @@ body {
     min-height: 100% !important;
     border: none !important;
     font-family: 'Roboto', sans-serif;
-    font-size: 14px; }
+    font-size: 1.2rem; }
   .checkout-select__menu {
     font-family: 'Roboto', sans-serif;
-    font-size: 14px; }
+    font-size: 1.2rem; }
   .checkout-select__dropdown-indicator {
     padding: 0 0.4rem !important; }
 

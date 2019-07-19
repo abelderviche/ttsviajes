@@ -60,7 +60,7 @@ class BillingModule extends React.Component {
                                 forceValidation={this.props.sendAttempted}
                                 valid={billing.validStreet}
                                 value={billing.street} action={billing.setStreet}
-                                size='large'/>
+                                size='medium'/>
                         </Input>
                         <Input title="Número">
                             <TextInput size='small' 
@@ -81,7 +81,7 @@ class BillingModule extends React.Component {
                                 value={billing.apt} action={billing.setApt} />
                         </Input>
                         <Input title="Cod. Postal">
-                            <TextInput size='medium'
+                            <TextInput size='small'
                                 forceValidation={this.props.sendAttempted}
                                 valid={billing.validZipCode}
                                 value={billing.zipCode} action={billing.setZipCode} />

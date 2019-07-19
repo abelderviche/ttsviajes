@@ -76,6 +76,7 @@ const InstallmentList = ({ id, bankId, promoId, cardId, installments, selectProm
 
 const Option = ({id, selected, banks, selectedPromos, bankId, promoId, cardId, selectBank, selectPromo, selectCreditCard,rewards}) => {
     const unique = banks.length===1;
+    unique && !selectedPromos?selectBank(banks[0],`${banks[0].bankCode}-${banks[0].segment}-${banks[0].promos.length}`):null
     return (
         <div className={`payment-method__available ${!selected ? 'payment-method__noheight' : ''}`}>
             <div className="payment-method__available--title" style={{
@@ -95,7 +96,6 @@ const Option = ({id, selected, banks, selectedPromos, bankId, promoId, cardId, s
                     );
                 })}
             </div>
-            {/* <div className="payment-method__more"><span>Ver más</span></div> */}
             { selectedPromos && selectedPromos.length ? 
                 <InstallmentList 
                     id={id} cardId={cardId}

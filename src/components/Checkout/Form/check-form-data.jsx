@@ -9,7 +9,7 @@ export default class CheckFormData extends Component {
   
     showPax = (id,name,lastname,docnumber) =>{
         return(
-            <div className="resume-pax-data" onClick={()=>this.props.scrollTo('pax-no-'+id)}>
+            <div key={id} className="resume-pax-data" onClick={()=>this.props.scrollTo('pax-no-'+id)}>
                 <div className="icon-pencil">
                     <svg>
                         <use xlinkHref={`${require('assets/img/sprite.svg')}#icon-pencil`}></use>

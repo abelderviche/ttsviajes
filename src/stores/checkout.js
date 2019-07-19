@@ -59,13 +59,10 @@ class CheckoutStore {
                                     PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods, this.entityBank);
                                 }
                                 if(product==='flights'){
-                                    console.log(data.paxf);
                                     GuestsStore.setPaxArray(data.paxf, data.paxf.every(GuestsStore.validPax));
                                 }else if(product ==='accommodations'){
                                     GuestsStore.setGuestArray(data.paxa, data.paxa.every(GuestsStore.validGuest));
                                 }
-                               
-                                
                                 resolve(
                                     {   action:action,
                                         message:'ok'

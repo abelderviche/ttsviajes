@@ -45,7 +45,7 @@ class BillingModule extends React.Component {
                                 forceValidation={this.props.sendAttempted}
                                 valid={billing.validState}
                                 action={billing.setState} value={billing.state}
-                                size='medium' placeholder='Selecciona' />
+                                size='medium-sm' placeholder='Selecciona' />
                         </Input>
                         <Input title="Ciudad">
                             <DropdownInput 
@@ -53,14 +53,14 @@ class BillingModule extends React.Component {
                                 forceValidation={this.props.sendAttempted}
                                 valid={billing.validCity}
                                 action={billing.setCity} value={billing.city}
-                                size='medium' placeholder='Selecciona' />
+                                size='medium-sm' placeholder='Selecciona' />
                         </Input>
                         <Input title="Calle">
                             <TextInput 
                                 forceValidation={this.props.sendAttempted}
                                 valid={billing.validStreet}
                                 value={billing.street} action={billing.setStreet}
-                                size='medium'/>
+                                size='medium-sm'/>
                         </Input>
                         <Input title="Número">
                             <TextInput size='small' 

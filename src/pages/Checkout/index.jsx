@@ -58,11 +58,12 @@ class Checkout extends React.Component {
 
         this.props.checkout.retrieveCheckoutInfo(clusterID, product,idGetPoints,points).then(
            (res)=>{
-                if(res.action === '1'){
-                    this.setState({loadingReservation:false})
+               if(res.action === '1'){
+                   this.setState({loadingReservation:false})
                    
-               }else{
-                   console.log("ocurrio un error", res);
+                }else{
+                    console.log("ocurrio un error", res);
+                    this.handleError('Ocurrio un error',`Action: ${res.action} | Message:${res.message} | Url:${res.url}`,true);
                     //window.location.href = res.url;
                }
            },
@@ -118,7 +119,13 @@ class Checkout extends React.Component {
                 }
             });
             //console.log(document.getElementsByClassName("checkout-error")[0].offsetTop)
+
+            /**
+             * check if hay inputs errors
+            */
+           document.getElementsByClassName("module__input-errors").length>0?
             animateScroll.scrollTo(document.getElementsByClassName("module__input-errors")[0].offsetTop,{duration:500})
+            :animateScroll.scrollToTop(500);
             /*animateScroll.scrollToTop({
                 duration: document.getElementsByClassName("module__input-errors")[0].offsetTop
             });*/

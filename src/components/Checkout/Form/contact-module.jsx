@@ -51,7 +51,7 @@ export default class ContactFormModule extends Component {
                                         options={phoneTypes}
                                         valid={contactStore.validPhoneType}
                                         value={contactStore.phoneType} action={contactStore.setPhoneType}
-                                        size='medium-sm' placeholder='Seleccioná tipo' />
+                                        size='small' placeholder='Tipo' />
                                 </Input>
                                 <Input title="Cod. de pais">
                                     <TextInput 

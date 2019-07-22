@@ -116,7 +116,6 @@ class PaymentType extends React.Component {
                         selectedPromos={this.props.paymentMethod.selectedPromos}
                         //selectedPromos={this.state.selectedPromos}
                         rewards={true}
-    
                         selectMethodGroup={this.setMethodGroup}
                         setPromo={this.setPromo} /> : null}
                 <div className="module__component">

@@ -20,6 +20,9 @@ class CheckoutStore {
     @observable isRewards = false;
     @observable entityBank = false;
     @observable termAndConditions = false;
+    @observable clusterID = '';
+    @observable trackID = '';
+    
     
 
     @action setTermAndConditions = (TandCInput) => {
@@ -47,9 +50,12 @@ class CheckoutStore {
             }).then(
                 res => {
                     if(res.data){
+                        console.log(res.data);
                      //   console.log(res.data.data);
                      let { action, message, data } = res.data;
-                     let { fcb,activeComponents, infoProduct } = data;
+                     let { fcb,activeComponents, infoProduct, clusterId,trackId} = data;
+                     this.clusterID = clusterId;
+                     this.trackID = trackId;
                      switch (action) {
                             case '1':   
                                 this.activeComponents = activeComponents;
@@ -121,16 +127,18 @@ class CheckoutStore {
             console.log('CheckoutFormStore', CheckoutFormStore);
 
             console.log('payment',PaymentMethodStore)
-
+            
             */
-        /*   if(BillingStore.validFields && Contact.validFields && GuestsStore.validFields 
-            && (PaymentMethodStore.paymentMethodId>=0 && CheckoutFormStore.validFields)
-            && this.termAndConditions){
-    */
-            if(true){
+            let AC = this.activeComponents.map(ac=>ac.name);
+
+            if(this.termAndConditions 
+                && (AC.indexOf('FCB')>=0?(BillingStore.validFields && (PaymentMethodStore.paymentMethodId>=0 && CheckoutFormStore.validFields)):true) 
+                && (AC.indexOf('CONT')>=0? Contact.validFields:true)
+                && (AC.indexOf('PAXA')>=0||AC.indexOf('PAXF')>=0?GuestsStore.validFields:true)
+                ){
                 let body = {
-                    trackId: null,
-                    clusterId: null,
+                    trackId: this.clusterID,
+                    clusterId: this.trackID,
                     activeComponents:this.activeComponents,
                     fcb:{
                         financing:null,

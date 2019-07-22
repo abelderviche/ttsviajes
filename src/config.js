@@ -65,7 +65,7 @@ switch(env) {
     TRABAJA_URL    = 'http://dev.w3.ttsviajes.com/trabaja_con_nosotros';
     TTS_CROSSSELING_PRODS = "https://servicios.dev.ttsviajes.com:5500";
     SEND_EMAIL = "https://dev.ttsviajes.com/api/Paymentsemail";
-    TTS_CHECKOUT_SHOPPING = "https://servicios.dev.ttsviajes.com:8001/TTS.Shopping/api/shopping";
+    TTS_CHECKOUT_SHOPPING = "https://serviciospayment.dev.ttsviajes.com/Cobros.Main/TTS.Shopping/api/shopping";
 
     break;
   case 'test':
@@ -143,6 +143,7 @@ const ENV = {
   },
   CHECKOUT: {
     GETINFO:TTS_CHECKOUT_SHOPPING + '/checkoutinfo',
+    DO_TRANSACTION:TTS_CHECKOUT_SHOPPING + '/dotransaction',
     PM_FALLBACK: TTS_ALT + '/api/smr',
     PAYMENT_METHODS: TTS_CHECKOUT_WEBSERVICES + '/api/Aereos/checkoutSupportBasset/',
     PAYMENT_METHODS_HOTEL: TTS_CHECKOUT_WEBSERVICES_HOTEL + '/api/chas/checkoutSupportBasset/',

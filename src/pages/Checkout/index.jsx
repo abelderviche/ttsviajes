@@ -140,7 +140,7 @@ class Checkout extends React.Component {
         this.props.checkout.doPayment().then(
                 res=>{
                     const { action , message, data} = res;
-                    if(action==="3"){
+                    if(action==="3" ||action==="2"){
                         this.handleError(message);
                     }else{
                         window.location.href = data;

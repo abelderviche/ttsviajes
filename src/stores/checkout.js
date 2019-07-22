@@ -191,13 +191,19 @@ class CheckoutStore {
                     }
                 }
                 console.log('DoTransactionBody',body);
-                resolve(
-                    {
-                        "action": "3",
-                        "message": "Volver a intentar",
-                        "data": "Reintentar"
-                     }
-                    )   
+                
+                ApiClient.post(ENV.CHECKOUT.DO_TRANSACTION, body, {
+                    headers: ENV.CHECKOUT.REQUEST_HEADERS
+                }).then( res => {
+                    if(res.data){
+                        console.log(res.data);
+                        resolve(res.data);   
+                    }else{
+                        reject()
+                    }
+                 }
+                    
+                ).catch(e => console.log(e));
             }else{
                 reject({ invalidFields: true });
             }

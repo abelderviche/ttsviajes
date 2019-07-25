@@ -1,4 +1,4 @@
-import { action, observable, computed } from 'mobx';
+import { action, observable, computed,toJS } from 'mobx';
 
 import ApiClient from './api-client';
 import ENV from 'config';
@@ -35,7 +35,6 @@ class CheckoutStore {
 
        /* headers['Product'] = typeProduct.translate_plural;
         headers['sourcegds'] = Reservations.product.source;*/
-        this.points = points;
         let reqBody = {
             clusterId:clusterID,
             product:product,
@@ -50,17 +49,17 @@ class CheckoutStore {
             }).then(
                 res => {
                     if(res.data){
-                        console.log(res.data);
-                     //   console.log(res.data.data);
-                     let { action, message, data } = res.data;
-                     let { fcb,activeComponents, infoProduct, clusterId,trackId} = data;
-                     this.clusterID = clusterId;
-                     this.trackID = trackId;
-                     switch (action) {
+                    let { action, message, data } = res.data;
+                    let { fcb,activeComponents, infoProduct, clusterId,trackId} = data;
+                    this.clusterID = clusterId;
+                    this.trackID = trackId;
+                    switch (action) {
                             case '1':   
                                 this.activeComponents = activeComponents;
                                 this.infoProduct = infoProduct;
                                 this.isRewards = data.points.isRewards;
+                                this.points =  data.points.numPoint;
+
                                 if(fcb.financing.creditsCards.enabled){
                                     PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods, this.entityBank);
                                 }
@@ -113,76 +112,83 @@ class CheckoutStore {
                         reject(res.status)
                     }*/
                 }
-            ).catch(e => console.log(e));
+            ).catch(e => {console.log(e); reject()});
         });
     }
 
     @action doPayment = () =>{
         return new Promise((resolve, reject) => {
 
-           /* console.log('paymentmethod',PaymentMethodStore)
             console.log('BillingStore',BillingStore.validFields)
+            console.log('paymentmethod',PaymentMethodStore.paymentMethodId)
+            console.log('CheckoutFormStore', CheckoutFormStore.validFields);
             console.log('Contact',Contact.validFields)
             console.log('GuestsStore', GuestsStore.validFields);
-            console.log('CheckoutFormStore', CheckoutFormStore);
 
-            console.log('payment',PaymentMethodStore)
-            
-            */
             let AC = this.activeComponents.map(ac=>ac.name);
 
-            if(this.termAndConditions 
+             if(this.termAndConditions 
                 && (AC.indexOf('FCB')>=0?(BillingStore.validFields && (PaymentMethodStore.paymentMethodId>=0 && CheckoutFormStore.validFields)):true) 
                 && (AC.indexOf('CONT')>=0? Contact.validFields:true)
                 && (AC.indexOf('PAXA')>=0||AC.indexOf('PAXF')>=0?GuestsStore.validFields:true)
                 ){
+                    //if(true){
+                        // cambiar telefono 
                 let body = {
-                    trackId: this.clusterID,
-                    clusterId: this.trackID,
-                    activeComponents:this.activeComponents,
-                    fcb:{
-                        financing:null,
-                        billingData:{
-                            address: {
-                                state: BillingStore.state,
-                                city: BillingStore.city,
-                                country: "AR",
-                                street: BillingStore.street,
-                                number: BillingStore.number,
-                                floor:  BillingStore.floor,
-                                door:  BillingStore.apt,
-                                postal_code: BillingStore.zipCode
+                    trackId: this.trackID,
+                    clusterId: this.clusterID,
+                    product: this.infoProduct.type,
+                    loginHash : "75C892D3-5BA1-4AAC-AA5E-EFAC868456AC",
+                    datacomponent:{
+                        activeComponents:toJS(this.activeComponents),
+                        fcb:{
+                            financing:null,
+                            billingData:{
+                                fiscalData:{
+                                    address: {
+                                        state: BillingStore.state,
+                                        city: BillingStore.city,
+                                        country: "ARG",
+                                        street: BillingStore.street,
+                                        number: BillingStore.number,
+                                        floor:  BillingStore.floor,
+                                        door:  BillingStore.apt,
+                                        postalCode: BillingStore.zipCode,
+                                        phone: 1511111111
+                                    },
+                                    identification: {
+                                        number: BillingStore.cuit,
+                                        fiscalName: BillingStore.fiscalName,
+                                        type: BillingStore.fiscalIdType,
+                                        taxSituation: BillingStore.cuitType,
+                                        email: Contact.email
+                                    }
+                                }
                             },
-                            identification: {
-                                number: BillingStore.cuit,
-                                fiscalName: BillingStore.fiscalName,
-                                type: BillingStore.fiscalIdType,
-                                taxSituation: BillingStore.cuitType
-                            }
+                            cardsData:[]
                         },
-                        cardData:null
-                    },
-                    cont: {
-                        email: Contact.email,
-                        language: "es",
-                        telephone: {
-                            type: Contact.phoneType,
-                            country_code: Contact.countryCode,
-                            area_code: Contact.areaCode,
-                            number: Contact.phoneNumber
+                        cont: {
+                            email: Contact.email,
+                            language: "es",
+                            telephone: {
+                                type: Contact.phoneType,
+                                countryCode: Contact.countryCode,
+                                areaCode: Contact.areaCode,
+                                number: Contact.phoneNumber
+                            }
                         }
-                    },
+                    }
                 }
 
                 if(this.infoProduct.type==='accommodations'){
-                    body.pax = GuestsStore.guestsArray;
+                    body.datacomponent.paxA = toJS(GuestsStore.guestsArray);
                 }else{
-                    body.pax = GuestsStore.paxArray;
+                    body.datacomponent.paxF = toJS(GuestsStore.paxArray);
                 }
 
                 if(PaymentMethodStore.paymentMethodId >= 0){
-                    body.fcb.financing = {selectedPaymentMethodId:PaymentMethodStore.paymentMethodId};
-                    body.fcb.cardData = {
+                    body.datacomponent.fcb.financing = {selectedPaymentMethodId:PaymentMethodStore.paymentMethodId};
+                    body.datacomponent.fcb.cardsData[0] = {
                         creditCardNumber: CheckoutFormStore.creditCardNumber,
                         expirationDate: CheckoutFormStore.expirationDate,
                         securityCode: CheckoutFormStore.securityCode,
@@ -190,20 +196,20 @@ class CheckoutStore {
                         typeCard: "Credit"
                     }
                 }
+                
+                console.log('urldotransaction',ENV.CHECKOUT.DO_TRANSACTION)
                 console.log('DoTransactionBody',body);
+                console.log('DoRequestHeaders',ENV.CHECKOUT.REQUEST_HEADERS);
+
+
                 
                 ApiClient.post(ENV.CHECKOUT.DO_TRANSACTION, body, {
                     headers: ENV.CHECKOUT.REQUEST_HEADERS
                 }).then( res => {
-                    if(res.data){
-                        console.log(res.data);
                         resolve(res.data);   
-                    }else{
-                        reject()
-                    }
-                 }
-                    
-                ).catch(e => console.log(e));
+                }).catch(
+                    err => reject(err)
+                )
             }else{
                 reject({ invalidFields: true });
             }

@@ -4,6 +4,10 @@ import { inject, observer } from 'mobx-react';
 const formatPrice = (price) => {
     return price.toFixed(2).toString().replace(',', '.').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+const formatPoints = (price) => {
+    return price.toFixed(0).toString().replace(',', '.').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 
 @inject('paymentMethod') @observer
 
@@ -29,7 +33,7 @@ class Charges extends React.Component {
         return (
             <div className="charges__line">
                 <span>{text}</span>
-                <span>{points} Puntos</span>
+                <span>{formatPoints(Number(points))} Puntos</span>
             </div>
         )
     }

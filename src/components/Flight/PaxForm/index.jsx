@@ -49,17 +49,17 @@ class PaxForm extends Component {
         this.setState({year:value});
     }
 
-    setGender = (value)=>{
-        this.props.guestsStore.paxArray[this.props.keyData].gender=value;
+    setSex = (value)=>{
+        this.props.guestsStore.paxArray[this.props.keyData].sex=value;
     }
 
     getDate = () =>{
         if(this.state.year && this.state.month && this.state.day && moment(`${this.state.year}${this.state.month}${this.state.day}`,'YYYYMMDD').isValid()){
             let date = moment(`${this.state.year}${this.state.month}${this.state.day}`,'YYYYMMDD').format('YYYY-MM-DD');
-            this.props.guestsStore.paxArray[this.props.keyData].birth = date;
+            this.props.guestsStore.paxArray[this.props.keyData].birthDate = date;
             return date;
         }
-        this.props.guestsStore.paxArray[this.props.keyData].birth = '';
+        this.props.guestsStore.paxArray[this.props.keyData].birthDate = '';
         return '';
     }
 
@@ -155,11 +155,11 @@ class PaxForm extends Component {
                         
                         <Input title="Sexo">
                             <DropdownInput 
-                                defaultValue={sexType.find(s=>s.value===passenger.gender)}
+                                defaultValue={sexType.find(s=>s.value===passenger.sex)}
                                 forceValidation={this.props.sendAttempted}
                                 options={sexType}
-                                valid={guestsStore.validGender(passenger.gender)}
-                                value={passenger.gender} action={this.setGender}
+                                valid={guestsStore.validSex(passenger.sex)}
+                                value={passenger.sex} action={this.setSex}
                                 size='medium-sm' placeholder='Sexo' />
                         </Input>
                     </div>

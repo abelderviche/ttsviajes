@@ -27,16 +27,16 @@ class Pax {
     @persist @observable firstName;
     @persist @observable lastName;
     @persist @observable nationality;
-    @persist @observable birth;
-    @persist @observable gender;
+    @persist @observable birthDate;
+    @persist @observable sex;
     @persist @observable type;
     @persist('object', DocTypeObj) @observable document;
-    constructor(firstName,lastName,docType,docNumber,nationality,birth,gender,type){
+    constructor(firstName,lastName,docType,docNumber,nationality,birthDate,sex,type){
         this.firstName=firstName;
         this.lastName = lastName;
         this.nationality = nationality;
-        this.birth = birth;
-        this.gender = gender;
+        this.birthDate = birthDate;
+        this.sex = sex;
         this.type = type;
         this.document = new DocTypeObj(docType,docNumber);
     }
@@ -56,9 +56,8 @@ class GuestsStore {
     @action validPax = (pax) =>{
         return this.validName(pax.firstName).valid && this.validLastName(pax.lastName).valid 
         && this.validDocType(pax.document.type).valid && this.validDocNumber(pax.document.number).valid 
-        && this.validNationality(pax.nationality).valid && this.validBirthdate(pax.birth).valid 
-        && this.validGender(pax.gender).valid;
-        //return this.validName(guest.name).valid; 
+        && this.validNationality(pax.nationality).valid && this.validBirthdate(pax.birthDate).valid 
+        && this.validSex(pax.sex).valid;
     }
 
     @computed get validFields(){
@@ -71,11 +70,15 @@ class GuestsStore {
     }
 
     @action setGuestArray = (guestArr,valid) =>{
+        this.paxArray = [];
+        this.guestsArray = []
         this.guestsArray = this.guestsArray.length>0 && !valid ?this.guestsArray : guestArr.map(g => new Guest(g.firstName,g.lastName,g.document.type,g.document.number))
     }
 
     @action setPaxArray = (paxArr,valid) =>{
-        this.paxArray = this.paxArray.length>0 && !valid ?this.paxArray : paxArr.map(p => new Pax(p.firstName,p.lastName,p.document?p.document.type:null,p.document?p.document.number:null,p.nationality,p.birth,p.gender,p.type))
+        this.paxArray = [];
+        this.guestsArray = []
+        this.paxArray = this.paxArray.length>0 && !valid ?this.paxArray : paxArr.map(p => new Pax(p.firstName,p.lastName,p.document?p.document.type:null,p.document?p.document.number:null,p.nationality,p.birthDate,p.sex,p.type))
     }
 
     @action validName = (name) =>{
@@ -102,8 +105,8 @@ class GuestsStore {
         return validator(date, { required: true })
     }
     
-    @action validGender = (gender) =>{
-        return validator(gender, { required: true })
+    @action validSex = (sex) =>{
+        return validator(sex, { required: true })
     }
     
 

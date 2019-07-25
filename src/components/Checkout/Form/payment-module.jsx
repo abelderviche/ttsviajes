@@ -11,7 +11,7 @@ class PaymentModule extends React.Component {
         return (
             <div>
                 <div className="module">
-                    <div className="module__top-headline">¿Cómo querés pagar? {this.props.sendAttempted && !paymentMethodId?
+                    <div className="module__top-headline">¿Cómo querés pagar? {this.props.sendAttempted && paymentMethodId===undefined  ?
                     <div className="module__input-errors"><span>Debe Seleccionar un medio de pago</span></div>:null
                     }</div>
                    

@@ -1,4 +1,4 @@
-import { action, observable, computed } from 'mobx';
+import { action, observable, computed, toJS } from 'mobx';
 
 import ApiClient from './api-client';
 import ENV from 'config';
@@ -109,7 +109,7 @@ const addOrPushBines = (list,creditcard,dues,bines) =>{
             bines:bines 
         })
     }else{
-        prevCCBin.bines.concat(bines);
+      list.find(cc=>cc.card === creditcard && cc.dues === dues).bines = list.find(cc=>cc.card === creditcard && cc.dues === dues).bines.concat(toJS(bines));
     }
 }
 
@@ -153,7 +153,7 @@ const flattenResponseRewards = (paymentMethods, addedPrice) => {
                                 paymentMethodId: promo.id
                             }]
                         };  
-                        addOrPushPromo(hsbc, isocode, creditCard, order, bankPromo, 9);
+                        addOrPushPromo(hsbc, isocode, creditCard, order, bankPromo, 12);
 
                     })
                 }

@@ -16,10 +16,6 @@ import moment from 'moment';
 
 import Responsive from 'react-responsive-decorator';
 
-const formatPrice = (price) => {
-    return price.toFixed(0).toString().replace(',', '.').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
 @inject('checkout', 'reservations', 'billing','assistcard') @observer
 class Checkout extends React.Component {
 
@@ -48,7 +44,7 @@ class Checkout extends React.Component {
         const clusterID = this.props.match.params.id;
         const product = this.props.match.params.product;
         this.setState({productType:product})
-        const points = this.props.match.params.sellPoints?formatPrice(Number(this.props.match.params.sellPoints)):0;
+        const points = this.props.match.params.sellPoints;
         const idGetPoints = this.props.match.params.idGetPoints;
         const channelMotor = this.props.match.params.channelMotor;
         /*const queryString = this.props.location.search!==''?parseQuery(this.props.location.search):null;
@@ -73,7 +69,7 @@ class Checkout extends React.Component {
                     error: {
                         title: "Ocurrió un error",
                         message: "Vuelva a intentarlo",
-                        critical: "critical"
+                        critical: true
                     }
                 })
            }
@@ -143,17 +139,10 @@ class Checkout extends React.Component {
                     if(action==="3" ||action==="2"){
                         this.handleError(message);
                     }else{
+                        this.setState({loading:false})
                         window.location.href = data;
-                    }
-                  /*  
-                    if(action===1 || action === 4){
-                        console.log('PERFECTO')
-                    }else if(action===3){
-                        this.handleError(message);
-                    }else{
 
                     }
-                    */
                 },
                 err=>{
                     if (err && err.invalidFields) {
@@ -168,8 +157,8 @@ class Checkout extends React.Component {
     render() {
         const { error, availablePayment, loading, retrievingPms, productType,loadingReservation,reservationCode, checkContact} = this.state;
       return (
+                error && error.critical?<Error {...this.state.error}/>:
                 !loadingReservation?
-                    error && error.critical?<Error {...this.state.error}/>:
                     <div id="checkout-container">
                         <div className="section-title"><span>¡Asegurá tu lugar ahora!</span></div>
                         <div className="section-checkout">

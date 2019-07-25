@@ -169,9 +169,7 @@ class ReservationsStore {
                 }
                 let headers = ENV.CHECKOUT.REQUEST_HEADERS;
                 headers['sourcegds'] = this.product.source;
-                /*console.log('data',data);
-                console.log('headers',headers);
-                */
+
                   ApiClient.post(url, data, {
                     crossDomain: true,
                     headers: headers

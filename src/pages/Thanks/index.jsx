@@ -1,12 +1,14 @@
 import React from "react";
 import ReactGA from 'react-ga';
-import { inject, observer } from "mobx-react";
+
+import { inject, observer} from "mobx-react";
 import Responsive from 'react-responsive-decorator';
 
 import {SegmentThanks} from 'components/Flight/Summary/segment';
 import Loader from 'components/Global/loader';
 import Detail from 'components/Hotel/Summary/detail.1';
 import PaymentInfo from 'components/Thanks/payment-info';
+import PaymentInfoRewards from 'components/Thanks/payment-info-rewards';
 import moment from 'moment-timezone';
 import ENV from 'config';
 
@@ -330,16 +332,21 @@ class Thanks extends React.Component {
                         </div>
                         {this.state.showSubtitle?this.renderSubtitle(payments, reservation.contact):null}
                         <div className="thanks__reservation">
-                            {   this.props.reservations.product?
-                                    <PaymentInfo 
+                            {   this.props.reservations.product && payments.find(c => c.payment_type.type==='REWARDS') ?
+                                    <PaymentInfoRewards 
                                         payments={payments} 
                                         mobile={this.state.isMobile}
                                         productName={typeProduct.product_name}
-                                        reservationTotal={ typeProduct.product_name === 'ACCOMMODATION'?this.props.reservations.reservation.products[0].price.total:this.props.reservations.product.cluster.price.total}
                                         hasAssistcard={this.state.hasAssistcard}
                                     />
                                     //this.renderGeneralInfo(payments, this.state.isMobile,typeProduct.product_name)
-                                :null}
+                                :this.props.reservations.product?<PaymentInfo 
+                                payments={payments} 
+                                mobile={this.state.isMobile}
+                                productName={typeProduct.product_name}
+                                reservationTotal={ typeProduct.product_name === 'ACCOMMODATION'?this.props.reservations.reservation.products[0].price.total:this.props.reservations.product.cluster.price.total}
+                                hasAssistcard={this.state.hasAssistcard}
+                            />:null}
                             {!this.state.isMobile ? this.renderPnrBox(reservation_code, '',reservationProduct.type) : null}
                         </div>
                         {this.state.isMobile ? this.renderPnrBox(reservation_code, 'margin-bottom-16',reservationProduct.type) : null}

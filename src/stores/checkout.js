@@ -1,4 +1,5 @@
 import { action, observable, computed,toJS } from 'mobx';
+import Cookies from 'js-cookie';
 
 import ApiClient from './api-client';
 import ENV from 'config';
@@ -22,6 +23,7 @@ class CheckoutStore {
     @observable termAndConditions = false;
     @observable clusterID = '';
     @observable trackID = '';
+    @observable loginHash = null;
     
     
 
@@ -32,6 +34,9 @@ class CheckoutStore {
     @action retrieveCheckoutInfo = (clusterID, product,idGetPoints,points) => {
         let headers = ENV.CHECKOUT.REQUEST_HEADERS;
         this.entityBank = headers.subchannel.search('hsbc') >= 0? true:false;
+
+        //console.log(Cookies.get('ID-TTS-R'))
+        this.loginHash = Cookies.get('ID-TTS-R');
 
        /* headers['Product'] = typeProduct.translate_plural;
         headers['sourcegds'] = Reservations.product.source;*/
@@ -138,7 +143,7 @@ class CheckoutStore {
                     trackId: this.trackID,
                     clusterId: this.clusterID,
                     product: this.infoProduct.type,
-                    loginHash : "75C892D3-5BA1-4AAC-AA5E-EFAC868456AC",
+                    loginHash : this.loginHash,
                     datacomponent:{
                         activeComponents:toJS(this.activeComponents),
                         fcb:{
@@ -196,7 +201,7 @@ class CheckoutStore {
                         typeCard: "Credit"
                     }
                 }
-                
+
                 console.log('urldotransaction',ENV.CHECKOUT.DO_TRANSACTION)
                 console.log('DoTransactionBody',body);
                 console.log('DoRequestHeaders',ENV.CHECKOUT.REQUEST_HEADERS);
@@ -206,6 +211,7 @@ class CheckoutStore {
                 ApiClient.post(ENV.CHECKOUT.DO_TRANSACTION, body, {
                     headers: ENV.CHECKOUT.REQUEST_HEADERS
                 }).then( res => {
+                        console.log("respuesta do transaction", res);
                         resolve(res.data);   
                 }).catch(
                     err => reject(err)

@@ -25,6 +25,12 @@ class Form extends React.Component {
         const rewards = checkout.entityBank;
         return (
             <div className="form">
+                {checkout.isRewards?
+                    <div className="checkout-disclaimer">
+                        <img src={require('assets/img/disclaimer_checkout.png')} alt="Error" />
+                        <div className="checkout-disclaimer__message">AVISO DE NO CANCELACION (FALTA DEFINIR TEXTO)</div>
+                    </div>
+                :null}
                 {
                     error  ?
                     <Error {...error}/>

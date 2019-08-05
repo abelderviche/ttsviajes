@@ -37,6 +37,7 @@ switch(env) {
     TTS_CHECKOUT_WEBSERVICES_HOTEL = DEV_API;//'http://servicios.qattsviajes.com:9001';
     TTS_CDN_BASE = 'https://cdn.dev.ttsviajes.com';//DEV_API;
     BASSET = 'https://api.basset.ws';
+    //BASSET = 'https://dev.api.basset.ws';
     BASSET_FLIGHTS = 'https://search.ttsviajes.com';//https://dev.tts-viajes.basset.la';
     TTS_SERVICES = "https://servicios.dev.ttsviajes.com:8300";
     CORPORATE_URL = 'http://dev.corporate.ttsviajes.com/'; 
@@ -56,7 +57,7 @@ switch(env) {
     TTS_CHECKOUT_WEBSERVICES = 'https://serviciospayment.dev.ttsviajes.com/ConcentradorAereos';//'http://servicios.qattsviajes.com:9001';
     TTS_CHECKOUT_WEBSERVICES_HOTEL = 'https://serviciospayment.dev.ttsviajes.com/CMP';
     TTS_CDN_BASE = 'https://cdn.dev.ttsviajes.com';//DEV_API;
-    BASSET = 'https://api.basset.ws';
+    BASSET = 'https://dev.api.basset.ws';
     BASSET_FLIGHTS = 'https://search.ttsviajes.com';//https://dev.tts-viajes.basset.la';
     TTS_SERVICES = "https://servicios.dev.ttsviajes.com:8300";
     CORPORATE_URL = 'http://dev.corporate.ttsviajes.com/'; 
@@ -76,7 +77,7 @@ switch(env) {
     TTS_CHECKOUT_WEBSERVICES = 'https://serviciospayment.qa.ttsviajes.com/ConcentradorAereos';//'http://servicios.qattsviajes.com:9001';
     TTS_CHECKOUT_WEBSERVICES_HOTEL = 'https://serviciospayment.qa.ttsviajes.com/CMP';
     TTS_CDN_BASE = 'https://cdn.qa.ttsviajes.com/';
-    BASSET = 'https://api.basset.ws';//'https://dev.api.basset.ws';
+    BASSET = 'https://dev.api.basset.ws';
     BASSET_FLIGHTS = 'https://search.ttsviajes.com';//'https://dev.tts-viajes.basset.la';
     TTS_SERVICES = "https://servicios.qa.ttsviajes.com:8300";
     CORPORATE_URL = 'http://corporate.qattsviajes.com/'; 

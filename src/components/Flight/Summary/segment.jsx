@@ -3,24 +3,6 @@ import moment from 'moment-timezone';
 import SegmentDetail from './segment-detail';
 moment.tz.setDefault("GMT");
 
-const  renderLugagge = (luggage) =>{
-    if(luggage && luggage.length >0){
-        return luggage.map((l,k) =>
-            <div className="flight-luggage" key={k}>
-                <img alt={`Pieza de ${l.weight} kilos`} key={`${l.weight}`} className="leg-summary__luggage-icon" src={require(`assets/img/flights/equipaje.png`)} />
-                <span>{l.quantity} equipaje{l.quantity>1?'s':''} de {l.weight} kg para despachar</span>
-            </div>
-        )
-    }else{
-        return (
-            <div className="flight-luggage">
-                <img alt="No incluye equipaje para despachar" className="leg-summary__luggage-icon" src={require(`assets/img/flights/no-luggage.svg`)} />
-                <span>No incluye equipaje para despachar</span>
-            </div>
-        )
-    }
-}
-
 const FlightCityDetail = ({code,name}) =>(
     <div className="city">
         <div className="code">
@@ -43,12 +25,26 @@ const FlightDateDetail = ({hour,date}) =>(
 );
 const Luggage = ({luggage}) =>{
     return(
-        <div className="segment-luggage">
-            <div className="flight-luggage" >
-                <img alt="Equipaje de mano" className="leg-summary__luggage-icon" src={require('assets/img/flights/equipaje-mano.png')} />1 (un) equipaje de mano
+        luggage.map((l,k) =>
+
+            <div className="segment-luggage">
+                {l.carryon?
+                <div className="flight-luggage" >
+                    <img alt="Equipaje de mano" className="leg-summary__luggage-icon" src={require('assets/img/flights/equipaje-mano.png')} />1 (un) equipaje de mano
+                </div>
+                :null}
+                {l.quantity && l.weight?
+                    <div className="flight-luggage" key={k}>
+                        <img alt={`Pieza de ${l.weight} kilos`} key={`${l.weight}`} className="leg-summary__luggage-icon" src={require(`assets/img/flights/equipaje.png`)} />
+                        <span>{l.quantity} equipaje{l.quantity>1?'s':''} de {l.weight} kg para despachar</span>
+                    </div>
+                :
+                <div className="flight-luggage">
+                    <img alt="No incluye equipaje para despachar" className="leg-summary__luggage-icon" src={require(`assets/img/flights/no-luggage.svg`)} />
+                    <span>No incluye equipaje para despachar</span>
+                </div>}
             </div>
-            {renderLugagge(luggage)}
-        </div>
+        )
     )
 }
 
@@ -84,6 +80,7 @@ class Segment extends React.Component {
         const { data, type, pos, flat, showExtendedDetail} = this.props;
         const option = data.options[0];
         const plusDays = moment(option.arrival_date).diff(moment(option.departure_date), 'days');
+        console.log(option.baggages);
         return (
             <div className={`segment ${type?type:'inbound'}`}>
                 <FlightDetail 
@@ -109,10 +106,11 @@ class Segment extends React.Component {
                     hour     =   {option.arrivalTime}
                     date     =   {moment(option.arrivalDate).format('DD MMM Y')} 
                 />
-                
-                <Luggage 
-                    luggage={option.baggageAllowance}
-                />
+                {option.baggages?
+                    <Luggage 
+                        luggage={option.baggages}
+                    />
+                :null}
             </div>
            
         )
@@ -148,7 +146,7 @@ class SegmentThanks extends React.Component {
                 departureTime={option.arrival_time}
                 arrivalTime={option.arrival_time}
                 legs={option.legs}
-                luggage={option.baggage_allowance}
+                luggage={option.baggages}
                 duration={option.duration}
                 plusDays={plusDays} 
                 departureDate={moment(data.departure_date).format('LLLL')}

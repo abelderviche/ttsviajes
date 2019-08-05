@@ -26,7 +26,7 @@ const  renderLugagge = (luggage) =>{
     }
 }
 
-const SegmentDetailExtended = ({legs, luggage,from,to, departureDate, arrivalDate}) => {
+const SegmentDetailExtended = ({legs, luggage=[],from,to, departureDate, arrivalDate}) => {
     const stops = legs.length - 1;
     return (
         <div className="segment__detail-extended">
@@ -54,14 +54,26 @@ const SegmentDetailExtended = ({legs, luggage,from,to, departureDate, arrivalDat
                                     <div className="duration"><span>Duración: {durationToString(leg.duration)}</span></div>
                                     <div className="cabinname">Clase:{leg.cabin_type.name}</div>
                                     <div className="luggage">
+                                    {luggage.map((l,i) => 
+                                        <div>
+                                            {l.carryon?
+                                                <div className="flight-lugagge" >
+                                                <img alt="Equipaje de mano" className="leg-summary__luggage-icon" src={require('assets/img/flights/hand-luggage.svg')} />
+                                                <span> 1 (un) equipaje de mano</span>
 
-                                    <img alt="Equipaje de mano" className="leg-summary__luggage-icon" src={require('assets/img/flights/hand-luggage.svg')} />1 (un) equipaje de mano
-                                    {/*luggage.map(l => {
-                                        return Array(l.quantity).fill().map((_, i) => 
-                                            <img alt={`Pieza de ${l.weight} kilos`} key={`${l.weight}-${i}`} className="leg-summary__luggage-icon" src={require(`assets/img/flights/luggage.svg`)} />
-                                        )
-                                    })*/}
-                                    {renderLugagge(luggage)}
+                                            </div>
+                                            :null}
+                                            {
+                                                l.quantity&&l.weight?
+                                                <div className="flight-lugagge" key={`lugg-`}>
+                                                    <img alt={`Pieza de ${l.weight} kilos`} key={`${l.weight}`} className="leg-summary__luggage-icon" src={require(`assets/img/flights/luggage.svg`)} />
+                                                    <span>{l.quantity} equipaje/s de {l.weight} kg para despachar</span>
+                                                </div>
+                                                :null
+                                            }
+                                        </div>
+                                    )}
+
                                     </div>
 
                                 </div>

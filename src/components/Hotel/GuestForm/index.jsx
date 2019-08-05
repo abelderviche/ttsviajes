@@ -44,7 +44,7 @@ class GuestForm extends Component {
         ]
         return(
             <div className={`guest-form module ${this.state.collapsed ? 'guest-form--collapsed' : ''}`} >
-                <div className="guest-form-headline" onClick={this.toggleCollapsed}>Habitacion {this.props.keyData}</div>
+                <div className="guest-form-headline" onClick={this.toggleCollapsed}>Habitación {this.props.keyData}</div>
                 <div className={`guest-form__form-container ${!this.state.collapsed ? 'guest-form__hidden' : ''}`}>
                     <div className="module__top-advertise">Será registrado como titular de la reserva de esta habitación.</div>
                     <div className="module__payment-info">

@@ -28,3 +28,20 @@
         color: $grey-dark;
     }
 }
+.checkout-disclaimer{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    margin-bottom: 1.6rem;
+    padding: 1rem 2.4rem;
+    background-color: rgba(208, 2, 27, 0.1);
+    align-items: center;
+    img{
+        height: 3.5rem;
+    }
+    &__message {
+        font-size: 1.2rem;
+        color: $grey-dark;
+        margin-left: 1.6rem;
+    }
+}

@@ -697,7 +697,8 @@ body {
           justify-content: space-around;
           font-size: 1rem;
           height: 2rem;
-          align-items: center; }
+          align-items: center;
+          margin-top: 1rem; }
           .flight-box__section .segments .segment .segment-luggage .flight-luggage {
             display: flex; }
             .flight-box__section .segments .segment .segment-luggage .flight-luggage img {
@@ -1748,6 +1749,21 @@ body {
     font-size: 1.4rem;
     color: #4a4a4a; }
 
+.checkout-disclaimer {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  margin-bottom: 1.6rem;
+  padding: 1rem 2.4rem;
+  background-color: rgba(208, 2, 27, 0.1);
+  align-items: center; }
+  .checkout-disclaimer img {
+    height: 3.5rem; }
+  .checkout-disclaimer__message {
+    font-size: 1.2rem;
+    color: #4a4a4a;
+    margin-left: 1.6rem; }
+
 .checkout-loader {
   width: 100%;
   height: 100%;
@@ -1943,7 +1959,7 @@ body {
 
 .guest-form {
   border: none;
-  padding: 0 3rem;
+  padding-left: 1.6rem;
   transition: max-height .5s;
   box-shadow: none; }
   @media only screen and (max-width: 37.5em) {
@@ -1967,7 +1983,7 @@ body {
     max-height: 0; }
 
 .contact-form-section {
-  padding: 0 3rem 3rem 3rem;
+  padding: 0 1rem 3rem 1.6rem;
   width: 100%;
   display: flex;
   flex-wrap: wrap; }

@@ -136,7 +136,7 @@ class Checkout extends React.Component {
         this.props.checkout.doPayment().then(
                 res=>{
                     const { action , message, data} = res;
-                    if(action==="3" ||action==="2"){
+                    if(action==="3"){
                         this.handleError(message);
                     }else{
                         this.setState({loading:false})

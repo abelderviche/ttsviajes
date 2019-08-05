@@ -44,12 +44,19 @@ const LegSummary = ({ from, to, departureTime, arrivalTime, plusDays, stops, lug
                 : null
             }
             <div className="leg-summary__luggage">
-                {luggage.map(l => {
-                    return Array(l.quantity).fill().map((_, i) => 
-                        <img alt={`Pieza de ${l.weight} kilos`} key={`${l.weight}-${i}`} className="leg-summary__luggage-icon" src={require(`assets/img/flights/luggage.svg`)} />
-                    )
-                })}
-                <img alt="Equipaje de mano" className="leg-summary__luggage-icon" src={require('assets/img/flights/hand-luggage.svg')} />
+                
+                {luggage.map(l => 
+                    <div>
+                        {l.carryon?
+                            <img alt="Equipaje de mano" className="leg-summary__luggage-icon" src={require('assets/img/flights/hand-luggage.svg')} />
+                        :null}
+                        {
+                            l.quantity&&l.weight?Array(l.quantity).fill().map((_, i) => 
+                                <img alt={`Pieza de ${l.weight} kilos`} key={`${l.weight}-${i}`} className="leg-summary__luggage-icon" src={require(`assets/img/flights/luggage.svg`)} />
+                            ):null
+                        }
+                    </div>
+                )}
             </div>
         </div>
     )

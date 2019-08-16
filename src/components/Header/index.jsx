@@ -65,7 +65,7 @@ class Header extends React.Component {
   }
   render(){
     return(
-      <div style={{height: '69px'}}>
+      <div>
           <div dangerouslySetInnerHTML={this.getHtml()} ></div>
       </div>
     )

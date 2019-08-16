@@ -17,7 +17,6 @@ class PaymentInfo extends React.Component {
     //    let reservationTotal = this.props.reservations.product.cluster.price.total;
        
         let {payments, mobile,productName,reservationTotal,hasAssistcard} = this.props;
-        console.log(payments);
         const paidProducts = payments.reduce((acum,val,i)=>{
             if(val.payment_type.definition.commerce && val.payment_type.definition.commerce.includes(('Asistencia'))){
                 acum['assistance'] = parseFloat((acum['assistance'] + val.amount.total).toFixed(2));

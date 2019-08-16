@@ -32,10 +32,15 @@ class Thanks extends React.Component {
     state = {
         isMobile: false,
         hasAssistcard:false,
-        showSubtitle:false
+        showSubtitle:false,
+        actionCode: null
     }
 
     componentDidMount() {
+        this.setState({
+            actionCode:this.props.match.url.split('/').pop()
+        })
+
         const { flight, reservation } = this.props.reservations;
         if (!flight || !reservation) {
             this.props.reservations.retrieveReservation(this.props.match.params.id).then(
@@ -332,21 +337,41 @@ class Thanks extends React.Component {
                         </div>
                         {this.state.showSubtitle?this.renderSubtitle(payments, reservation.contact):null}
                         <div className="thanks__reservation">
-                            {   this.props.reservations.product && payments.find(c => c.payment_type.type==='REWARDS') ?
+                            {   //SI EL action es 4, procesando pago
+                                this.state.actionCode==="4"?
+                                <div className={`thanks__box thanks__payment`}>
+                                     <div className="thanks__detailspayments--product">
+                                        <div className="headline">
+                                            <img alt="flight" src={require('assets/img/flights/outbound.svg')} className="thanks__detailspa--icon" />
+                                            {typeProduct.product_name==='FLIGHT'?'AÉREO':'HOTEL'}
+                                        </div>
+                                        <div className="cobro--error">
+                                            No pudimos realizar la operación
+                                        </div>
+                                    </div>
+                                    <div className="thanks__detailspayments--error">
+                                        Te estaremos contactando para completar la operación
+                                    </div>
+                                </div>
+                                :
+                                // busco si tiene data product y si en los pagos son rewards
+                                this.props.reservations.product && payments.find(c => c.payment_type.type==='REWARDS') ?
                                     <PaymentInfoRewards 
                                         payments={payments} 
                                         mobile={this.state.isMobile}
                                         productName={typeProduct.product_name}
                                         hasAssistcard={this.state.hasAssistcard}
                                     />
-                                    //this.renderGeneralInfo(payments, this.state.isMobile,typeProduct.product_name)
-                                :this.props.reservations.product?<PaymentInfo 
-                                payments={payments} 
-                                mobile={this.state.isMobile}
-                                productName={typeProduct.product_name}
-                                reservationTotal={ typeProduct.product_name === 'ACCOMMODATION'?this.props.reservations.reservation.products[0].price.total:this.props.reservations.product.cluster.price.total}
-                                hasAssistcard={this.state.hasAssistcard}
-                            />:null}
+                                    //si no es rewards entra por aca
+                                :this.props.reservations.product?
+                                <PaymentInfo 
+                                    payments={payments} 
+                                    mobile={this.state.isMobile}
+                                    productName={typeProduct.product_name}
+                                    reservationTotal={ typeProduct.product_name === 'ACCOMMODATION'?this.props.reservations.reservation.products[0].price.total:this.props.reservations.product.cluster.price.total}
+                                    hasAssistcard={this.state.hasAssistcard}
+                                />:
+                                null}
                             {!this.state.isMobile ? this.renderPnrBox(reservation_code, '',reservationProduct.type) : null}
                         </div>
                         {this.state.isMobile ? this.renderPnrBox(reservation_code, 'margin-bottom-16',reservationProduct.type) : null}

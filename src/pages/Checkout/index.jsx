@@ -4,6 +4,7 @@ import { inject, observer } from "mobx-react";
 import { animateScroll } from 'react-scroll'
 import {Form} from 'components/Checkout';
 import Error from 'components/Checkout/Error';
+import ErrorRedirect from 'components/Checkout/Error/error-redirect';
 
 
 
@@ -54,9 +55,17 @@ class Checkout extends React.Component {
 
         this.props.checkout.retrieveCheckoutInfo(clusterID, product,idGetPoints,points).then(
            (res)=>{
-               if(res.action === '1'){
+               if(Number(res.action)  === 1){
                    this.setState({loadingReservation:false})
-                   
+               }else if(Number(res.action) === 2){
+                        this.setState({
+                            error: {
+                                title: "Ocurrió un error",
+                                message: res.message,
+                                url: res.url
+                            }
+                        });
+                        animateScroll.scrollToTop(500);
                 }else{
                     console.log("ocurrio un error", res);
                     this.handleError('Ocurrio un error',`Action: ${res.action} | Message:${res.message} | Url:${res.url}`,true);
@@ -114,8 +123,6 @@ class Checkout extends React.Component {
                     critical: critical
                 }
             });
-            //console.log(document.getElementsByClassName("checkout-error")[0].offsetTop)
-
             /**
              * check if hay inputs errors
             */
@@ -132,15 +139,28 @@ class Checkout extends React.Component {
 
     doPayment = () => {
         this.setState({loading:true})
-    
         this.props.checkout.doPayment().then(
                 res=>{
                     const { action , message, data} = res;
-                    if(action==="3"){
+                    if(Number(action)===3){
                         this.handleError(message);
+                    }else if(Number(action)===2){
+                        setTimeout(() => {
+                            this.setState({ loading: false });
+                            this.setState({
+                                error: {
+                                    title: "Ocurrió un error",
+                                    message: message,
+                                    url: data
+                                }
+                            });
+                            animateScroll.scrollToTop(500);
+                        }, 1000);
                     }else{
                         this.setState({loading:false})
-                        window.location.href = data;
+                        if(data!==''){
+                            window.location.href = data;
+                        }
 
                     }
                 },
@@ -158,6 +178,7 @@ class Checkout extends React.Component {
         const { error, availablePayment, loading, retrievingPms, productType,loadingReservation,reservationCode, checkContact} = this.state;
       return (
                 error && error.critical?<Error {...this.state.error}/>:
+                error && error.url?<ErrorRedirect {...this.state.error} />:
                 !loadingReservation?
                     <div id="checkout-container">
                         <div className="section-title"><span>¡Asegurá tu lugar ahora!</span></div>

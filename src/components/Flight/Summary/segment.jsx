@@ -80,7 +80,6 @@ class Segment extends React.Component {
         const { data, type, pos, flat, showExtendedDetail} = this.props;
         const option = data.options[0];
         const plusDays = moment(option.arrival_date).diff(moment(option.departure_date), 'days');
-        console.log(option.baggages);
         return (
             <div className={`segment ${type?type:'inbound'}`}>
                 <FlightDetail 

@@ -14,7 +14,6 @@ class HotelSummary extends React.Component {
     render() {
         const { collapsed } = this.state;
         const { detail } = this.props.checkout.infoProduct;
-        //console.log(document.getElementsByClassName('charges')[0]?document.getElementsByClassName('charges')[0].offsetHeight:null);
 
 
         return (

@@ -5,7 +5,6 @@ const formatPrice = (price) => {
     return price.toFixed(2).toString().replace(',', '.').replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 const formatPoints = (price) => {
-    console.log(price);
     return price?price.toFixed(0).toString().replace(',', '.').replace(/\B(?=(\d{3})+(?!\d))/g, ","):null;
 }
 const CARDS = {

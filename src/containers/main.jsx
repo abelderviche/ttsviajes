@@ -39,12 +39,26 @@ class Main extends React.Component {
                     <Header route={this.props.match.url}/>
                     <main>
                         <Switch>
-                            <Route exact path='/thanks/:id' component={Thanks} />
-                            <Route exact path='/:subchannel/thanks/:id' component={Thanks} /> 
-                           <Route exact path='/checkout/:product/:id/:channelMotor' component={Checkout} />
-                           <Route exact path='/checkout/:product/:id/:idGetPoints/:sellPoints/:channelMotor' component={Checkout} />
-                           <Route exact path='/:subchannel/checkout/:product/:id/:channelMotor' component={Checkout} />
-                           <Route exact path='/:subchannel/checkout/:product/:id/:idGetPoints/:sellPoints/:channelMotor' component={Checkout} />
+                            <Route exact path='/storage/:clientID/:action' render={(props) => {
+                                    if(props.match.params.action === 'd') {
+                                        localStorage.removeItem('ID-TTS-R');
+                                    } else {
+                                        localStorage.setItem('ID-TTS-R', props.match.params.clientID);
+                                    }
+                                    //window.parent.postMessage('successfuly authenticated', '');
+                                    return <div>SETEANDO LS</div>;
+                                }
+                            } />
+
+                            
+                            <Route exact path='/thanks/:id/1' component={Thanks} />
+                            <Route exact path='/:subchannel/thanks/:id/1' component={Thanks} /> 
+                            <Route exact path='/thanks/:id/4' component={Thanks} />
+                            <Route exact path='/:subchannel/thanks/:id/4' component={Thanks} /> 
+                            <Route exact path='/checkout/:product/:id/:channelMotor' component={Checkout} />
+                            <Route exact path='/checkout/:product/:id/:idGetPoints/:sellPoints/:channelMotor' component={Checkout} />
+                            <Route exact path='/:subchannel/checkout/:product/:id/:channelMotor' component={Checkout} />
+                            <Route exact path='/:subchannel/checkout/:product/:id/:idGetPoints/:sellPoints/:channelMotor' component={Checkout} />
                             <Route exact path='/thankscontact/:id' component={ThanksContact} />
                             
                             <Route exact path='/*' component={ErrorPage} />

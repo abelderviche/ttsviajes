@@ -13,7 +13,6 @@ class HotelTermAndConditions extends React.Component {
     render() {
         const { collapsed } = this.state;
         const { instructions,cancelPenalties } = this.props;
-        //console.log(document.getElementsByClassName('charges')[0]?document.getElementsByClassName('charges')[0].offsetHeight:null);
         return (
             <div className={`hotel noselect ${collapsed ? 'hotel__collapsed' : ''}`}  onClick={() => this.setState({collapsed: !collapsed})}>
                     <div className="hotel__headline"><h2>Instrucciones para el checkin</h2></div>

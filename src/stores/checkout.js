@@ -132,7 +132,7 @@ class CheckoutStore {
 
             let AC = this.activeComponents.map(ac=>ac.name);
 
-             if(this.termAndConditions 
+            if(this.termAndConditions 
                 && (AC.indexOf('FCB')>=0?(BillingStore.validFields && (PaymentMethodStore.paymentMethodId>=0 && CheckoutFormStore.validFields)):true) 
                 && (AC.indexOf('CONT')>=0? Contact.validFields:true)
                 && (AC.indexOf('PAXA')>=0||AC.indexOf('PAXF')>=0?GuestsStore.validFields:true)
@@ -177,8 +177,8 @@ class CheckoutStore {
                             language: "es",
                             telephone: {
                                 type: Contact.phoneType,
-                                countryCode: Contact.countryCode,
-                                areaCode: Contact.areaCode,
+                                countryCode: Contact.countryCode.replace(/^0+/, ''),
+                                areaCode: Contact.areaCode.replace(/^0+/, ''),
                                 number: Contact.phoneNumber
                             }
                         }
@@ -218,7 +218,7 @@ class CheckoutStore {
                 )
             }else{
                 reject({ invalidFields: true });
-            }
+            } 
         });
     }
 }

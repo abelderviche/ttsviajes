@@ -68,8 +68,11 @@ class Checkout extends React.Component {
                         animateScroll.scrollToTop(500);
                 }else{
                     console.log("ocurrio un error", res);
-                    this.handleError('Ocurrio un error',`Action: ${res.action} | Message:${res.message} | Url:${res.url}`,true);
-                    //window.location.href = res.url;
+                    if(process.env.REACT_APP_ENV==='prod'){  
+                        window.location.href = res.url;
+                    }else{
+                        this.handleError('SOLO SE VE EN DEV Y QA ||| Ocurrio un error',`Action: ${res.action} | Message:${res.message} | Url:${res.url}`,true);
+                    }
                }
            },
            ()=>{
@@ -150,7 +153,7 @@ class Checkout extends React.Component {
                             this.setState({
                                 error: {
                                     title: "Ocurrió un error",
-                                    message: message,
+                                    message: "Volver a buscar",
                                     url: data
                                 }
                             });

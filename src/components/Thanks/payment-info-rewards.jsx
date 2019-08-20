@@ -17,11 +17,9 @@ const CARDS = {
 class PaymentInfoRewards extends React.Component {
 
     render () {
-    //    let reservationTotal = this.props.reservations.product.cluster.price.total;
-       
         let {payments, mobile,productName,reservationTotal,hasAssistcard} = this.props;
         const total = payments.reduce((acum,val,i)=>{
-            return val.payment_type.type==='CARD'?acum+val.amount.total:acum
+            return val.payment_type.type==='CARD' && val.payment_type.definition.commerce.search(/Compra de puntos/i) >=0?acum+val.amount.total:acum
         },0)
         const points = payments.reduce((acum,payment,i)=>{return payment.payment_type.type==="REWARDS"?acum + payment.amount.total:acum},0);
         const maxDue = payments.reduce((acum,val,i)=>{

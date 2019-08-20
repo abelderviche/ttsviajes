@@ -131,7 +131,7 @@ class CheckoutStore {
             console.log('GuestsStore', GuestsStore.validFields);
 
             let AC = this.activeComponents.map(ac=>ac.name);
-
+            
             if(this.termAndConditions 
                 && (AC.indexOf('FCB')>=0?(BillingStore.validFields && (PaymentMethodStore.paymentMethodId>=0 && CheckoutFormStore.validFields)):true) 
                 && (AC.indexOf('CONT')>=0? Contact.validFields:true)

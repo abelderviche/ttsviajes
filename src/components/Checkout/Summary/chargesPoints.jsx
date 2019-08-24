@@ -62,6 +62,15 @@ class Charges extends React.Component {
                         {this.renderLinePoints('Puntos a canjear', points)}
                     </div>
                     <div className="charges__flat">
+                        {paymentMethod.paymentInfo?this.renderLine(`+`, paymentMethod.paymentInfo.remainder):null}
+                    </div>
+                    <div className="charges__flat">
+                        {paymentMethod.paymentInfo?this.renderLine(`Tasas y FEE`, paymentMethod.paymentInfo.rateAndFee):null}
+                    </div>
+                    <div className="charges__flat">
+                        {paymentMethod.paymentInfo?this.renderLine(`Total a pagar`, paymentMethod.paymentInfo.total):null}
+                    </div>
+                    <div className="charges__flat">
                         {paymentMethod.paymentInfo?this.renderLine(`${paymentMethod.paymentInfo.installments} cuota${paymentMethod.paymentInfo.installments>1?'s':''} sin intereses`, paymentMethod.paymentInfo.installmentPrice):null}
                     </div>
                 </div>

@@ -143,6 +143,8 @@ const flattenResponseRewards = (paymentMethods, addedPrice) => {
                             total: round(promo.pricing.totalACobrar + addedPrice),
                             testing:addedPrice,
                             cft: promo.cftn,
+                            remainder:promo.pricing.remainder,
+                            rateAndFee:promo.pricing.remainder,
                             tea: parseFloat(promo.tea).toFixed(2),
                             //bines: promo.bines,
                             bines: binesList.find(b=>b.card === isocode && b.dues === promo.dues).bines,

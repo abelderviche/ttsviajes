@@ -59,10 +59,11 @@ class PaymentType extends React.Component {
         }
     }
     setPromo = (promo) => {
-        console.log(promo);
         this.props.paymentMethod.setPaymentInfo({
             fare: promo.fare,
             fee: promo.fee,
+            rateAndFee: promo.rateAndFee,
+            remainder: promo.remainder,
             total: promo.total,
             interest: promo.totalInterest,
             tea: promo.tea,

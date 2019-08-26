@@ -68,10 +68,32 @@ class CheckoutStore {
                                 if(fcb.financing.creditsCards.enabled){
                                     PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods, this.entityBank);
                                 }
+                               
                                 if(product==='flights'){
                                     GuestsStore.setPaxArray(data.paxf, data.paxf.every(GuestsStore.validPax));
                                 }else if(product ==='accommodations'){
                                     GuestsStore.setGuestArray(data.paxa, data.paxa.every(GuestsStore.validGuest));
+                                }
+                                if(this.entityBank){
+                                    const promo = PaymentMethodStore.paymentMethods.hsbc[0].promos[0];
+                                   PaymentMethodStore.setPaymentInfo({
+                                        fare: promo.fare,
+                                        fee: promo.fee,
+                                        rateAndFee: promo.rateAndFee,
+                                        remainder: promo.remainder,
+                                        total: promo.total,
+                                        interest: promo.totalInterest,
+                                        tea: promo.tea,
+                                        cft: promo.cft,
+                                        rate: promo.interestRate,
+                                        installments: promo.installments,
+                                        installmentPrice: promo.installmentCost,
+                                        firstInstallment: promo.firstInstallment,
+                                        bines: promo.bines,
+                                        initialDue: promo.initialDue,
+                                    });
+                                   PaymentMethodStore.setInstallments(promo.installments);
+                                   console.log('que',PaymentMethodStore);
                                 }
                                 resolve(
                                     {   action:action,

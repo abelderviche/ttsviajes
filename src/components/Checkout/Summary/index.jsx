@@ -12,7 +12,7 @@ import { inject, observer } from 'mobx-react';
 import moment from 'moment';
 
 
-@inject('checkout') @observer
+@inject('checkout','paymentMethod') @observer
 class Summary extends React.Component {
     render() {
         const {infoProduct,activeComponents,points,isRewards} = this.props.checkout;

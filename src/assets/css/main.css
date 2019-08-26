@@ -2123,7 +2123,6 @@ body {
       padding-left: 1rem; }
 
 .charges {
-  max-height: 4.8rem;
   border-radius: 1rem;
   background-color: white;
   box-shadow: 2px 5px 12px 0px rgba(128, 128, 128, 0.6);
@@ -2169,6 +2168,9 @@ body {
       font-weight: 500; }
   .charges__flat {
     padding: 0rem 1.5rem; }
+    .charges__flat.total {
+      border-top: 1px solid  black;
+      margin-bottom: 2rem; }
   .charges__subtotals {
     padding: 0 1.5rem;
     padding-bottom: 2rem; }

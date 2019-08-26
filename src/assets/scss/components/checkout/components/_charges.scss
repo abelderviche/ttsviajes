@@ -1,6 +1,5 @@
 .charges {
     
-    max-height: 4.8rem;
     border-radius: 1rem;
     background-color:white;
     box-shadow: 2px 5px 12px 0px rgba(128, 128, 128, 0.6);
@@ -60,6 +59,11 @@
 
     &__flat {
         padding: 0rem 1.5rem;
+        &.total{
+            border-top: 1px solid  black;
+            margin-bottom: 2rem;
+
+        }
     }
 
     &__subtotals {

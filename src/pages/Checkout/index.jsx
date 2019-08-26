@@ -17,7 +17,7 @@ import moment from 'moment';
 
 import Responsive from 'react-responsive-decorator';
 
-@inject('checkout', 'reservations', 'billing','assistcard') @observer
+@inject('checkout', 'reservations', 'billing','assistcard','paymentMethod') @observer
 class Checkout extends React.Component {
 
     state = {

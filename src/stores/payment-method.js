@@ -253,9 +253,10 @@ class PaymentMethodStore {
         this.bank = undefined;
         this.creditCard = undefined;
         this.installments = null;
-        this.paymentInfo = undefined;
         this.paymentMethodId= undefined;
         this.installmentOptions = [];
+        // si algo se rompe sobre la seleccion de la tarjeta y que no se actualiza bien el pricebox, es esto.
+        // this.paymentInfo = undefined;
     }
 
     @action setInstallmentOptions = () => {

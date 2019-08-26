@@ -71,7 +71,7 @@ class Form extends React.Component {
                         checked={checkout.termAndConditions}
                         onChange={checkout.setTermAndConditions}
                     />
-                    <span>Acepto los terminos y condiciones</span>
+                    <span>{rewards?'Leí y acepto las condiciones de canje y politica de privacidad':'Leí y acepto las condiciones de compray politica de privacidad'}</span>
                     {this.state.sendAttempted && !checkout.termAndConditions ?
                     <span className="error">Debe aceptar los terminos y condiciones</span>
                     :null}

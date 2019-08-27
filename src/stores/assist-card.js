@@ -33,22 +33,25 @@ class AssistCardStore {
 
     @observable selectedProduct = null;
 
+    @action setProducts = (products) =>{
+        this.availableProducts = products;
+    }
     @action selectProduct = (value) => {
         this.selectedProduct = this.availableProducts[value];
-        PaymentsMethods.updatePaymentMethods(this.selectedProduct.amount);
+       /* PaymentsMethods.updatePaymentMethods(this.selectedProduct.amount);
         if(PaymentsMethods.installmentOptions.length > 0){
             PaymentsMethods.updatePaymentMethodBank(this.selectedProduct.amount)
             PaymentsMethods.setInstallmentOptions();
         }
-        PaymentsMethods.updateSelectedPromos(true);
+        PaymentsMethods.updateSelectedPromos(true);*/
     }
     @action removeProduct = () => {
-        PaymentsMethods.updateSelectedPromos(false);
+       /* PaymentsMethods.updateSelectedPromos(false);
         PaymentsMethods.updatePaymentMethods(0);
         if(PaymentsMethods.installmentOptions.length > 0){
             PaymentsMethods.updatePaymentMethodBank(-1*this.selectedProduct.amount)
             PaymentsMethods.setInstallmentOptions();
-        }
+        }*/
         this.selectedProduct = null;
     }
 

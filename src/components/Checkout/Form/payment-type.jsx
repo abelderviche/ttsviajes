@@ -58,6 +58,8 @@ class PaymentType extends React.Component {
             this.props.paymentMethod.setInstallmentsFromOptions(this.props.paymentMethod.installments);
         }
     }
+
+    // hay que ver que opcion por default seleccionar o algo asi..... 
     setPromo = (promo) => {
         this.props.paymentMethod.setPaymentInfo({
             fare: promo.fare,
@@ -72,6 +74,9 @@ class PaymentType extends React.Component {
             firstInstallment: promo.firstInstallment,
             bines: promo.bines,
             initialDue: promo.initialDue,
+            firstInstallment: promo.firstInstallment,
+            totalWithAssistance: promo.totalWithAssistance,
+            dueValueWithAssistance: promo.dueValueWithAssistance,
         });
         this.props.paymentMethod.setInstallments(promo.installments);
     }
@@ -94,6 +99,7 @@ class PaymentType extends React.Component {
     render () {
         const { paymentMethod } = this.props;
         const { paymentMethods, bank, creditCard, pureCreditCard, paymentInfo, installments } = paymentMethod;
+        const installmentPrice = !this.props.assistcard.selectedProduct?formatPrice(paymentMethod.installmentPrice):formatPrice(paymentMethod.paymentInfo.dueValueWithAssistance)
         return (
             <div className="module__payment-type">
                 {!(paymentMethods.hsbc && paymentMethods.withInterest && paymentMethods.withoutInterest) ? 
@@ -184,9 +190,9 @@ class PaymentType extends React.Component {
                                 <div className="payment-method__summary">
                                     <div className="payment-method__installment-summary">
                                     {paymentMethod.firstInstallment ? 
-                                    <span>1 cuota de ARS {formatPrice(paymentMethod.firstInstallment)} + {installments - 1} cuotas de ARS {formatPrice(paymentMethod.installmentPrice)}</span>
+                                    <span>1 cuota de ARS {formatPrice(!this.props.assistcard.selectedProduct?paymentMethod.firstInstallment:paymentMethod.paymentInfo.dueValueWithAssistance)} + {installments - 1} cuotas de ARS {formatPrice(paymentMethod.installmentPrice)}</span>
                                     :
-                                    <span>{installments} cuota{installments>1?'s':''} de ARS {formatPrice(paymentMethod.installmentPrice)}</span>
+                                    <span>{installments} cuota{installments>1?'s':''} de ARS {installmentPrice}</span>
                                     }
                                     </div>
                                     <div className="payment-method__financial-costs">

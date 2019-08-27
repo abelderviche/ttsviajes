@@ -44,16 +44,18 @@ const Installment = ({ groupId, id, cardId, title, subtitle, interestTitle,credi
     )
 }
 
-const InstallmentList = ({ id, bankId, promoId, cardId, installments, selectPromo, selectCreditCard ,rewards}) => {
+const InstallmentList = ({ id, bankId, promoId, cardId, installments, selectPromo, selectCreditCard ,rewards,assistcard}) => {
     return (
         <div className="payment-method__installments-list">
             <div className="module__input--title">Elegí las cuotas</div>
             {installments.map(inst => {
+                console.log(inst);
                 const key = `${inst.installments}-${bankId}-${inst.interestRate}`;
                 const selected = key === promoId;
                 const titleAmount = `${inst.installments} ${inst.installments === 1 ? 'pago' : 'cuotas'}`;
                 const titleInterest = `${inst.totalInterest === 0 && inst.installments > 1 ? 'sin interés' : (inst.installments === 1 ? '' : 'fijas')}`;
-
+                const totalAPagar = !assistcard?formatPrice(inst.total):formatPrice(inst.totalWithAssistance);
+                const installmentPrice = !assistcard?formatPrice(inst.installmentCost):formatPrice(inst.dueValueWithAssistance);
                 return (
                     <Installment 
                         key={key}
@@ -63,8 +65,8 @@ const InstallmentList = ({ id, bankId, promoId, cardId, installments, selectProm
                         selected={selected}
                         selectPromo={(id, firstCardId, firstCard) => selectPromo(id, firstCardId, inst, firstCard)}
                         title={`${titleAmount} ${titleInterest}`} 
-                        subtitle={`de ARS ${formatPrice(inst.installmentCost)}`}
-                        interestTitle={`Total a pagar: ARS ${formatPrice(inst.total)}; Intereses: ARS ${formatPrice(inst.totalInterest)}`}
+                        subtitle={`de ARS ${installmentPrice}`}
+                        interestTitle={`Total a pagar: ARS ${totalAPagar}; Intereses: ARS ${formatPrice(inst.totalInterest)}`}
                         creditCards={inst.creditCards} 
                         rewards={rewards}
                         selectCreditCard={(cardId, card, promoId) => selectCreditCard(cardId, card, promoId, inst)} />
@@ -74,7 +76,7 @@ const InstallmentList = ({ id, bankId, promoId, cardId, installments, selectProm
     )
 }
 
-const Option = ({id, selected, banks, selectedPromos, bankId, promoId, cardId, selectBank, selectPromo, selectCreditCard,rewards}) => {
+const Option = ({id, selected, banks, selectedPromos, bankId, promoId, cardId, selectBank, selectPromo, selectCreditCard,rewards, assistcard}) => {
     const unique = banks.length===1;
     unique && !selectedPromos?selectBank(banks[0],`${banks[0].bankCode}-${banks[0].segment}-${banks[0].promos.length}`):null
     return (
@@ -102,6 +104,7 @@ const Option = ({id, selected, banks, selectedPromos, bankId, promoId, cardId, s
                     selectCreditCard={selectCreditCard}
                     bankId={bankId} installments={selectedPromos} 
                     rewards={rewards}
+                    assistcard={assistcard}
                     promoId={promoId} selectPromo={selectPromo} /> : null }
         </div>
     )

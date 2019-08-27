@@ -94,11 +94,11 @@ class PaymentOptions extends React.Component {
                     (id === 'hsbc' ? 
                     <HsbcOption id={id} banks={paymentMethods} selected={selected} 
                         promoId={promoId} cardId={cardId} selectPromo={this.selectHsbcPromo} 
-                        selectCreditCard={this.selectHsbcCard} />
+                        selectCreditCard={this.selectHsbcCard} assistcard={this.props.assistcard.selectedProduct} />
                     : 
                     <Option id={id} banks={paymentMethods} selectedPromos={selectedPromos} 
                         selected={selected} bankId={bankId} promoId={promoId} cardId={cardId}
-                        selectBank={this.selectBank} selectPromo={this.selectPromo} selectCreditCard={this.selectCreditCard} rewards={rewards} /> )
+                        selectBank={this.selectBank} selectPromo={this.selectPromo} selectCreditCard={this.selectCreditCard} rewards={rewards} assistcard={this.props.assistcard.selectedProduct}/> )
                 : null}
             </div>
         );

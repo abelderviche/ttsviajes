@@ -72,6 +72,8 @@ class PaymentType extends React.Component {
             installments: promo.installments,
             installmentPrice: promo.installmentCost,
             firstInstallment: promo.firstInstallment,
+            totalWithAssistance: promo.totalWithAssistance,
+            dueValueWithAssistance: promo.dueValueWithAssistance,
             bines: promo.bines,
             initialDue: promo.initialDue,
         });
@@ -96,6 +98,7 @@ class PaymentType extends React.Component {
     render () {
         const { paymentMethod } = this.props;
         const { paymentMethods, bank, creditCard, pureCreditCard, paymentInfo, installments } = paymentMethod;
+        const installmentPrice = !this.props.assistcard.selectedProduct?formatPrice(paymentMethod.installmentPrice):formatPrice(paymentMethod.paymentInfo.dueValueWithAssistance)
         return (
             <div className="module__payment-type">
                 {!(paymentMethods.hsbc && paymentMethods.withInterest && paymentMethods.withoutInterest) ? 
@@ -133,9 +136,9 @@ class PaymentType extends React.Component {
                                 <div className="payment-method__summary">
                                     <div className="payment-method__installment-summary">
                                     {paymentMethod.firstInstallment ? 
-                                    <span>1 cuota de ARS {formatPrice(paymentMethod.firstInstallment)} + {installments - 1} cuotas de ARS {formatPrice(paymentMethod.installmentPrice)}</span>
+                                    <span>1 cuota de ARS {formatPrice(!this.props.assistcard.selectedProduct?paymentMethod.firstInstallment:paymentMethod.paymentInfo.dueValueWithAssistance)} + {installments - 1} cuotas de ARS {formatPrice(paymentMethod.installmentPrice)}</span>
                                     :
-                                    <span>{installments} cuota{installments>1?'s':''} de ARS {formatPrice(paymentMethod.installmentPrice)}</span>
+                                    <span>{installments} cuota{installments>1?'s':''} de ARS {installmentPrice}</span>
                                     }
                                     </div>
                                     <div className="payment-method__financial-costs">

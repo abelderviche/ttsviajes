@@ -55,20 +55,23 @@ class CheckoutStore {
                 res => {
                     if(res.data){
                     let { action, message, data } = res.data;
-                    let { fcb,activeComponents, infoProduct, clusterId,trackId} = data;
+                    let { fcb,activeComponents, infoProduct, clusterId,trackId,incs} = data;
                     this.clusterID = clusterId;
                     this.trackID = trackId;
+                    console.log(incs);
                     switch (action) {
                             case '1':   
                                 this.activeComponents = activeComponents;
                                 this.infoProduct = infoProduct;
                                 this.isRewards = data.points.isRewards;
                                 this.points =  data.points.numPoint;
-
                                 if(fcb.financing.creditsCards.enabled){
                                     PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods, this.entityBank);
                                 }
-                               
+                                
+                                if(incs){
+                                    AssistCard.setProducts(incs.products);
+                                }
                                 if(product==='flights'){
                                     GuestsStore.setPaxArray(data.paxf, data.paxf.every(GuestsStore.validPax));
                                 }else if(product ==='accommodations'){
@@ -90,10 +93,11 @@ class CheckoutStore {
                                         installmentPrice: promo.installmentCost,
                                         firstInstallment: promo.firstInstallment,
                                         bines: promo.bines,
+                                        totalWithAssistance:promo.totalWithAssistance,
+                                        dueValueWithAssistance:promo.dueValueWithAssistance,
                                         initialDue: promo.initialDue,
                                     });
                                    PaymentMethodStore.setInstallments(promo.installments);
-                                   console.log('que',PaymentMethodStore);
                                 }
                                 resolve(
                                     {   action:action,

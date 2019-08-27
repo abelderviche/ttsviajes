@@ -2149,7 +2149,7 @@ body {
     .charges {
       margin-bottom: 1.6rem; } }
   .charges__details {
-    max-height: 20rem;
+    max-height: 40rem;
     overflow: hidden;
     transition: max-height .5s; }
   .charges__hidden {

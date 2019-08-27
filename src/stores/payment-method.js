@@ -71,6 +71,8 @@ const flattenResponse = (paymentMethods, addedPrice) => {
                             tea: parseFloat(promo.tea).toFixed(2),
                             bines: promo.bines,
                             initialDue:promo.InitialDue,
+                            totalWithAssistance:promo.pricing.totalWithAssistance,
+                            dueValueWithAssistance:promo.pricing.dueValueWithAssistance,
                             creditCards: [{
                                 cardCode: isocode,
                                 cardName: creditCard,
@@ -145,6 +147,8 @@ const flattenResponseRewards = (paymentMethods, addedPrice) => {
                             cft: promo.cftn,
                             remainder:promo.pricing.remainder,
                             rateAndFee:promo.pricing.remainder,
+                            totalWithAssistance:promo.pricing.totalWithAssistance,
+                            dueValueWithAssistance:promo.pricing.dueValueWithAssistance,
                             tea: parseFloat(promo.tea).toFixed(2),
                             //bines: promo.bines,
                             bines: binesList.find(b=>b.card === isocode && b.dues === promo.dues).bines,
@@ -244,7 +248,7 @@ class PaymentMethodStore {
     }
     
     @action updatePaymentMethods = (price) => {
-        this.paymentMethods = flattenResponse(this.OGPaymentsMethods,price);
+        this.paymentMethods = flattenResponseRewards(this.OGPaymentsMethods,price);
        // this.updatePaymentMethodBank()
      //   this.resetSelections();
     }

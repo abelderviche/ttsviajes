@@ -42,7 +42,7 @@ const Installment = ({ groupId, id, cardId, title, subtitle,interestTitle, credi
     )
 }
 
-const InstallmentList = ({ id, banks, selectPromo, selectCreditCard, promoId, cardId }) => {
+const InstallmentList = ({ id, banks, selectPromo, selectCreditCard, promoId, cardId ,assistcard}) => {
     return (
         <div className="payment-method__installments-list">
             <div className="payment-method__available--title">Elegí tu plan</div>
@@ -50,6 +50,7 @@ const InstallmentList = ({ id, banks, selectPromo, selectCreditCard, promoId, ca
             {banks.map(bank => {
                 const key = `${bank.bankCode}-${bank.segment}`;
                 const selected = key === promoId;
+                const totalAPagar = !assistcard?formatPrice(bank.promos[0].total):formatPrice(bank.promos[0].totalWithAssistance);
                 return (
                     <Installment 
                         key={key}
@@ -61,7 +62,7 @@ const InstallmentList = ({ id, banks, selectPromo, selectCreditCard, promoId, ca
                         selectPromo={(id, firstCardId, creditCard) => selectPromo(id, bank, firstCardId, creditCard)}
                         title={bank.segment} 
                         subtitle={`Hasta ${bank.maxInstallments} cuotas`}
-                        interestTitle={`Total a pagar: ARS ${formatPrice(bank.promos[0].total)}; Intereses: ARS ${formatPrice(bank.promos[0].totalInterest)}`}
+                        interestTitle={`Total a pagar: ARS ${totalAPagar}; Intereses: ARS ${formatPrice(bank.promos[0].totalInterest)}`}
                         creditCards={bank.promos[0].creditCards} />
                 );
             })}
@@ -70,13 +71,13 @@ const InstallmentList = ({ id, banks, selectPromo, selectCreditCard, promoId, ca
     )
 }
 
-const HsbcOption = ({id, selected, banks, promoId, cardId, selectPromo, selectCreditCard}) => {
+const HsbcOption = ({id, selected, banks, promoId, cardId, selectPromo, selectCreditCard,assistcard}) => {
     return (
         <div className={`payment-method__available ${!selected ? 'payment-method__noheight' : ''}`}>
             { banks && banks.length ? 
                 <InstallmentList 
                     id={id} banks={banks} cardId={cardId} selectCreditCard={selectCreditCard}
-                    promoId={promoId} selectPromo={selectPromo} /> : null }
+                    promoId={promoId} selectPromo={selectPromo} assistcard={assistcard}/> : null }
         </div>
     )
 }

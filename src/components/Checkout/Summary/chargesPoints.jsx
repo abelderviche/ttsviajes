@@ -9,7 +9,7 @@ const formatPoints = (price) => {
 }
 
 
-@inject('paymentMethod') @observer
+@inject('paymentMethod','assistcard') @observer
 
 class Charges extends React.Component {
 
@@ -50,9 +50,8 @@ class Charges extends React.Component {
     
 
     render() {
-  
-        const { points, paymentMethod, scrolled } = this.props;
-        console.log("asd",paymentMethod);
+        
+        const { points, paymentMethod, scrolled, assistcard } = this.props;
         return (
             <div className={`charges noselect ${this.state.collapsed ? 'charges--collapsed' : ''} ${scrolled ? 'charges--floating' : ''}`} onClick={this.toggleCollapsed}>
                 <div className={`charges__details ${!this.state.collapsed ? 'charges__hidden' : ''}`}>
@@ -68,11 +67,14 @@ class Charges extends React.Component {
                     <div className="charges__flat">
                         {paymentMethod.paymentInfo?this.renderLine(`Tasas y FEE`, paymentMethod.paymentInfo.rateAndFee):null}
                     </div>
+                    <div className="charges__flat">
+                        {this.props.assistcard.selectedProduct ? this.renderLine('Cobertura', this.props.assistcard.selectedProduct.amount) : null}
+                    </div>
                     <div className="charges__flat total">
-                        {paymentMethod.paymentInfo?this.renderLine(`Total a pagar`, paymentMethod.paymentInfo.total):null}
+                        {paymentMethod.paymentInfo?this.renderLine(`Total a pagar`, !this.props.assistcard.selectedProduct?paymentMethod.paymentInfo.total:paymentMethod.paymentInfo.totalWithAssistance):null}
                     </div>
                     <div className="charges__flat">
-                        {paymentMethod.paymentInfo?this.renderLine(paymentMethod.paymentInfo.installments>1?`${paymentMethod.paymentInfo.installments} cuotas sin intereses de`:'Un pago sin intereses de', paymentMethod.paymentInfo.installmentPrice):null}
+                        {paymentMethod.paymentInfo?this.renderLine(paymentMethod.paymentInfo.installments>1?`${paymentMethod.paymentInfo.installments} cuotas sin intereses de`:'Un pago sin intereses de', !this.props.assistcard.selectedProduct?paymentMethod.paymentInfo.installmentPrice:paymentMethod.paymentInfo.dueValueWithAssistance):null}
                     </div>
                 </div>
                 <div className="charges__total">

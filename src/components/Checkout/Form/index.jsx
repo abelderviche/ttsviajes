@@ -4,6 +4,7 @@ import { inject, observer } from "mobx-react";
 import PaymentModule from './payment-module';
 import BillingModule from './billing-module';
 import ContactModule from './contact-module';
+import AssistcardModule from './assistcard-module';
 import GuestModule from './guest-module';
 import CheckFormData from './check-form-data';
 import {Input} from './input';
@@ -58,6 +59,11 @@ class Form extends React.Component {
                         if(component.name === 'PAXA'){
                             return(
                                 <GuestModule  key={`component-${k}`}    sendAttempted={this.state.sendAttempted} />
+                            )
+                        }
+                        if(component.name === 'INCS'){
+                            return(
+                                <AssistcardModule />
                             )
                         }
 

@@ -146,7 +146,7 @@ const flattenResponseRewards = (paymentMethods, addedPrice) => {
                             testing:addedPrice,
                             cft: promo.cftn,
                             remainder:promo.pricing.remainder,
-                            rateAndFee:promo.pricing.remainder,
+                            rateAndFee:promo.pricing.rateAndFee,
                             totalWithAssistance:promo.pricing.totalWithAssistance,
                             dueValueWithAssistance:promo.pricing.dueValueWithAssistance,
                             tea: parseFloat(promo.tea).toFixed(2),

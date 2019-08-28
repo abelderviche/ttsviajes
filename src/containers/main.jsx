@@ -39,11 +39,24 @@ class Main extends React.Component {
                     <Header route={this.props.match.url}/>
                     <main>
                         <Switch>
-                            <Route exact path='/storage/:clientID/:action' render={(props) => {
+                            <Route exact path='/storage/rewards/:clientID/:action' render={(props) => {
                                     if(props.match.params.action === 'd') {
                                         localStorage.removeItem('ID-TTS-R');
                                     } else {
                                         localStorage.setItem('ID-TTS-R', props.match.params.clientID);
+                                    }
+                                    //window.parent.postMessage('successfuly authenticated', '');
+                                    return <div>SETEANDO LS</div>;
+                                }
+                            } />
+
+                            <Route exact path='/storage/tts/:clientID/:payload/:action' render={(props) => {
+                                    if(props.match.params.action === 'd') {
+                                        localStorage.removeItem('ID-TTS');
+                                        localStorage.removeItem('site');
+                                    } else {
+                                        localStorage.setItem('ID-TTS', props.match.params.clientID);
+                                        localStorage.setItem('site', props.match.params.payload);
                                     }
                                     //window.parent.postMessage('successfuly authenticated', '');
                                     return <div>SETEANDO LS</div>;

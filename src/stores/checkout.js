@@ -55,7 +55,7 @@ class CheckoutStore {
                 res => {
                     if(res.data){
                     let { action, message, data } = res.data;
-                    let { fcb,activeComponents, infoProduct, clusterId,trackId,incs} = data;
+                    let { fcb,activeComponents, infoProduct, clusterId,trackId, ascs} = data;
                     this.clusterID = clusterId;
                     this.trackID = trackId;
                     switch (action) {
@@ -68,8 +68,8 @@ class CheckoutStore {
                                     PaymentMethodStore.setPaymentMethods(fcb.financing.creditsCards.paymentMethods, this.entityBank);
                                 }
                                 
-                                if(incs){
-                                    AssistCard.setProducts(incs.products);
+                                if(ascs){
+                                    AssistCard.setProducts(ascs.products);
                                 }
                                 if(product==='flights'){
                                     GuestsStore.setPaxArray(data.paxf, data.paxf.every(GuestsStore.validPax));

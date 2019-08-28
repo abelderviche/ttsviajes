@@ -61,7 +61,7 @@ class Form extends React.Component {
                                 <GuestModule  key={`component-${k}`}    sendAttempted={this.state.sendAttempted} />
                             )
                         }
-                        if(component.name === 'INCS'){
+                        if(component.name === 'ASCS'){
                             return(
                                 <AssistcardModule />
                             )

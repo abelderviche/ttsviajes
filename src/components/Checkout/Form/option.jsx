@@ -49,7 +49,6 @@ const InstallmentList = ({ id, bankId, promoId, cardId, installments, selectProm
         <div className="payment-method__installments-list">
             <div className="module__input--title">Elegí las cuotas</div>
             {installments.map(inst => {
-                console.log(inst);
                 const key = `${inst.installments}-${bankId}-${inst.interestRate}`;
                 const selected = key === promoId;
                 const titleAmount = `${inst.installments} ${inst.installments === 1 ? 'pago' : 'cuotas'}`;

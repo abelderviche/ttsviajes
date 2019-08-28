@@ -1,0 +1,235 @@
+.module__assistcard{
+    display: flex;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+
+    @include respond(phone) {
+        flex-direction: column;
+        padding: 1rem 0;
+        
+    }
+    ul{
+        list-style-type: none;
+        margin:1.2rem;
+    }
+    li{
+        font-size: 1.2rem;
+    }
+    li:before{
+        content: "";
+        border-color: transparent $primary;
+        border-style: solid;
+        border-width: 0.35em 0 0.35em 0.45em;
+        display: block;
+        height: 0;
+        width: 0;
+        left: -1em;
+        top: 0.9em;
+        position: relative;
+    }
+    &--container{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        .logo{
+            display: flex;
+            flex-wrap: wrap;
+            width: 20%;
+            align-items: center;
+            justify-content:center;
+            flex-direction: column;
+            @include respond(phone) {
+                width: 100%;
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+            img{
+                width: 60%;
+                @include respond(phone) {
+                    width: 20%;
+                    margin:0 1.5rem;
+                }
+            }
+            
+            .link-container{
+                display: flex;
+                flex-direction: column;
+                .subtitle{
+                    font-size: 2rem;
+                    font-weight: bold;
+                    color:$grey;
+                    display: none;
+                    @include respond(phone) {
+                        display: block;
+                        font-size: 1.5rem;
+                        text-align: center;
+                    }
+                }
+                @include respond(phone) {
+                    flex-direction: column;
+                    width: 70%;
+                    justify-content: space-around;
+                    min-height: 60px;
+                }
+                .links{
+                    display: flex;
+                    flex-direction: column;
+                    @include respond(phone) {
+                        flex-direction: row;
+                        justify-content: space-around;
+                        
+                    }
+                    a{
+                        text-align: center;
+                        color:$primary;
+                        text-decoration: none;
+                    }
+                    a:hover{
+                        font-weight: bold;
+                    }
+                }
+            }
+            
+        }
+        .description{
+            @include respond(phone) {
+                width: 100%;
+                padding: 0 1rem;                
+            }
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            .subtitle{
+                font-size: 2rem;
+                font-weight: bold;
+                color:$grey;
+                @include respond(phone) {
+                    display: none;
+                }
+            }
+            
+        }
+        .price-container{
+            width: 25%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content:center;
+            flex-direction: column;
+            border-left:2px solid $grey-light;
+            @include respond(phone) {
+                margin-top: .5rem;
+                border-top:2px solid $grey-light;
+                border-left:0px;
+                width: 100%;
+            }
+            .price{
+                font-weight: bold;
+                color:$primary;
+                font-size: 1.8rem;
+            }
+            .disclaimer{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                line-height: 1.2;
+                margin-top: 0.5rem;
+                div{
+                    margin:0;
+                }
+            }
+            .button{
+                height: 3.6rem;
+                width: 85%;
+                background-color:$primary;
+                border-radius: 3px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                margin-top: 1rem;
+                cursor: pointer;
+                @include respond(phone) {
+                    width: 60%;
+                }
+                span{
+                    font-size: 1.6rem;
+                    line-height: 1.5;
+                    letter-spacing: .2px;
+                    text-align: center;
+                    color: #fff;
+                }
+            }
+            .oferta-assist{
+                background: #3c3c3c;
+                border-radius: 5px;
+                max-width: 86%;
+                width: 100%;
+                margin: 10px;
+                .inside-oferta{
+                    max-width: 96%;
+                    width: 100%;
+                    margin: 7px auto;
+                    border-radius: 16px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+                & div{
+                    color:white;
+                    width: 100%;
+                    text-align: center;
+                    font-size: 1.2rem;
+                    margin: 0.2rem;
+                }
+                & .title{
+                    font-size: 1.7rem;
+                }
+                & .off{
+                    font-size: 2.2rem;
+                    font: bold;
+                }
+                .inside-oferta h1{
+                    color: #fff;
+                    font-size: 13px;
+                    text-transform: uppercase;
+                    margin-left:12px;
+                }
+                .inside-oferta h2{
+                    font-size: 22px;
+                    color: #fff;
+                    text-transform: uppercase;
+                }
+                .inside-oferta h3{
+                    color: #fff;
+                    font-size: 13px;
+                    text-transform: uppercase;
+                    margin-right:12px;
+                }
+            }
+        
+        }
+
+    }
+
+
+   &--advertise{
+       text-align: center;
+        font-size: 1.5rem; 
+        //visibility: hidden;
+        display:none;
+        width: 100%;
+        margin-top: 1rem;
+        border-top: 1px solid #e0e0e0;
+        padding-top: 1rem;
+        
+    }
+  
+    &--advertise-visible{
+        //visibility: visible;
+        display:block;
+    }
+
+}

@@ -1573,30 +1573,39 @@ body {
   .module__payment-info {
     padding-bottom: 1.6rem;
     padding-left: 1.6rem; }
-  .module__assistcard {
+
+.billing {
+  height: 20.4rem; }
+
+.module__assistcard {
+  display: flex;
+  padding: 1rem 0;
+  flex-wrap: wrap; }
+  @media only screen and (max-width: 37.5em) {
+    .module__assistcard {
+      flex-direction: column;
+      padding: 1rem 0; } }
+  .module__assistcard ul {
+    list-style-type: none;
+    margin: 1.2rem; }
+  .module__assistcard li {
+    font-size: 1.2rem; }
+  .module__assistcard li:before {
+    content: "";
+    border-color: transparent #d32027;
+    border-style: solid;
+    border-width: 0.35em 0 0.35em 0.45em;
+    display: block;
+    height: 0;
+    width: 0;
+    left: -1em;
+    top: 0.9em;
+    position: relative; }
+  .module__assistcard--container {
     display: flex;
-    padding: 3rem 0; }
-    @media only screen and (max-width: 37.5em) {
-      .module__assistcard {
-        flex-direction: column;
-        padding: 1rem 0; } }
-    .module__assistcard ul {
-      list-style-type: none;
-      margin: 1.2rem; }
-    .module__assistcard li {
-      font-size: 1.2rem; }
-    .module__assistcard li:before {
-      content: "";
-      border-color: transparent #d32027;
-      border-style: solid;
-      border-width: 0.35em 0 0.35em 0.45em;
-      display: block;
-      height: 0;
-      width: 0;
-      left: -1em;
-      top: 0.9em;
-      position: relative; }
-    .module__assistcard .logo {
+    width: 100%;
+    flex-wrap: wrap; }
+    .module__assistcard--container .logo {
       display: flex;
       flex-wrap: wrap;
       width: 20%;
@@ -1604,60 +1613,64 @@ body {
       justify-content: center;
       flex-direction: column; }
       @media only screen and (max-width: 37.5em) {
-        .module__assistcard .logo {
+        .module__assistcard--container .logo {
           width: 100%;
           flex-direction: row;
           justify-content: flex-start; } }
-      .module__assistcard .logo img {
+      .module__assistcard--container .logo img {
         width: 60%; }
         @media only screen and (max-width: 37.5em) {
-          .module__assistcard .logo img {
+          .module__assistcard--container .logo img {
             width: 20%;
             margin: 0 1.5rem; } }
-      .module__assistcard .logo .link-container {
+      .module__assistcard--container .logo .link-container {
         display: flex;
         flex-direction: column; }
-        .module__assistcard .logo .link-container .subtitle {
+        .module__assistcard--container .logo .link-container .subtitle {
           font-size: 2rem;
           font-weight: bold;
           color: #9b9b9b;
           display: none; }
           @media only screen and (max-width: 37.5em) {
-            .module__assistcard .logo .link-container .subtitle {
+            .module__assistcard--container .logo .link-container .subtitle {
               display: block;
               font-size: 1.5rem;
               text-align: center; } }
         @media only screen and (max-width: 37.5em) {
-          .module__assistcard .logo .link-container {
+          .module__assistcard--container .logo .link-container {
             flex-direction: column;
             width: 70%;
             justify-content: space-around;
             min-height: 60px; } }
-        .module__assistcard .logo .link-container .links {
+        .module__assistcard--container .logo .link-container .links {
           display: flex;
           flex-direction: column; }
           @media only screen and (max-width: 37.5em) {
-            .module__assistcard .logo .link-container .links {
+            .module__assistcard--container .logo .link-container .links {
               flex-direction: row;
               justify-content: space-around; } }
-          .module__assistcard .logo .link-container .links a {
+          .module__assistcard--container .logo .link-container .links a {
             text-align: center;
             color: #d32027;
             text-decoration: none; }
-          .module__assistcard .logo .link-container .links a:hover {
+          .module__assistcard--container .logo .link-container .links a:hover {
             font-weight: bold; }
-    .module__assistcard .description {
+    .module__assistcard--container .description {
       width: 55%;
       display: flex;
       flex-direction: column; }
-      .module__assistcard .description .subtitle {
+      @media only screen and (max-width: 37.5em) {
+        .module__assistcard--container .description {
+          width: 100%;
+          padding: 0 1rem; } }
+      .module__assistcard--container .description .subtitle {
         font-size: 2rem;
         font-weight: bold;
         color: #9b9b9b; }
         @media only screen and (max-width: 37.5em) {
-          .module__assistcard .description .subtitle {
+          .module__assistcard--container .description .subtitle {
             display: none; } }
-    .module__assistcard .price-container {
+    .module__assistcard--container .price-container {
       width: 25%;
       display: flex;
       flex-wrap: wrap;
@@ -1666,17 +1679,25 @@ body {
       flex-direction: column;
       border-left: 2px solid #e7e7e7; }
       @media only screen and (max-width: 37.5em) {
-        .module__assistcard .price-container {
+        .module__assistcard--container .price-container {
           margin-top: .5rem;
           border-top: 2px solid #e7e7e7;
           border-left: 0px;
           width: 100%; } }
-      .module__assistcard .price-container .price {
+      .module__assistcard--container .price-container .price {
         font-weight: bold;
         color: #d32027;
-        font-size: 1.8rem;
-        margin: 1rem; }
-      .module__assistcard .price-container .button {
+        font-size: 1.8rem; }
+      .module__assistcard--container .price-container .disclaimer {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        line-height: 1.2;
+        margin-top: 0.5rem; }
+        .module__assistcard--container .price-container .disclaimer div {
+          margin: 0; }
+      .module__assistcard--container .price-container .button {
         height: 3.6rem;
         width: 85%;
         background-color: #d32027;
@@ -1685,19 +1706,67 @@ body {
         justify-content: center;
         align-items: center;
         text-decoration: none;
+        margin-top: 1rem;
         cursor: pointer; }
         @media only screen and (max-width: 37.5em) {
-          .module__assistcard .price-container .button {
+          .module__assistcard--container .price-container .button {
             width: 60%; } }
-        .module__assistcard .price-container .button span {
+        .module__assistcard--container .price-container .button span {
           font-size: 1.6rem;
           line-height: 1.5;
           letter-spacing: .2px;
           text-align: center;
           color: #fff; }
-
-.billing {
-  height: 20.4rem; }
+      .module__assistcard--container .price-container .oferta-assist {
+        background: #3c3c3c;
+        border-radius: 5px;
+        max-width: 86%;
+        width: 100%;
+        margin: 10px; }
+        .module__assistcard--container .price-container .oferta-assist .inside-oferta {
+          max-width: 96%;
+          width: 100%;
+          margin: 7px auto;
+          border-radius: 16px;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: space-between; }
+        .module__assistcard--container .price-container .oferta-assist div {
+          color: white;
+          width: 100%;
+          text-align: center;
+          font-size: 1.2rem;
+          margin: 0.2rem; }
+        .module__assistcard--container .price-container .oferta-assist .title {
+          font-size: 1.7rem; }
+        .module__assistcard--container .price-container .oferta-assist .off {
+          font-size: 2.2rem;
+          font: bold; }
+        .module__assistcard--container .price-container .oferta-assist .inside-oferta h1 {
+          color: #fff;
+          font-size: 13px;
+          text-transform: uppercase;
+          margin-left: 12px; }
+        .module__assistcard--container .price-container .oferta-assist .inside-oferta h2 {
+          font-size: 22px;
+          color: #fff;
+          text-transform: uppercase; }
+        .module__assistcard--container .price-container .oferta-assist .inside-oferta h3 {
+          color: #fff;
+          font-size: 13px;
+          text-transform: uppercase;
+          margin-right: 12px; }
+  .module__assistcard--advertise {
+    text-align: center;
+    font-size: 1.5rem;
+    display: none;
+    width: 100%;
+    margin-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 1rem; }
+  .module__assistcard--advertise-visible {
+    display: block; }
 
 .next-button {
   height: 4rem;

@@ -58,7 +58,6 @@ class CheckoutStore {
                     let { fcb,activeComponents, infoProduct, clusterId,trackId,incs} = data;
                     this.clusterID = clusterId;
                     this.trackID = trackId;
-                    console.log(incs);
                     switch (action) {
                             case '1':   
                                 this.activeComponents = activeComponents;
@@ -77,7 +76,7 @@ class CheckoutStore {
                                 }else if(product ==='accommodations'){
                                     GuestsStore.setGuestArray(data.paxa, data.paxa.every(GuestsStore.validGuest));
                                 }
-                                if(this.entityBank){
+                               // if(this.entityBank){
                                     const promo = PaymentMethodStore.paymentMethods.hsbc[0].promos[0];
                                    PaymentMethodStore.setPaymentInfo({
                                         fare: promo.fare,
@@ -98,7 +97,7 @@ class CheckoutStore {
                                         initialDue: promo.initialDue,
                                     });
                                    PaymentMethodStore.setInstallments(promo.installments);
-                                }
+                             //  }
                                 resolve(
                                     {   action:action,
                                         message:'ok'

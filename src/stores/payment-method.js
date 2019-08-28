@@ -286,6 +286,8 @@ class PaymentMethodStore {
                             firstInstallment: p.firstInstallment ,
                             paymentMethodId: selectedCard.paymentMethodId,
                             bines: p.bines,
+                            totalWithAssistance:p.totalWithAssistance,
+                            dueValueWithAssistance:p.dueValueWithAssistance,
                         }
                     })
                 }

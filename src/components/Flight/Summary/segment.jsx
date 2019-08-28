@@ -27,9 +27,9 @@ const Luggage = ({luggage}) =>{
     return(
         luggage.map((l,k) =>
 
-            <div className="segment-luggage">
+            <div className="segment-luggage"  key={`key-lugg-${k}`}>
                 {l.carryon?
-                <div className="flight-luggage" >
+                <div className="flight-luggage">
                     <img alt="Equipaje de mano" className="leg-summary__luggage-icon" src={require('assets/img/flights/equipaje-mano.png')} />1 (un) equipaje de mano
                 </div>
                 :null}

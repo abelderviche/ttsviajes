@@ -40,7 +40,7 @@ class Charges extends React.Component {
 
 
     render() {
-        const { price, scrolled } = this.props;
+        const { price, scrolled ,paymentMethod} = this.props;
         return (
             <div className={`charges noselect ${this.state.collapsed ? 'charges--collapsed' : ''} ${scrolled ? 'charges--floating' : ''} ${ENV.SUBCHANNEL!=='tts'?`charges--${ENV.SUBCHANNEL}`:''}`} onClick={this.toggleCollapsed}>
                 <div className={`charges__details ${!this.state.collapsed ? 'charges__hidden' : ''}`}>
@@ -72,10 +72,10 @@ class Charges extends React.Component {
                     <span className="charges__total--label">Total</span>
                     { 
                     
-                    this.props.paymentMethod.paymentInfo && this.props.paymentMethod.paymentInfo.total?
-                    <span className="charges__total--price">ARS {formatPrice(this.props.paymentMethod.paymentInfo.total)}</span>:
-                    <span className="charges__total--price">ARS {formatPrice(this.props.assistcard.selectedProduct?price.total+this.props.assistcard.selectedProduct.amount:price.total)}</span>
-                    }
+                    this.props.paymentMethod.paymentInfo ?
+                    <span className="charges__total--price">ARS {formatPrice(!this.props.assistcard.selectedProduct?paymentMethod.paymentInfo.total:paymentMethod.paymentInfo.totalWithAssistance)}</span>
+                    :null}
+
                 </div>
             </div>
         );

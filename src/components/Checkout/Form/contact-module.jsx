@@ -53,21 +53,21 @@ export default class ContactFormModule extends Component {
                                         value={contactStore.phoneType} action={contactStore.setPhoneType}
                                         size='small' placeholder='Tipo' />
                                 </Input>
-                                <Input title="Cod. de pais">
+                                <Input title="Cód. de pais">
                                     <TextInput 
                                             forceValidation={this.props.sendAttempted}
                                             valid={contactStore.validCountryCode}
                                             value={contactStore.countryCode} action={contactStore.setCountryCode}
                                             size='small' placeholder='54' />
                                 </Input>
-                                <Input title="Cod. de area">
+                                <Input title="Cód. de area">
                                     <TextInput 
                                             forceValidation={this.props.sendAttempted}
                                             valid={contactStore.validAreaCode}
                                             value={contactStore.areaCode} action={contactStore.setAreaCode}
                                             size='small' placeholder='011' />
                                 </Input>
-                                <Input title="Numero">
+                                <Input title="Número">
                                     <TextInput 
                                             forceValidation={this.props.sendAttempted}
                                             valid={contactStore.validPhoneNumber}

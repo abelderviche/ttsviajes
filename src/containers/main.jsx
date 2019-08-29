@@ -56,7 +56,7 @@ class Main extends React.Component {
                                         localStorage.removeItem('site');
                                     } else {
                                         localStorage.setItem('ID-TTS', props.match.params.clientID);
-                                        localStorage.setItem('site', props.match.params.payload);
+                                        localStorage.setItem('site', encodeURIComponent(atob(props.match.params.payload)));
                                     }
                                     //window.parent.postMessage('successfuly authenticated', '');
                                     return <div>SETEANDO LS</div>;
